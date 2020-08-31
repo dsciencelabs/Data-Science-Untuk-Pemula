@@ -1,0 +1,73 @@
+--- 
+title: "Data Science Untuk Pemula"
+author: "Bakti Siregar S.Si, M.Sc"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: 
+  bookdown::gitbook:
+    config:
+      toc:
+        collapse: subsection
+        scroll_highlight: yes
+      fontsettings:
+        theme: white
+        family: serif
+        size: 2
+    split_by: chapter+number
+    highlight: tango
+always_allow_html: yes
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+biblatexoptions:
+  - sortcites
+link-citations: yes
+github-repo: Bakti-Siregar/Data-Science-Untuk-Pemula
+description: "Repository ini ditujukan untuk memudahkan penulisan e-book Data Science Untuk Pemula dalam bahasa Indonesia."
+---
+
+# {-}
+
+```{r install-packages, include=FALSE}
+# The **bookdown** package can be installed from CRAN or Github: 
+# install.packages("bookdown")
+# or the development version
+# devtools::install_github("rstudio/bookdown")
+```
+
+```{r input-packages, include=FALSE}
+# To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX):<https://yihui.name/tinytex/>.
+
+# automatically create a bib database for R packages
+knitr::write_bib(c(.packages(),
+                   'bookdown', 
+                   'knitr', 
+                   'rmarkdown'
+), 'packages.bib')
+```
+
+<center><img src="images/datascience1.png" style = "width:40%;"></center>
+<br> 
+<img style="float: right; margin: 0px 100px 0px 0px; width:40%" src="images/logomatana.png"/> 
+Department of Statistics
+<br> 
+Faculty of STEM 
+<br>
+Tangerang, Banten 
+<br> 
+<a href="https://mail.google.com/siregarbakti/">Info: siregarbakti@gmail.com</a>
+<br>
+<br>
+
+## Kata Pengantar {-}
+
+Template ini merupakan pengenalan cara membuat Book ,,,
+
+## Penulis {-}
+
+Tuliskan tentang Anda atau profil Anda di sini ,,,
+
+## Assistant {-}
+
+
+
