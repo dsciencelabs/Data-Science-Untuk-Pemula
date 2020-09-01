@@ -1,3 +1,149 @@
 # Interface Data {#Interface-Data}
 
-Disini di tuliskan materi
+# 4. Interface Data R
+
+Di R, kita dapat membaca data dari file yang tersimpan di luar Environment R. Kita juga dapat menulis data menjadi bentuk file yang akan disimpan dan diakses oleh sistem operasi. R dapat membaca dan menulis ke beberapa format file seperti csv, excel, txt, rds, xml, json, dll.
+
+
+## 4.1 Direktori Kerja (Working Directory)
+
+Sebelum kita mulai bekerja menggunakan data (data interface), pertama-tama pastikan working directory Anda berada di koneksi yang tepat. Anda dapat memeriksanya menggunakan fungsi `getwd()`. Anda juga dapat mengeset sebuah working directory baru menggunakan fungsi `setwd()`.
+```{r, echo=T, results='hide'}
+print(getwd())                                    # memperoleh dan mencetak working directory saat ini
+getwd()                                           # memperoleh dan mencetak working directory saat ini
+#setwd("C:/Users/Bakti/Desktop/")                 # mengeset working directory Anda (ini adalah contoh)
+#setwd("C:\\Users\\Bakti\\Desktop\\")             # atau dengan cara ini
+```
+
+
+## 4.2 Membaca/Menulis CSV
+
+Ini adalah sebuah contoh sederhana dari fungsi `read.csv` untuk membaca sebuah file CSV yang tersedia di working directory Anda saat ini.
+```{r, echo=T, results='hide'}
+# csv <- read.csv(file.choose())                  # tampilan file csv tanpa `setwd`
+csv1 <- read.csv("Data/csv1.csv",sep = ",")       # ini untuk membaca data dengan pemisah koma
+csv2 <- read.csv("Data/csv2.csv",sep = ";")       # ini untuk membaca data dengan pemisah titik koma 
+head(csv2,3)                                      # mencetak hasil dari `data1` 
+```
+
+R dapat membuat file csv dari data frame yang ada. Fungsi `write.csv()` digunakan untuk membuat file csv. File ini dibuat di working directory.
+```{r, echo=T, results'hide'}
+write.csv(csv2,"Data/csv3.csv")
+```
+
+
+## 4.3 Membaca/Menulis Excel
+
+Microsoft Excel adalah program spreadsheet yang paling banyak digunakan yang menyimpan data dalam format .xls atau .xlsx. R dapat membaca file-file ini secara langsung menggunakan beberapa packages (paket) khusus excel. Kita akan menggunakan package `readxl`.
+```{r, echo=T, results='hide'}
+# xlsx <- read_excel(file.choose())                # tampilan file xlsx tanpa `setwd`
+# install.packages("readxl")                       # menginstal package `readxl` 
+library("readxl")                                  # memuat package `readxl`
+xlsx1<-read_excel("Data/xlsx1.xlsx",sheet=1)       # membaca/impor data xlsx dari PC
+head(xlsx1,3)        
+```
+
+Untuk menulis data frame yang ada ke dalam file excel Anda harus menginstal package `writexl`.
+```{r, echo=T, results='hide'}
+# install.packages("writexl")                      # menginstal  package `readxl`
+library("writexl")                                 # memuat package `readxl` 
+writexl::write_xlsx(xlsx1,"Data/xlsx2.xlsx")       # memeriksa output di working directory Anda
+```
+
+
+## 4.4 Membaca/Menulis TXT dan RDS
+
+Salah satu tugas paling umum yang kita lakukan adalah membaca data dari file CSV dan XLSX. Namun, proses membaca data bisa melambat untuk file CSV atau XLSX yang besar. Salah satu trik yang rapi adalah membaca data dan menyimpannya sebagai file TXT atau file biner R (RDS). Untuk mengimpor file TXT, kita menggunakan `read.table()` dan untuk mengimpor file RDS kita dapat menggunakan `readRDS()`.
+```{r, echo=T, results='hide'}
+# txt1 <- read.table(file.choose())                # tampilan file TXT tanpa `setwd`
+txt1 <- read.table("Data/txt1.txt")                # membaca/memuat format TXT (notepad)
+txt1 <- source("Data/txt1.Rdmpd")                  # membaca/memuat format TXT (Rdmpd)
+rds1 <- readRDS("Data/rds1.rds")                   # membaca/memuat format RDS biner
+ascii1 <- readRDS("Data/ascii1.rds")               # membaca/memuat format ASCII biner
+```
+
+Untuk menyimpan data sebagai file TXT kita dapat menggunakan fungsi `write.table()`, dan untuk file biner R (RDS) kita dapat menggunakan fungsi `saveRDS()`. Fungsi-fungsi tersebut banyak digunakan oleh R sendiri, sebagai contoh untuk menyimpan data meta untuk suatu package dan untuk menyimpan basis data help.search: ekstensi file `.rds` paling sering digunakan. Format ini dapat berupa biner atau ASCII. Biner lebih padat, sementara ASCII akan lebih efisien dengan sistem kontrol versi seperti Git.
+```{r, echo=T, results='hide'}
+data <- read.csv("Data/csv1.csv",sep = ",")        # membaca/mengimpor data dari PC Anda
+
+write.table(data,"Data/txt2.txt")                  # meyimpan dalam format TXT (notepad)
+dump("data", "Data/txt2.Rdmpd")                    # meyimpan dalam format TXT (Rdmpd)
+saveRDS(data, "Data/rds2.rds")                     # menyimpan suatu objek dalam format RDS biner
+saveRDS(data, "ascii2.rds", ascii=TRUE)            # menyimpan suatu objek dalam format RDS ASCII
+```
+
+
+## 4.5 Membaca/Menulis XML
+
+XML adalah suatu format file yang membagikan format file dan data dari World Wide Web (www), intranet, dan di tempat lain menggunakan teks ASCII standar. XML adalah singkatan dari Extensible Markup Language, lebih lanjut tentang XML. XML berisi tag markup, mirip dengan HTML. Tag markup di xml menggambarkan arti data yang terkandung dalam file tersebut,tetapi tidak seperti HTML di mana tag markup menggambarkan struktur halaman. Anda dapat membaca suatu file xml di R menggunakan package "XML". File xml dibaca oleh R menggunakan fungsi `xmlParse()`. File itu disimpan sebagai daftar (list) di R.
+```{r, echo=T, results='hide'}
+library("XML")                                     # memuat package yang dibutuhkan untuk membaca file XML
+library("methods")                                 # memuat paket lainnya yang dibutuhkan.
+result <- xmlParse(file = "Data/xml1.xml")         # memberikan nama file input ke fungsi
+print(result)                                      # Mencetak hasilnya
+```
+
+Untuk menangani data secara efektif dalam file besar, kita membaca data dalam file xml sebagai suatu data frame. Kemudian memproses data frame untuk analisis data.
+```{r, echo=T, results='hide'}
+xmldataframe <- xmlToDataFrame(result)             # mengonversi file input xml ke bentuk data frame
+head(xmldataframe,3)                               # Mencetak hasilnya
+```
+
+Buat file XML dengan menyalin data ini ke editor teks seperti notepad. Simpan file dengan ekstensi .xml dan pilih jenis file sebagai all files(.).
+
+
+## 4.6 Membaca/Menulis JSON
+
+File JSON menyimpan data sebagai teks dalam format yang dapat dibaca oleh manusia. Json adalah singkatan dari JavaScript Object Notation. R dapat membaca file JSON menggunakan package rjson. Lebih lanjut tentang JSON.
+```{r, echo=T, results='hide'}
+library("rjson")                                   # memuat package untuk membaca file JSON
+json1 <- fromJSON(file= "Data/json1.json")         # memberikan nama file input ke fungsi
+print(json1)                                       # Mencetak hasilnya
+```
+
+Kita dapat mengonversi data yang diekstraks di atas ke bentuk data frame R untuk analisis lebih lanjut menggunakan fungsi as.data.frame().
+```{r, echo=T, results='hide'}
+json_data_frame <- as.data.frame(json1)            # mengonversi file JSON ke bentuk data frame
+head(json_data_frame,3)                            # Mencetak hasilnya
+```
+
+
+## 4.7 Membaca Data dari Web
+
+Banyak situs web yang menyediakan data untuk digunakan oleh penggunanya. Dengan menggunakan program R, kita dapat mengekstrak data tertentu dari situs web tersebut secara terprogram. Di bagian ini, saya memberikan contoh cara mengimpor data dari repositori github, tetapi Anda dapat melakukan hal yang serupa pada situs web atau repositori lainnya.
+
+### CSV:
+```{r, echo=T, results='hide'}
+web_csv <- read.csv("https://github.com/Bakti-Siregar/dataset/raw/master/Bookdown-Data-Science-for-Beginners/csv1.csv")
+head(web_csv,3)
+```
+
+### XLSX:
+```{r, echo=T, results='hide'}
+library(rio)                                       # package ini untuk mengimpor data dari github
+install_formats()                                  # mungkin Anda perlu menginstal packages yang disarankan yang belum terinstal
+```
+
+```{r, echo=T, results='hide'}
+web_xlsx <-rio::import("https://github.com/Bakti-Siregar/dataset/blob/master/Bookdown-Data-Science-for-Beginners/xlsx1.xlsx?raw=true")
+head(web_xlsx,3)
+```
+
+### LAINNYA:
+```{r, echo=T, results='hide'}
+web_txt <- read.table("type URL/Web.txt here")     # membaca/memuat format TXT (notepad) dari web
+web_rds <- readRDS("type URL/Web.rds here")        # membaca/memuat format RDS dari web
+web_ascii <- readRDS("type URL/Web.ascii here")    # membaca/memuat format ASCII dari web
+
+web_xml<- xmlParse("type URL/Web.xml here")        # membaca/memuat format XML dari web 
+xmlToDataFrame(web_xml)                            # mengonversi file xml input ke bentuk data frame
+
+web_json <- fromJSON("type URL/Web.json here")     # membaca/memuat format JSON dari web
+as.data.frame(web_json)                            # mengonversi file JSON ke bentuk data frame
+```
+
+
+## 4.8 Basis Data R
+Data tersebut adalah sistem basis data relasional yang disimpan dalam format yang dinormalisasi. Jadi, untuk melakukan komputasi statistik kita akan memerlukan query Sql yang lebih lanjut dan sangat kompleks. Tetapi R dapat terhubung ke banyak basis data relasional dengan mudah seperti MySql, Oracle, server Sql, dll serta mengambil catatan sebagai data frame dari basis data tersebut. Setelah data itu tersedia di lingkungan (environment) R, maka akan menjadi kumpulan data R normal dan dapat dimanipulasi atau dianalisis menggunakan semua package dan fungsi yang kuat.
+
+Catatan: Kita akan mempelajari bagian ini lebih mendalam di "Sistem Basis Data dengan R".
