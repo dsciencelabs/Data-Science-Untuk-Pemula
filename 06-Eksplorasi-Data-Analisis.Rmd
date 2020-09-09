@@ -237,7 +237,7 @@ di mana $\bar{x}_k:=\frac{1}{n}\Sigma_ix_{i,k}$. Dengan kata lain, entri ke-k,l 
 
 Matriks korelasi mengacu pada deretan angka simetris.
 Matriks korelasi: R
-$R=[]$ ----------(CARA MEMBUAT MATRIKS?)----------
+$R=[]$ ----------(Saya belum tau cara membuat matriksnya, Pak)----------
 $Y_{j,k}=\frac{S_{j,k}}{S_jS_k}=\frac{\Sigma^{n}_{i=1}(x_{i,j}-\bar{x}_j)(x_{i,k}-\bar{x}_k)}{\sqrt{\Sigma^n_{i=1}{(x_{i,j}-\bar{x}_j)^2}}\sqrt{\Sigma^n_{i=1}(x_{i,k}-\bar{x}_k)^2}}$
 $Y_{j,k}=$ koefisien korelasi $x_j$ dan $x_k$
 
