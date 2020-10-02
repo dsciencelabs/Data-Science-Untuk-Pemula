@@ -434,7 +434,7 @@ Catatan Objek dan nama variabel dalam R tidak boleh berisi spasi.</li>
 <p>Karena R berasal mewarisi banyak sumber, juga mengadopsi OS seperti Unix dan Linux. <code>Piping</code> adalah ide yang diambil dari Linux shell yang memungkinkan untuk menggunakan output dari satu ekspresi sebagai input ke yang lain. Dengan demikian, Piping membuat kode lebih mudah dibaca dan ditulis.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="2-Dasar-R.html#cb15-1"></a><span class="co"># Prasyarat:</span></span>
 <span id="cb15-2"><a href="2-Dasar-R.html#cb15-2"></a><span class="kw">library</span>(magrittr)                                  <span class="co"># Memuat fungsi piping</span></span>
-<span id="cb15-3"><a href="2-Dasar-R.html#cb15-3"></a><span class="kw">help</span>(<span class="dt">package =</span> <span class="st">&quot;magrittr&quot;</span>)                       	 <span class="co"># Memuat informasi `magrittr`</span></span>
+<span id="cb15-3"><a href="2-Dasar-R.html#cb15-3"></a><span class="co"># help(package = &quot;magrittr&quot;)                       # Memuat informasi `magrittr`</span></span>
 <span id="cb15-4"><a href="2-Dasar-R.html#cb15-4"></a>x &lt;-<span class="st"> </span><span class="kw">rbinom</span>(<span class="dt">n=</span><span class="dv">1000</span>, <span class="dt">size=</span><span class="dv">10</span>, <span class="dt">prob=</span><span class="fl">0.5</span>)           	 <span class="co"># Menghasilkan beberapa sampel data</span></span>
 <span id="cb15-5"><a href="2-Dasar-R.html#cb15-5"></a><span class="co"># Contoh:</span></span>
 <span id="cb15-6"><a href="2-Dasar-R.html#cb15-6"></a>x <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">var</span>()                                        <span class="co"># Bukan `var(x)`</span></span>
@@ -818,7 +818,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["Data-Science-Untuk-Pemula.pdf", "Data-Science-Untuk-Pemula.epub"],
 "toc": {
 "collapse": "subsection",
 "scroll_highlight": true
@@ -827,6 +827,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Visualisasi Data | Data Science Untuk Pemula</title>
+  <meta name="description" content="Repository ini ditujukan untuk memudahkan penulisan e-book Data Science Untuk Pemula dalam bahasa Indonesia." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Visualisasi Data | Data Science Untuk Pemula" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Repository ini ditujukan untuk memudahkan penulisan e-book Data Science Untuk Pemula dalam bahasa Indonesia." />
+  <meta name="github-repo" content="Bakti-Siregar/Data-Science-Untuk-Pemula" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Visualisasi Data | Data Science Untuk Pemula" />
+  
+  <meta name="twitter:description" content="Repository ini ditujukan untuk memudahkan penulisan e-book Data Science Untuk Pemula dalam bahasa Indonesia." />
+  
+
+<meta name="author" content="Bakti Siregar S.Si, M.Sc" />
+
+
+<meta name="date" content="2020-10-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="6-Eksplorasi-Data-Analisis.html"/>
+<link rel="next" href="8-Vusualisasi-Data-Lanjut.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="toc.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><center><img src="images/me.png" alt="logo" width="50%" height="50%"style="margin: 15px 0 0 0"></center></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section"></a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Kata Pengantar</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#penulis"><i class="fa fa-check"></i>Penulis</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#assistant"><i class="fa fa-check"></i>Assistant</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="1-Pendahuluan.html"><a href="1-Pendahuluan.html"><i class="fa fa-check"></i><b>1</b> Pendahuluan</a></li>
+<li class="chapter" data-level="2" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html"><i class="fa fa-check"></i><b>2</b> Dasar-dasar R</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#operator-penugasan"><i class="fa fa-check"></i><b>2.1</b> Operator Penugasan</a></li>
+<li class="chapter" data-level="2.2" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#kalkulator-sederhana-dalam-r"><i class="fa fa-check"></i><b>2.2</b> Kalkulator Sederhana Dalam R</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#penugasan-variabel"><i class="fa fa-check"></i><b>2.2.1</b> Penugasan Variabel</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#probabilitas"><i class="fa fa-check"></i><b>2.2.2</b> Probabilitas</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#bantuan"><i class="fa fa-check"></i><b>2.3</b> Bantuan</a></li>
+<li class="chapter" data-level="2.4" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#statistik-dasar"><i class="fa fa-check"></i><b>2.4</b> Statistik Dasar</a></li>
+<li class="chapter" data-level="2.5" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#nilai-yang-hilang"><i class="fa fa-check"></i><b>2.5</b> Nilai yang Hilang</a></li>
+<li class="chapter" data-level="2.6" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#piping"><i class="fa fa-check"></i><b>2.6</b> Piping</a></li>
+<li class="chapter" data-level="2.7" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#membuat-vektor"><i class="fa fa-check"></i><b>2.7</b> Membuat Vektor</a></li>
+<li class="chapter" data-level="2.8" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#matriks"><i class="fa fa-check"></i><b>2.8</b> Matriks</a></li>
+<li class="chapter" data-level="2.9" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#list"><i class="fa fa-check"></i><b>2.9</b> List</a></li>
+<li class="chapter" data-level="2.10" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#factor"><i class="fa fa-check"></i><b>2.10</b> Factor</a></li>
+<li class="chapter" data-level="2.11" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#data-frame"><i class="fa fa-check"></i><b>2.11</b> Data Frame</a></li>
+<li class="chapter" data-level="2.12" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#names"><i class="fa fa-check"></i><b>2.12</b> Names</a></li>
+<li class="chapter" data-level="2.13" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#pengeculian-ekstraksi"><i class="fa fa-check"></i><b>2.13</b> Pengeculian (Ekstraksi)</a></li>
+<li class="chapter" data-level="2.14" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#petunjuk-penting"><i class="fa fa-check"></i><b>2.14</b> Petunjuk Penting</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-Pemrograman-R.html"><a href="3-Pemrograman-R.html"><i class="fa fa-check"></i><b>3</b> Pemrograman R</a></li>
+<li class="chapter" data-level="4" data-path="4-Interface-Data.html"><a href="4-Interface-Data.html"><i class="fa fa-check"></i><b>4</b> Interface Data</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-Interface-Data.html"><a href="4-Interface-Data.html#direktori-kerja-working-directory"><i class="fa fa-check"></i><b>4.1</b> Direktori Kerja (Working Directory)</a></li>
+<li class="chapter" data-level="4.2" data-path="4-Interface-Data.html"><a href="4-Interface-Data.html#membacamenulis-csv"><i class="fa fa-check"></i><b>4.2</b> Membaca/Menulis CSV</a></li>
+<li class="chapter" data-level="4.3" data-path="4-Interface-Data.html"><a href="4-Interface-Data.html#membacamenulis-excel"><i class="fa fa-check"></i><b>4.3</b> Membaca/Menulis Excel</a></li>
+<li class="chapter" data-level="4.4" data-path="4-Interface-Data.html"><a href="4-Interface-Data.html#membacamenulis-txt-dan-rds"><i class="fa fa-check"></i><b>4.4</b> Membaca/Menulis TXT dan RDS</a></li>
+<li class="chapter" data-level="4.5" data-path="4-Interface-Data.html"><a href="4-Interface-Data.html#membacamenulis-xml"><i class="fa fa-check"></i><b>4.5</b> Membaca/Menulis XML</a></li>
+<li class="chapter" data-level="4.6" data-path="4-Interface-Data.html"><a href="4-Interface-Data.html#membacamenulis-json"><i class="fa fa-check"></i><b>4.6</b> Membaca/Menulis JSON</a></li>
+<li class="chapter" data-level="4.7" data-path="4-Interface-Data.html"><a href="4-Interface-Data.html#membaca-data-dari-web"><i class="fa fa-check"></i><b>4.7</b> Membaca Data dari Web</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="4-Interface-Data.html"><a href="4-Interface-Data.html#csv"><i class="fa fa-check"></i><b>4.7.1</b> CSV:</a></li>
+<li class="chapter" data-level="4.7.2" data-path="4-Interface-Data.html"><a href="4-Interface-Data.html#xlsx"><i class="fa fa-check"></i><b>4.7.2</b> XLSX:</a></li>
+<li class="chapter" data-level="4.7.3" data-path="4-Interface-Data.html"><a href="4-Interface-Data.html#lainnya"><i class="fa fa-check"></i><b>4.7.3</b> LAINNYA:</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="4-Interface-Data.html"><a href="4-Interface-Data.html#sistem-basis-data-dengan-r"><i class="fa fa-check"></i><b>4.8</b> Sistem Basis Data dengan R</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-Manipulasi-Data-dengan-R.html"><a href="5-Manipulasi-Data-dengan-R.html"><i class="fa fa-check"></i><b>5</b> Manipulasi Data dengan R</a><ul>
+<li class="chapter" data-level="5.1" data-path="5-Manipulasi-Data-dengan-R.html"><a href="5-Manipulasi-Data-dengan-R.html#impor-data"><i class="fa fa-check"></i><b>5.1</b> Impor Data</a></li>
+<li class="chapter" data-level="5.2" data-path="5-Manipulasi-Data-dengan-R.html"><a href="5-Manipulasi-Data-dengan-R.html#struktur-data"><i class="fa fa-check"></i><b>5.2</b> Struktur Data</a></li>
+<li class="chapter" data-level="5.3" data-path="5-Manipulasi-Data-dengan-R.html"><a href="5-Manipulasi-Data-dengan-R.html#missing-value"><i class="fa fa-check"></i><b>5.3</b> Missing Value</a></li>
+<li class="chapter" data-level="5.4" data-path="5-Manipulasi-Data-dengan-R.html"><a href="5-Manipulasi-Data-dengan-R.html#mengganti-nilai-yang-hilang"><i class="fa fa-check"></i><b>5.4</b> Mengganti Nilai yang Hilang</a></li>
+<li class="chapter" data-level="5.5" data-path="5-Manipulasi-Data-dengan-R.html"><a href="5-Manipulasi-Data-dengan-R.html#memilih-data"><i class="fa fa-check"></i><b>5.5</b> Memilih Data</a></li>
+<li class="chapter" data-level="5.6" data-path="5-Manipulasi-Data-dengan-R.html"><a href="5-Manipulasi-Data-dengan-R.html#menyaring-dan-mengurutkan-data"><i class="fa fa-check"></i><b>5.6</b> Menyaring dan Mengurutkan Data</a></li>
+<li class="chapter" data-level="5.7" data-path="5-Manipulasi-Data-dengan-R.html"><a href="5-Manipulasi-Data-dengan-R.html#mengganti-nama-dan-mengubah-mutate"><i class="fa fa-check"></i><b>5.7</b> Mengganti Nama dan Mengubah (Mutate)</a></li>
+<li class="chapter" data-level="5.8" data-path="5-Manipulasi-Data-dengan-R.html"><a href="5-Manipulasi-Data-dengan-R.html#menggabungkan-data"><i class="fa fa-check"></i><b>5.8</b> Menggabungkan Data</a></li>
+<li class="chapter" data-level="5.9" data-path="5-Manipulasi-Data-dengan-R.html"><a href="5-Manipulasi-Data-dengan-R.html#kelompok-dan-ringkasan"><i class="fa fa-check"></i><b>5.9</b> Kelompok dan Ringkasan</a></li>
+<li class="chapter" data-level="5.10" data-path="5-Manipulasi-Data-dengan-R.html"><a href="5-Manipulasi-Data-dengan-R.html#membagi-data"><i class="fa fa-check"></i><b>5.10</b> Membagi Data</a><ul>
+<li class="chapter" data-level="5.10.1" data-path="5-Manipulasi-Data-dengan-R.html"><a href="5-Manipulasi-Data-dengan-R.html#dplyr"><i class="fa fa-check"></i><b>5.10.1</b> dplyr</a></li>
+<li class="chapter" data-level="5.10.2" data-path="5-Manipulasi-Data-dengan-R.html"><a href="5-Manipulasi-Data-dengan-R.html#catools"><i class="fa fa-check"></i><b>5.10.2</b> caTools</a></li>
+<li class="chapter" data-level="5.10.3" data-path="5-Manipulasi-Data-dengan-R.html"><a href="5-Manipulasi-Data-dengan-R.html#caret"><i class="fa fa-check"></i><b>5.10.3</b> caret</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-Eksplorasi-Data-Analisis.html"><a href="6-Eksplorasi-Data-Analisis.html"><i class="fa fa-check"></i><b>6</b> Eksplorasi Data Analisis</a><ul>
+<li class="chapter" data-level="6.1" data-path="6-Eksplorasi-Data-Analisis.html"><a href="6-Eksplorasi-Data-Analisis.html#kualitatif"><i class="fa fa-check"></i><b>6.1</b> Kualitatif</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="6-Eksplorasi-Data-Analisis.html"><a href="6-Eksplorasi-Data-Analisis.html#kategorikal-univariat"><i class="fa fa-check"></i><b>6.1.1</b> Kategorikal Univariat</a></li>
+<li class="chapter" data-level="6.1.2" data-path="6-Eksplorasi-Data-Analisis.html"><a href="6-Eksplorasi-Data-Analisis.html#kategorikal-bivariat"><i class="fa fa-check"></i><b>6.1.2</b> Kategorikal Bivariat</a></li>
+<li class="chapter" data-level="6.1.3" data-path="6-Eksplorasi-Data-Analisis.html"><a href="6-Eksplorasi-Data-Analisis.html#kategorikal-multivariat"><i class="fa fa-check"></i><b>6.1.3</b> Kategorikal Multivariat</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="6-Eksplorasi-Data-Analisis.html"><a href="6-Eksplorasi-Data-Analisis.html#kuantitatif"><i class="fa fa-check"></i><b>6.2</b> Kuantitatif</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="6-Eksplorasi-Data-Analisis.html"><a href="6-Eksplorasi-Data-Analisis.html#univariat-kontinu"><i class="fa fa-check"></i><b>6.2.1</b> Univariat Kontinu</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-Eksplorasi-Data-Analisis.html"><a href="6-Eksplorasi-Data-Analisis.html#bivariat-kontinu"><i class="fa fa-check"></i><b>6.2.2</b> Bivariat Kontinu</a></li>
+<li class="chapter" data-level="6.2.3" data-path="6-Eksplorasi-Data-Analisis.html"><a href="6-Eksplorasi-Data-Analisis.html#multivariat-kontinu"><i class="fa fa-check"></i><b>6.2.3</b> Multivariat Kontinu</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6-Eksplorasi-Data-Analisis.html"><a href="6-Eksplorasi-Data-Analisis.html#ade-dengan-cara-lazy-way"><i class="fa fa-check"></i><b>6.3</b> ADE dengan cara Lazy-way</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="6-Eksplorasi-Data-Analisis.html"><a href="6-Eksplorasi-Data-Analisis.html#fungsi-glimpse"><i class="fa fa-check"></i><b>6.3.1</b> Fungsi Glimpse</a></li>
+<li class="chapter" data-level="6.3.2" data-path="6-Eksplorasi-Data-Analisis.html"><a href="6-Eksplorasi-Data-Analisis.html#fungsi-skim"><i class="fa fa-check"></i><b>6.3.2</b> Fungsi Skim</a></li>
+<li class="chapter" data-level="6.3.3" data-path="6-Eksplorasi-Data-Analisis.html"><a href="6-Eksplorasi-Data-Analisis.html#fungsi-lain"><i class="fa fa-check"></i><b>6.3.3</b> Fungsi Lain</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="6-Eksplorasi-Data-Analisis.html"><a href="6-Eksplorasi-Data-Analisis.html#laporan-ade"><i class="fa fa-check"></i><b>6.4</b> Laporan ADE</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="7-Visualisasi-Data.html"><a href="7-Visualisasi-Data.html"><i class="fa fa-check"></i><b>7</b> Visualisasi Data</a></li>
+<li class="chapter" data-level="8" data-path="8-Vusualisasi-Data-Lanjut.html"><a href="8-Vusualisasi-Data-Lanjut.html"><i class="fa fa-check"></i><b>8</b> Vusualisasi Data Lanjut</a></li>
+<li class="chapter" data-level="" data-path="daftar-pustaka.html"><a href="daftar-pustaka.html"><i class="fa fa-check"></i>Daftar-Pustaka</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/Bakti-Siregar/Data-Science-Untuk-Pemula" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Science Untuk Pemula</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="Visualisasi-Data" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Visualisasi Data</h1>
+<hr />
+<p>Disini di tuliskan materi</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="6-Eksplorasi-Data-Analisis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="8-Vusualisasi-Data-Lanjut.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": true,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/Bakti-Siregar/Data-Science-Untuk-Pemula/edit/master/07-Vusialisasi-Data.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Data-Science-Untuk-Pemula.pdf", "Data-Science-Untuk-Pemula.epub"],
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

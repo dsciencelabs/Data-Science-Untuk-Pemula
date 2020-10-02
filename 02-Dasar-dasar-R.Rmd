@@ -211,7 +211,7 @@ Karena R berasal mewarisi banyak sumber, juga mengadopsi OS seperti Unix dan Lin
 ```{r , echo=T, results='hide', message=F}
 # Prasyarat:
 library(magrittr)                                  # Memuat fungsi piping
-help(package = "magrittr")                       	 # Memuat informasi `magrittr`
+# help(package = "magrittr")                       # Memuat informasi `magrittr`
 x <- rbinom(n=1000, size=10, prob=0.5)           	 # Menghasilkan beberapa sampel data
 # Contoh:
 x %>% var()                                        # Bukan `var(x)`

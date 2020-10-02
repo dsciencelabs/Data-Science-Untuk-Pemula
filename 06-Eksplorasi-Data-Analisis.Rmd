@@ -85,11 +85,11 @@ Ukuran tendensi sentral adalah nilai tunggal yang mencoba menggambarkan sekumpul
 * **Mean(Rata-rata):** adalah ukuran tendensi sentral yang paling populer dan terkenal. mean dapat digunakan dengan data diskrit maupun kontinu, meskipun penggunaannya paling sering dengan data kontinu (lihat panduan Jenis Variabel kami untuk tipe data). Rata-rata sama dengan jumlah semua nilai dalam data set dibagi dengan seberapa banyak jumlah unit nilai dalam data set itu sendiri. Jadi, jika kita memiliki nilai di sebuah data set dan nilainya `...`, mean sampel, biasanya dinotasikan dengan (dilafalkan "x bar"), adalah:
 
 $$
-\begin{eqnarray*}
-\bar{x}&=&\frac{(x_1+x_2+...+x_n)}{n}, \text{atau}\\
-\bar{x}&=&\frac{\Sigma{x}}{n}, \text{Sample Mean}  \\
-\mu &=&\frac{\Sigma{x}}{N}, \text{Population Mean}
-\end{eqnarray*}
+\begin{aligned}
+\bar{x}&=\frac{(x_1+x_2+...+x_n)}{n}, \text{atau}\\
+\bar{x}&=\frac{\Sigma{x}}{n}, \text{Sample Mean}  \\
+\mu &=\frac{\Sigma{x}}{N}, \text{Population Mean}
+\end{aligned}
 $$
 
 * **Kuantil:** kuantil $\alpha$ dari sampel $x$, dilambangkan dengan $x_\alpha$, didefinisikan (tidak unik) sebagai nilai di atas $100_\alpha$% dari sampel, dan di bawah $100(1-\alpha)$%. Kami menekankan bahwa kuantil sampel tidak ditentukan secara unik. Perhatikan `?quantile` untuk definisi berbeda `9(!)` yang diberikan oleh R.

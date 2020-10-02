@@ -140,7 +140,25 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#assistant"><i class="fa fa-check"></i>Assistant</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="1-Pendahuluan.html"><a href="1-Pendahuluan.html"><i class="fa fa-check"></i><b>1</b> Pendahuluan</a></li>
-<li class="chapter" data-level="2" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html"><i class="fa fa-check"></i><b>2</b> Dasar-dasar R</a></li>
+<li class="chapter" data-level="2" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html"><i class="fa fa-check"></i><b>2</b> Dasar-dasar R</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#operator-penugasan"><i class="fa fa-check"></i><b>2.1</b> Operator Penugasan</a></li>
+<li class="chapter" data-level="2.2" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#kalkulator-sederhana-dalam-r"><i class="fa fa-check"></i><b>2.2</b> Kalkulator Sederhana Dalam R</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#penugasan-variabel"><i class="fa fa-check"></i><b>2.2.1</b> Penugasan Variabel</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#probabilitas"><i class="fa fa-check"></i><b>2.2.2</b> Probabilitas</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#bantuan"><i class="fa fa-check"></i><b>2.3</b> Bantuan</a></li>
+<li class="chapter" data-level="2.4" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#statistik-dasar"><i class="fa fa-check"></i><b>2.4</b> Statistik Dasar</a></li>
+<li class="chapter" data-level="2.5" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#nilai-yang-hilang"><i class="fa fa-check"></i><b>2.5</b> Nilai yang Hilang</a></li>
+<li class="chapter" data-level="2.6" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#piping"><i class="fa fa-check"></i><b>2.6</b> Piping</a></li>
+<li class="chapter" data-level="2.7" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#membuat-vektor"><i class="fa fa-check"></i><b>2.7</b> Membuat Vektor</a></li>
+<li class="chapter" data-level="2.8" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#matriks"><i class="fa fa-check"></i><b>2.8</b> Matriks</a></li>
+<li class="chapter" data-level="2.9" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#list"><i class="fa fa-check"></i><b>2.9</b> List</a></li>
+<li class="chapter" data-level="2.10" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#factor"><i class="fa fa-check"></i><b>2.10</b> Factor</a></li>
+<li class="chapter" data-level="2.11" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#data-frame"><i class="fa fa-check"></i><b>2.11</b> Data Frame</a></li>
+<li class="chapter" data-level="2.12" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#names"><i class="fa fa-check"></i><b>2.12</b> Names</a></li>
+<li class="chapter" data-level="2.13" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#pengeculian-ekstraksi"><i class="fa fa-check"></i><b>2.13</b> Pengeculian (Ekstraksi)</a></li>
+<li class="chapter" data-level="2.14" data-path="2-Dasar-R.html"><a href="2-Dasar-R.html#petunjuk-penting"><i class="fa fa-check"></i><b>2.14</b> Petunjuk Penting</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="3-Pemrograman-R.html"><a href="3-Pemrograman-R.html"><i class="fa fa-check"></i><b>3</b> Pemrograman R</a></li>
 <li class="chapter" data-level="4" data-path="4-Interface-Data.html"><a href="4-Interface-Data.html"><i class="fa fa-check"></i><b>4</b> Interface Data</a><ul>
 <li class="chapter" data-level="4.1" data-path="4-Interface-Data.html"><a href="4-Interface-Data.html#direktori-kerja-working-directory"><i class="fa fa-check"></i><b>4.1</b> Direktori Kerja (Working Directory)</a></li>
@@ -215,39 +233,40 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="Interface-Data" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Interface Data</h1>
+<hr />
 <p>Dengan R, kita dapat membaca data dari file yang tersimpan di luar Environment R. Kita juga dapat menulis data menjadi bentuk file yang akan disimpan dan diakses oleh sistem operasi. R dapat membaca dan menulis ke beberapa format file seperti <code>csv, excel, txt, rds, xml, json, dll</code>.</p>
 <div id="direktori-kerja-working-directory" class="section level2">
 <h2><span class="header-section-number">4.1</span> Direktori Kerja (Working Directory)</h2>
 <p>Sebelum kita mulai bekerja menggunakan data (data interface), pertama-tama pastikan working directory Anda berada di koneksi yang tepat. Anda dapat memeriksanya menggunakan fungsi <code>getwd()</code>. Anda juga dapat mengeset sebuah working directory baru menggunakan fungsi <code>setwd()</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="4-Interface-Data.html#cb1-1"></a><span class="kw">print</span>(<span class="kw">getwd</span>())                                    <span class="co"># memperoleh dan mencetak working directory</span></span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="4-Interface-Data.html#cb45-1"></a><span class="kw">print</span>(<span class="kw">getwd</span>())                                    <span class="co"># memperoleh dan mencetak working directory</span></span></code></pre></div>
 <pre><code>## [1] &quot;C:/Users/Bakti/Desktop/Website/Data-Science-Untuk-Pemula&quot;</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="4-Interface-Data.html#cb3-1"></a><span class="kw">getwd</span>()                                           <span class="co"># memperoleh dan mencetak working directory </span></span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="4-Interface-Data.html#cb47-1"></a><span class="kw">getwd</span>()                                           <span class="co"># memperoleh dan mencetak working directory </span></span></code></pre></div>
 <pre><code>## [1] &quot;C:/Users/Bakti/Desktop/Website/Data-Science-Untuk-Pemula&quot;</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="4-Interface-Data.html#cb5-1"></a><span class="co">#setwd(&quot;C:/Users/Bakti/Desktop/&quot;)                 # mengeset working directory Anda </span></span>
-<span id="cb5-2"><a href="4-Interface-Data.html#cb5-2"></a><span class="co">#setwd(&quot;C:\\Users\\Bakti\\Desktop\\&quot;)             # atau dengan cara ini</span></span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="4-Interface-Data.html#cb49-1"></a><span class="co">#setwd(&quot;C:/Users/Bakti/Desktop/&quot;)                 # mengeset working directory Anda </span></span>
+<span id="cb49-2"><a href="4-Interface-Data.html#cb49-2"></a><span class="co">#setwd(&quot;C:\\Users\\Bakti\\Desktop\\&quot;)             # atau dengan cara ini</span></span></code></pre></div>
 </div>
 <div id="membacamenulis-csv" class="section level2">
 <h2><span class="header-section-number">4.2</span> Membaca/Menulis CSV</h2>
 <p>Ini adalah sebuah contoh sederhana dari fungsi <code>read.csv</code> untuk membaca sebuah file CSV yang tersedia di working directory Anda saat ini.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="4-Interface-Data.html#cb6-1"></a><span class="co"># csv &lt;- read.csv(file.choose())                  # tampilan file csv tanpa `setwd`</span></span>
-<span id="cb6-2"><a href="4-Interface-Data.html#cb6-2"></a>csv1 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Data/csv1.csv&quot;</span>,<span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)       <span class="co"># ini untuk membaca data dengan pemisah koma</span></span>
-<span id="cb6-3"><a href="4-Interface-Data.html#cb6-3"></a>csv2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Data/csv2.csv&quot;</span>,<span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)       <span class="co"># ini untuk membaca data dengan pemisah titik koma </span></span>
-<span id="cb6-4"><a href="4-Interface-Data.html#cb6-4"></a><span class="kw">head</span>(csv2,<span class="dv">3</span>)                                      <span class="co"># mencetak hasil dari `data1` </span></span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="4-Interface-Data.html#cb50-1"></a><span class="co"># csv &lt;- read.csv(file.choose())                  # tampilan file csv tanpa `setwd`</span></span>
+<span id="cb50-2"><a href="4-Interface-Data.html#cb50-2"></a>csv1 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Data/csv1.csv&quot;</span>,<span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)       <span class="co"># ini untuk membaca data dengan pemisah koma</span></span>
+<span id="cb50-3"><a href="4-Interface-Data.html#cb50-3"></a>csv2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Data/csv2.csv&quot;</span>,<span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)       <span class="co"># ini untuk membaca data dengan pemisah titik koma </span></span>
+<span id="cb50-4"><a href="4-Interface-Data.html#cb50-4"></a><span class="kw">head</span>(csv2,<span class="dv">3</span>)                                      <span class="co"># mencetak hasil dari `data1` </span></span></code></pre></div>
 <pre><code>##   id    name salary start_date dept
 ## 1  1  Julian  623,3 2022-01-01   DS
 ## 2  2 Vanessa  515,2 2022-09-23   DS
 ## 3  3  Jeffry    611 2022-11-15   BA</code></pre>
 <p>R dapat membuat file csv dari data frame yang ada. Fungsi <code>write.csv()</code> digunakan untuk membuat file csv. File ini dibuat di working directory.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="4-Interface-Data.html#cb8-1"></a><span class="kw">write.csv</span>(csv2,<span class="st">&quot;Data/csv3.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="4-Interface-Data.html#cb52-1"></a><span class="kw">write.csv</span>(csv2,<span class="st">&quot;Data/csv3.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="membacamenulis-excel" class="section level2">
 <h2><span class="header-section-number">4.3</span> Membaca/Menulis Excel</h2>
 <p>Microsoft Excel adalah program spreadsheet yang paling banyak digunakan yang menyimpan data dalam format .xls atau .xlsx. R dapat membaca file-file ini secara langsung menggunakan beberapa packages (paket) khusus excel. Kita akan menggunakan package <code>readxl</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="4-Interface-Data.html#cb9-1"></a><span class="co"># xlsx &lt;- read_excel(file.choose())                # tampilan file xlsx tanpa `setwd`</span></span>
-<span id="cb9-2"><a href="4-Interface-Data.html#cb9-2"></a><span class="co"># install.packages(&quot;readxl&quot;)                       # menginstal package `readxl` </span></span>
-<span id="cb9-3"><a href="4-Interface-Data.html#cb9-3"></a><span class="kw">library</span>(<span class="st">&quot;readxl&quot;</span>)                                  <span class="co"># memuat package `readxl`</span></span>
-<span id="cb9-4"><a href="4-Interface-Data.html#cb9-4"></a>xlsx1&lt;-<span class="kw">read_excel</span>(<span class="st">&quot;Data/xlsx1.xlsx&quot;</span>,<span class="dt">sheet=</span><span class="dv">1</span>)       <span class="co"># membaca/impor data xlsx dari PC</span></span>
-<span id="cb9-5"><a href="4-Interface-Data.html#cb9-5"></a><span class="kw">head</span>(xlsx1,<span class="dv">3</span>)        </span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="4-Interface-Data.html#cb53-1"></a><span class="co"># xlsx &lt;- read_excel(file.choose())                # tampilan file xlsx tanpa `setwd`</span></span>
+<span id="cb53-2"><a href="4-Interface-Data.html#cb53-2"></a><span class="co"># install.packages(&quot;readxl&quot;)                       # menginstal package `readxl` </span></span>
+<span id="cb53-3"><a href="4-Interface-Data.html#cb53-3"></a><span class="kw">library</span>(<span class="st">&quot;readxl&quot;</span>)                                  <span class="co"># memuat package `readxl`</span></span>
+<span id="cb53-4"><a href="4-Interface-Data.html#cb53-4"></a>xlsx1&lt;-<span class="kw">read_excel</span>(<span class="st">&quot;Data/xlsx1.xlsx&quot;</span>,<span class="dt">sheet=</span><span class="dv">1</span>)       <span class="co"># membaca/impor data xlsx dari PC</span></span>
+<span id="cb53-5"><a href="4-Interface-Data.html#cb53-5"></a><span class="kw">head</span>(xlsx1,<span class="dv">3</span>)        </span></code></pre></div>
 <pre><code>## # A tibble: 3 x 5
 ##      id name    salary start_date          dept 
 ##   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;dttm&gt;              &lt;chr&gt;
@@ -255,33 +274,33 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## 2     2 Vanessa 515    2022-09-23 00:00:00 DS   
 ## 3     3 Jeffry  611    2022-11-15 00:00:00 BA</code></pre>
 <p>Untuk menulis data frame yang ada ke dalam file excel Anda harus menginstal package <code>writexl</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="4-Interface-Data.html#cb11-1"></a><span class="co"># install.packages(&quot;writexl&quot;)                      # menginstal  package `readxl`</span></span>
-<span id="cb11-2"><a href="4-Interface-Data.html#cb11-2"></a><span class="kw">library</span>(<span class="st">&quot;writexl&quot;</span>)                                 <span class="co"># memuat package `readxl` </span></span>
-<span id="cb11-3"><a href="4-Interface-Data.html#cb11-3"></a>writexl<span class="op">::</span><span class="kw">write_xlsx</span>(xlsx1,<span class="st">&quot;Data/xlsx2.xlsx&quot;</span>)       <span class="co"># memeriksa output di working directory Anda</span></span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="4-Interface-Data.html#cb55-1"></a><span class="co"># install.packages(&quot;writexl&quot;)                      # menginstal  package `readxl`</span></span>
+<span id="cb55-2"><a href="4-Interface-Data.html#cb55-2"></a><span class="kw">library</span>(<span class="st">&quot;writexl&quot;</span>)                                 <span class="co"># memuat package `readxl` </span></span>
+<span id="cb55-3"><a href="4-Interface-Data.html#cb55-3"></a>writexl<span class="op">::</span><span class="kw">write_xlsx</span>(xlsx1,<span class="st">&quot;Data/xlsx2.xlsx&quot;</span>)       <span class="co"># memeriksa output di working directory Anda</span></span></code></pre></div>
 </div>
 <div id="membacamenulis-txt-dan-rds" class="section level2">
 <h2><span class="header-section-number">4.4</span> Membaca/Menulis TXT dan RDS</h2>
 <p>Salah satu tugas paling umum yang kita lakukan adalah membaca data dari file CSV dan XLSX. Namun, proses membaca data bisa melambat untuk file CSV atau XLSX yang besar. Salah satu trik yang rapi adalah membaca data dan menyimpannya sebagai file TXT atau file biner R (RDS). Untuk mengimpor file TXT, kita menggunakan <code>read.table()</code> dan untuk mengimpor file RDS kita dapat menggunakan <code>readRDS()</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="4-Interface-Data.html#cb12-1"></a><span class="co"># txt1 &lt;- read.table(file.choose())                # tampilan file TXT tanpa `setwd`</span></span>
-<span id="cb12-2"><a href="4-Interface-Data.html#cb12-2"></a>txt1 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;Data/txt1.txt&quot;</span>)                <span class="co"># membaca/memuat format TXT (notepad)</span></span>
-<span id="cb12-3"><a href="4-Interface-Data.html#cb12-3"></a>txt1 &lt;-<span class="st"> </span><span class="kw">source</span>(<span class="st">&quot;Data/txt1.Rdmpd&quot;</span>)                  <span class="co"># membaca/memuat format TXT (Rdmpd)</span></span>
-<span id="cb12-4"><a href="4-Interface-Data.html#cb12-4"></a>rds1 &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;Data/rds1.rds&quot;</span>)                   <span class="co"># membaca/memuat format RDS biner</span></span>
-<span id="cb12-5"><a href="4-Interface-Data.html#cb12-5"></a>ascii1 &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;Data/ascii1.rds&quot;</span>)               <span class="co"># membaca/memuat format ASCII biner</span></span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="4-Interface-Data.html#cb56-1"></a><span class="co"># txt1 &lt;- read.table(file.choose())                # tampilan file TXT tanpa `setwd`</span></span>
+<span id="cb56-2"><a href="4-Interface-Data.html#cb56-2"></a>txt1 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;Data/txt1.txt&quot;</span>)                <span class="co"># membaca/memuat format TXT (notepad)</span></span>
+<span id="cb56-3"><a href="4-Interface-Data.html#cb56-3"></a>txt1 &lt;-<span class="st"> </span><span class="kw">source</span>(<span class="st">&quot;Data/txt1.Rdmpd&quot;</span>)                  <span class="co"># membaca/memuat format TXT (Rdmpd)</span></span>
+<span id="cb56-4"><a href="4-Interface-Data.html#cb56-4"></a>rds1 &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;Data/rds1.rds&quot;</span>)                   <span class="co"># membaca/memuat format RDS biner</span></span>
+<span id="cb56-5"><a href="4-Interface-Data.html#cb56-5"></a>ascii1 &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;Data/ascii1.rds&quot;</span>)               <span class="co"># membaca/memuat format ASCII biner</span></span></code></pre></div>
 <p>Untuk menyimpan data sebagai file TXT kita dapat menggunakan fungsi <code>write.table()</code>, dan untuk file biner R (RDS) kita dapat menggunakan fungsi <code>saveRDS()</code>. Fungsi-fungsi tersebut banyak digunakan oleh R sendiri, sebagai contoh untuk menyimpan data meta untuk suatu package dan untuk menyimpan basis data help.search: ekstensi file <code>.rds</code> paling sering digunakan. Format ini dapat berupa biner atau ASCII. Biner lebih padat, sementara ASCII akan lebih efisien dengan sistem kontrol versi seperti Git.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="4-Interface-Data.html#cb13-1"></a>data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Data/csv1.csv&quot;</span>,<span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)        <span class="co"># membaca/mengimpor data dari PC Anda</span></span>
-<span id="cb13-2"><a href="4-Interface-Data.html#cb13-2"></a></span>
-<span id="cb13-3"><a href="4-Interface-Data.html#cb13-3"></a><span class="kw">write.table</span>(data,<span class="st">&quot;Data/txt2.txt&quot;</span>)                  <span class="co"># meyimpan dalam format TXT (notepad)</span></span>
-<span id="cb13-4"><a href="4-Interface-Data.html#cb13-4"></a><span class="kw">dump</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;Data/txt2.Rdmpd&quot;</span>)                    <span class="co"># meyimpan dalam format TXT (Rdmpd)</span></span>
-<span id="cb13-5"><a href="4-Interface-Data.html#cb13-5"></a><span class="kw">saveRDS</span>(data, <span class="st">&quot;Data/rds2.rds&quot;</span>)                     <span class="co"># menyimpan suatu objek dalam format RDS biner</span></span>
-<span id="cb13-6"><a href="4-Interface-Data.html#cb13-6"></a><span class="kw">saveRDS</span>(data, <span class="st">&quot;ascii2.rds&quot;</span>, <span class="dt">ascii=</span><span class="ot">TRUE</span>)            <span class="co"># menyimpan suatu objek dalam format RDS ASCII</span></span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="4-Interface-Data.html#cb57-1"></a>data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Data/csv1.csv&quot;</span>,<span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)        <span class="co"># membaca/mengimpor data dari PC Anda</span></span>
+<span id="cb57-2"><a href="4-Interface-Data.html#cb57-2"></a></span>
+<span id="cb57-3"><a href="4-Interface-Data.html#cb57-3"></a><span class="kw">write.table</span>(data,<span class="st">&quot;Data/txt2.txt&quot;</span>)                  <span class="co"># meyimpan dalam format TXT (notepad)</span></span>
+<span id="cb57-4"><a href="4-Interface-Data.html#cb57-4"></a><span class="kw">dump</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;Data/txt2.Rdmpd&quot;</span>)                    <span class="co"># meyimpan dalam format TXT (Rdmpd)</span></span>
+<span id="cb57-5"><a href="4-Interface-Data.html#cb57-5"></a><span class="kw">saveRDS</span>(data, <span class="st">&quot;Data/rds2.rds&quot;</span>)                     <span class="co"># menyimpan suatu objek dalam format RDS biner</span></span>
+<span id="cb57-6"><a href="4-Interface-Data.html#cb57-6"></a><span class="kw">saveRDS</span>(data, <span class="st">&quot;ascii2.rds&quot;</span>, <span class="dt">ascii=</span><span class="ot">TRUE</span>)            <span class="co"># menyimpan suatu objek dalam format RDS ASCII</span></span></code></pre></div>
 </div>
 <div id="membacamenulis-xml" class="section level2">
 <h2><span class="header-section-number">4.5</span> Membaca/Menulis XML</h2>
 <p>XML adalah suatu format file yang membagikan format file dan data dari World Wide Web (www), intranet, dan di tempat lain menggunakan teks ASCII standar. XML adalah singkatan dari Extensible Markup Language, lebih lanjut tentang XML. XML berisi tag markup, mirip dengan HTML. Tag markup di xml menggambarkan arti data yang terkandung dalam file tersebut,tetapi tidak seperti HTML di mana tag markup menggambarkan struktur halaman. Anda dapat membaca suatu file xml di R menggunakan package “XML”. File xml dibaca oleh R menggunakan fungsi <code>xmlParse()</code>. File itu disimpan sebagai daftar (list) di R.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="4-Interface-Data.html#cb14-1"></a><span class="kw">library</span>(<span class="st">&quot;XML&quot;</span>)                                     <span class="co"># memuat package yang dibutuhkan untuk membaca file XML</span></span>
-<span id="cb14-2"><a href="4-Interface-Data.html#cb14-2"></a><span class="kw">library</span>(<span class="st">&quot;methods&quot;</span>)                                 <span class="co"># memuat paket lainnya yang dibutuhkan.</span></span>
-<span id="cb14-3"><a href="4-Interface-Data.html#cb14-3"></a>result &lt;-<span class="st"> </span><span class="kw">xmlParse</span>(<span class="dt">file =</span> <span class="st">&quot;Data/xml1.xml&quot;</span>)         <span class="co"># memberikan nama file input ke fungsi</span></span>
-<span id="cb14-4"><a href="4-Interface-Data.html#cb14-4"></a><span class="kw">print</span>(result)                                      <span class="co"># Mencetak hasilnya</span></span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="4-Interface-Data.html#cb58-1"></a><span class="kw">library</span>(<span class="st">&quot;XML&quot;</span>)                                     <span class="co"># memuat package yang dibutuhkan untuk membaca file XML</span></span>
+<span id="cb58-2"><a href="4-Interface-Data.html#cb58-2"></a><span class="kw">library</span>(<span class="st">&quot;methods&quot;</span>)                                 <span class="co"># memuat paket lainnya yang dibutuhkan.</span></span>
+<span id="cb58-3"><a href="4-Interface-Data.html#cb58-3"></a>result &lt;-<span class="st"> </span><span class="kw">xmlParse</span>(<span class="dt">file =</span> <span class="st">&quot;Data/xml1.xml&quot;</span>)         <span class="co"># memberikan nama file input ke fungsi</span></span>
+<span id="cb58-4"><a href="4-Interface-Data.html#cb58-4"></a><span class="kw">print</span>(result)                                      <span class="co"># Mencetak hasilnya</span></span></code></pre></div>
 <pre><code>## &lt;?xml version=&quot;1.0&quot;?&gt;
 ## &lt;RECORDS&gt;
 ##   &lt;EMPLOYEE&gt;
@@ -357,8 +376,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ## &lt;/RECORDS&gt;
 ## </code></pre>
 <p>Untuk menangani data secara efektif dalam file besar, kita membaca data dalam file <code>xml</code> sebagai suatu data frame. Kemudian memproses data frame untuk analisis data.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="4-Interface-Data.html#cb16-1"></a>xmldataframe &lt;-<span class="st"> </span><span class="kw">xmlToDataFrame</span>(result)             <span class="co"># mengonversi file input `xml` ke bentuk data frame</span></span>
-<span id="cb16-2"><a href="4-Interface-Data.html#cb16-2"></a><span class="kw">head</span>(xmldataframe,<span class="dv">3</span>)                               <span class="co"># Mencetak hasilnya</span></span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="4-Interface-Data.html#cb60-1"></a>xmldataframe &lt;-<span class="st"> </span><span class="kw">xmlToDataFrame</span>(result)             <span class="co"># mengonversi file input `xml` ke bentuk data frame</span></span>
+<span id="cb60-2"><a href="4-Interface-Data.html#cb60-2"></a><span class="kw">head</span>(xmldataframe,<span class="dv">3</span>)                               <span class="co"># Mencetak hasilnya</span></span></code></pre></div>
 <pre><code>##   id    name salary start_date dept
 ## 1  1  Julian  623.3   1/1/2022   DS
 ## 2  2 Vanessa  515.2  9/23/2022   DS
@@ -368,9 +387,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="membacamenulis-json" class="section level2">
 <h2><span class="header-section-number">4.6</span> Membaca/Menulis JSON</h2>
 <p>File JSON menyimpan data sebagai teks dalam format yang dapat dibaca oleh manusia. Json adalah singkatan dari JavaScript Object Notation. R dapat membaca file JSON menggunakan package rjson. Lebih lanjut tentang JSON.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="4-Interface-Data.html#cb18-1"></a><span class="kw">library</span>(<span class="st">&quot;rjson&quot;</span>)                                   <span class="co"># memuat package untuk membaca file JSON</span></span>
-<span id="cb18-2"><a href="4-Interface-Data.html#cb18-2"></a>json1 &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span class="dt">file=</span> <span class="st">&quot;Data/json1.json&quot;</span>)         <span class="co"># memberikan nama file input ke fungsi</span></span>
-<span id="cb18-3"><a href="4-Interface-Data.html#cb18-3"></a><span class="kw">print</span>(json1)                                       <span class="co"># Mencetak hasilnya</span></span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="4-Interface-Data.html#cb62-1"></a><span class="kw">library</span>(<span class="st">&quot;rjson&quot;</span>)                                   <span class="co"># memuat package untuk membaca file JSON</span></span>
+<span id="cb62-2"><a href="4-Interface-Data.html#cb62-2"></a>json1 &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span class="dt">file=</span> <span class="st">&quot;Data/json1.json&quot;</span>)         <span class="co"># memberikan nama file input ke fungsi</span></span>
+<span id="cb62-3"><a href="4-Interface-Data.html#cb62-3"></a><span class="kw">print</span>(json1)                                       <span class="co"># Mencetak hasilnya</span></span></code></pre></div>
 <pre><code>## $id
 ##  [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot;
 ## 
@@ -390,8 +409,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 ##  [1] &quot;DS&quot;        &quot;DS&quot;        &quot;BA&quot;        &quot;DA&quot;        &quot;DS&quot;        &quot;Actuaries&quot;
 ##  [7] &quot;Actuaries&quot; &quot;CA&quot;        &quot;DE&quot;        &quot;Lecturer&quot;</code></pre>
 <p>Kita dapat mengonversi data yang diekstraks di atas ke bentuk data frame R untuk analisis lebih lanjut menggunakan fungsi as.data.frame().</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="4-Interface-Data.html#cb20-1"></a>json_data_frame &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(json1)            <span class="co"># mengonversi file JSON ke bentuk data frame</span></span>
-<span id="cb20-2"><a href="4-Interface-Data.html#cb20-2"></a><span class="kw">head</span>(json_data_frame,<span class="dv">3</span>)                            <span class="co"># Mencetak hasilnya</span></span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="4-Interface-Data.html#cb64-1"></a>json_data_frame &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(json1)            <span class="co"># mengonversi file JSON ke bentuk data frame</span></span>
+<span id="cb64-2"><a href="4-Interface-Data.html#cb64-2"></a><span class="kw">head</span>(json_data_frame,<span class="dv">3</span>)                            <span class="co"># Mencetak hasilnya</span></span></code></pre></div>
 <pre><code>##   id    name salary start_date dept
 ## 1  1  Julian  623.3   1/1/2022   DS
 ## 2  2 Vanessa  515.2  9/23/2022   DS
@@ -402,8 +421,8 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>Banyak situs web yang menyediakan data untuk digunakan oleh penggunanya. Dengan menggunakan program R, kita dapat mengekstrak data tertentu dari situs web tersebut secara terprogram. Di bagian ini, saya memberikan contoh cara mengimpor data dari repositori github, tetapi Anda dapat melakukan hal yang serupa pada situs web atau repositori lainnya.</p>
 <div id="csv" class="section level3">
 <h3><span class="header-section-number">4.7.1</span> CSV:</h3>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="4-Interface-Data.html#cb22-1"></a>web_csv &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://github.com/Bakti-Siregar/dataset/raw/master/Bookdown-Data-Science-for-Beginners/csv1.csv&quot;</span>)</span>
-<span id="cb22-2"><a href="4-Interface-Data.html#cb22-2"></a><span class="kw">head</span>(web_csv,<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="4-Interface-Data.html#cb66-1"></a>web_csv &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://github.com/Bakti-Siregar/dataset/raw/master/Bookdown-Data-Science-for-Beginners/csv1.csv&quot;</span>)</span>
+<span id="cb66-2"><a href="4-Interface-Data.html#cb66-2"></a><span class="kw">head</span>(web_csv,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##   id    name salary start_date dept
 ## 1  1  Julian  623,3   1/1/2022   DS
 ## 2  2 Vanessa  515,2  9/23/2022   DS
@@ -411,11 +430,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="xlsx" class="section level3">
 <h3><span class="header-section-number">4.7.2</span> XLSX:</h3>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="4-Interface-Data.html#cb24-1"></a><span class="kw">library</span>(rio)                                       <span class="co"># package ini untuk mengimpor data dari github</span></span>
-<span id="cb24-2"><a href="4-Interface-Data.html#cb24-2"></a><span class="kw">install_formats</span>()                                  <span class="co"># mungkin Anda perlu menginstal packages yang disarankan yang belum terinstal</span></span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="4-Interface-Data.html#cb68-1"></a><span class="kw">library</span>(rio)                                       <span class="co"># package ini untuk mengimpor data dari github</span></span>
+<span id="cb68-2"><a href="4-Interface-Data.html#cb68-2"></a><span class="kw">install_formats</span>()                                  <span class="co"># mungkin Anda perlu menginstal packages yang disarankan yang belum terinstal</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="4-Interface-Data.html#cb26-1"></a>web_xlsx &lt;-rio<span class="op">::</span><span class="kw">import</span>(<span class="st">&quot;https://github.com/Bakti-Siregar/dataset/blob/master/Bookdown-Data-Science-for-Beginners/xlsx1.xlsx?raw=true&quot;</span>)</span>
-<span id="cb26-2"><a href="4-Interface-Data.html#cb26-2"></a><span class="kw">head</span>(web_xlsx,<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="4-Interface-Data.html#cb70-1"></a>web_xlsx &lt;-rio<span class="op">::</span><span class="kw">import</span>(<span class="st">&quot;https://github.com/Bakti-Siregar/dataset/blob/master/Bookdown-Data-Science-for-Beginners/xlsx1.xlsx?raw=true&quot;</span>)</span>
+<span id="cb70-2"><a href="4-Interface-Data.html#cb70-2"></a><span class="kw">head</span>(web_xlsx,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>##   id    name salary start_date dept
 ## 1  1  Julian    623 2022-01-01   DS
 ## 2  2 Vanessa    515 2022-09-23   DS
@@ -423,15 +442,15 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="lainnya" class="section level3">
 <h3><span class="header-section-number">4.7.3</span> LAINNYA:</h3>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="4-Interface-Data.html#cb28-1"></a>web_txt &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;type URL/Web.txt here&quot;</span>)     <span class="co"># membaca/memuat format TXT (notepad) dari web</span></span>
-<span id="cb28-2"><a href="4-Interface-Data.html#cb28-2"></a>web_rds &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;type URL/Web.rds here&quot;</span>)        <span class="co"># membaca/memuat format RDS dari web</span></span>
-<span id="cb28-3"><a href="4-Interface-Data.html#cb28-3"></a>web_ascii &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;type URL/Web.ascii here&quot;</span>)    <span class="co"># membaca/memuat format ASCII dari web</span></span>
-<span id="cb28-4"><a href="4-Interface-Data.html#cb28-4"></a></span>
-<span id="cb28-5"><a href="4-Interface-Data.html#cb28-5"></a>web_xml&lt;-<span class="st"> </span><span class="kw">xmlParse</span>(<span class="st">&quot;type URL/Web.xml here&quot;</span>)        <span class="co"># membaca/memuat format XML dari web </span></span>
-<span id="cb28-6"><a href="4-Interface-Data.html#cb28-6"></a><span class="kw">xmlToDataFrame</span>(web_xml)                            <span class="co"># mengonversi file xml input ke bentuk data frame</span></span>
-<span id="cb28-7"><a href="4-Interface-Data.html#cb28-7"></a></span>
-<span id="cb28-8"><a href="4-Interface-Data.html#cb28-8"></a>web_json &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span class="st">&quot;type URL/Web.json here&quot;</span>)     <span class="co"># membaca/memuat format JSON dari web</span></span>
-<span id="cb28-9"><a href="4-Interface-Data.html#cb28-9"></a><span class="kw">as.data.frame</span>(web_json)                            <span class="co"># mengonversi file JSON ke bentuk data frame</span></span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="4-Interface-Data.html#cb72-1"></a>web_txt &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;type URL/Web.txt here&quot;</span>)     <span class="co"># membaca/memuat format TXT (notepad) dari web</span></span>
+<span id="cb72-2"><a href="4-Interface-Data.html#cb72-2"></a>web_rds &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;type URL/Web.rds here&quot;</span>)        <span class="co"># membaca/memuat format RDS dari web</span></span>
+<span id="cb72-3"><a href="4-Interface-Data.html#cb72-3"></a>web_ascii &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;type URL/Web.ascii here&quot;</span>)    <span class="co"># membaca/memuat format ASCII dari web</span></span>
+<span id="cb72-4"><a href="4-Interface-Data.html#cb72-4"></a></span>
+<span id="cb72-5"><a href="4-Interface-Data.html#cb72-5"></a>web_xml&lt;-<span class="st"> </span><span class="kw">xmlParse</span>(<span class="st">&quot;type URL/Web.xml here&quot;</span>)        <span class="co"># membaca/memuat format XML dari web </span></span>
+<span id="cb72-6"><a href="4-Interface-Data.html#cb72-6"></a><span class="kw">xmlToDataFrame</span>(web_xml)                            <span class="co"># mengonversi file xml input ke bentuk data frame</span></span>
+<span id="cb72-7"><a href="4-Interface-Data.html#cb72-7"></a></span>
+<span id="cb72-8"><a href="4-Interface-Data.html#cb72-8"></a>web_json &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span class="st">&quot;type URL/Web.json here&quot;</span>)     <span class="co"># membaca/memuat format JSON dari web</span></span>
+<span id="cb72-9"><a href="4-Interface-Data.html#cb72-9"></a><span class="kw">as.data.frame</span>(web_json)                            <span class="co"># mengonversi file JSON ke bentuk data frame</span></span></code></pre></div>
 </div>
 </div>
 <div id="sistem-basis-data-dengan-r" class="section level2">
@@ -489,7 +508,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["Data-Science-Untuk-Pemula.pdf", "Data-Science-Untuk-Pemula.epub"],
 "toc": {
 "collapse": "subsection",
 "scroll_highlight": true
@@ -498,6 +517,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
