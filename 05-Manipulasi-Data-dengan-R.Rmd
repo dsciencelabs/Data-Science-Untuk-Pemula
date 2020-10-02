@@ -1,8 +1,7 @@
 # Manipulasi Data dengan R {#Manipulasi-Data-dengan-R}
+*** 
 
-# 5. Manipulasi Data dengan R
-
-Salah satu keterampilan yang paling mendasar untuk seorang Data Scientist adalah memanipulasi data. Untuk menjadi seseorang yang sangat efektif, Anda harus ahli dalam memanipulasi data penting. Hal ini perlu diperhatikan karena sebagian besar pekerjaan Anda akan melibatkan pengambilan dan pembersihan data.
+Salah satu keterampilan paling mendasar yang harus dimiliki seorang Data Scientist adalah memanipulasi data. Untuk menjadi seseorang yang sangat efektif, Anda harus ahli dalam memanipulasi data penting. Hal ini perlu diperhatikan karena sebagian besar pekerjaan Anda akan melibatkan pengambilan dan pembersihan data.
 
 Pada bagian ini, Anda akan mempelajari bagaimana memanipulasi data dengan mudah menggunakan R. Kami akan membahas fungsi-fungsi manipulasi data mendasar yang sebagian besar akan Anda gunakan untuk memanipulasi data Anda.
 
@@ -25,29 +24,30 @@ Pada bagian ini, Anda akan mempelajari bagaimana memanipulasi data dengan mudah 
   - `n()` Menghitung jumlah record.
 Saya sarankan Anda untuk menginstal package `tidyverse`. Karena inti dari tidyverse mencakup packages yang cendrung Anda gunakan dalam analisis data sehari-hari.
 
-```{r, echo=T, results='hide'}
+```{r, eval=FALSE}
 install.packages("tidyverse")
 ```
 
 Kita sebagian besar akan bekerja dengan dua package yang sangat berguna yang dikembangkan oleh Hardley Wickham, kepala scientist di RStudio:
+
 * `readr` Untuk membaca dan menulis CSV dan file teks lainnya.
 * `dplyr` Untuk memproses dan memanipulasi data.
 
-## 5.1 Impor Data
+## Impor Data
 
 Data yang akan kita gunakan pada bagian ini adalah `pfizer.csv` dan `fda.csv`, silakan unduh dan tempatkan di desktop Anda. Sebagai opsional, Anda dapat memuat data ke sesi R saat ini dengan memilih `Import Dataset>From Teks File...` di tab Environment. Tapi, dalam hal ini kita akan menggunakan fungsi `read_csv()` dari package `readr`. Salinlah kode berikut ke skrip Anda dan jalankan:
 
-```{r, echo=T, results='hide'}
+```{r, echo=T, results='hide', message=FALSE}
 suppressPackageStartupMessages(library(tidyverse))# memuat tidyverse
 #setwd("C:/Users/Bakti/Desktop/")                 # ingatlah untuk mengatur working directory Anda
 pfizer <- read_csv("Data/pfizer.csv")             # memuat data `pfizer` 
 ```
 
-```{r, echo=T, results='hide'}
-fda <- read_vsc("Data/fda.csv")
+```{r, echo=T, results='hide', message=FALSE}
+fda <- read_csv("Data/fda.csv")
 ```
 
-## 5.2 Struktur Data
+## Struktur Data
 
 Perhatikan bahwa Anda akan membutuhkan pemahaman yang kuat mengenai tipe-tipe data mendasar dan struktur data dan bagaimana cara mengoprasikannya. Fungsi `str()` akan memberi tahu lebih banyak mengenai kolom dalam data Anda, termasuk tipe datanya. Salinlah kode berikut ke skrip Anda dan jalankan:
 
@@ -71,9 +71,10 @@ pfizer$total <- as.numeric(pfizer$total)          # konversi total ke variabel n
 str(pfizer$total)                                 # mari periksa struktur datanya lagi
 ```
 
-## 5.3 Nilai Hilang
+## Missing Value
 
 Tidak seperti pemrograman biasa, ketika bekerja dengan data sesungguhnya, Anda mungkin menemukan nilai yang hilang: pengukuran yang tidak terekam/tersimpan/dll. R memiliki mekanisme yang cukup canggih untuk menangani nilai-nilai yang hilang. Ini membedakan antara jenis berikut:
+
 * `NA` : Not Available (Nilai NA juga memiliki kelas, ada bilangan bulat NA, karakter NA, dll).
 * `NaN` : Not a Number (Nilai NaN juga merupakan NA tetapi NA bukan merupakan NaN)
 
@@ -93,7 +94,7 @@ clean.df <- na.omit(pfizer)                       # berishkan/hapus NA di datafr
 apply(is.na(clean.df),2, which)                   # pastikan jika ada nilai yang hilang
 ```
 
-## 5.4 Mengganti Nilai yang Hilang
+## Mengganti Nilai yang Hilang
 
 Kita juga dapat mengganti nilai yang hilang dengan rata-rata (median). Praktik yang baik adalah dengan membuat dua variabel terpisah untuk mean. Setelah dibuat, kita dapat mengganti nilai yang hilang dengan variabel yang baru dibentuk. Mari unggah dan memeriksa data yang hilang.
 
@@ -114,7 +115,8 @@ average_missing <- apply(titanic[,colnames(titanic) %in% list_na],
 average_missing
 ```
 
-Penjelasan Kode: Terdapat 4 argumen di metode apply yang kita jalankan.
+**Catatan:** Terdapat 4 argumen di metode apply yang kita jalankan.
+
 * `df` titanic[,colnames(titanic) %in% list_na]. Kode ini akan mengembalikan nama kolom dari objek list_na (mis. "age" dan "fare").
 * `2` Menghitung fungsi pada kolom.
 * `mean` Menghitung rata-rata.
@@ -127,25 +129,15 @@ titanic_replace <- titanic %>%
 mutate(age  = ifelse(is.na(Age), average_missing[1], Age),
 fare = ifelse(is.na(Fare), average_missing[2], Fare))
 sum(is.na(titanic_replace$Age))
-```
-
-```{r, echo=T, results='hide'}
 sum(is.na(titanic_replace$Fare))
-```
-
-```{r, echo=T, results='hide'}
-sum(is.na(titanic_replace$age))
-```
-
-```{r, echo=T, results='hide'}
-sum(is.na(titanic_replace$fare))
 ```
 
 Kolom usia asli memiliki 86 nilai yang hilang sementara variabel yang baru dibuat telah mengganti nilai yang hilang dengan rata-rata usia variabel. Anda dapat mencoba sendiri mengganti penelitian yang hilang dengan nilai median juga.
 
-## 5.5 Memilih Data
+## Memilih Data
 
-Pada bagian ini, Anda akan mempelajari bagaimana cara memilih atau mengelompokkan kolom dataframe berdasarkan nama dan posisi menggunakan fungsi R yaitu `select()` dalam package dplyr. Anda akan belajar cara menggunakan fungsi berikut ini:
+Pada bagian ini, Anda akan mempelajari bagaimana cara memilih atau mengelompokkan kolom dataframe berdasarkan nama dan posisi menggunakan fungsi R yaitu `select()` dalam package `dplyr`. Anda akan belajar cara menggunakan fungsi berikut ini:
+
 * `pull()` mengekstrak nilai kolom sebagai sebuah vektor. Kolom bunga dapat ditentukan berdasarkan nama atau indeks.
 * `select()` mengekstrak satu atau beberapa kolom sebagai tabel data. Fungsi ini juga dapat menghapus kolom dari data frame.
 * `select_if()` Memilih kolom berdasarkan kondisi tertentu. Seseorang dapat menggunakan fungsi ini, misalnya untuk memilih kolom jika numerik.
@@ -168,11 +160,11 @@ pfizer %>% select(-(state:total))                 # menghapus semua kolom dari `
 pfizer %>% select(-state, -total)                 # menghapus kolom `state` dan `total`
 ```
 
-## 5.6 Menyaring dan Mengurutkan Data
+## Menyaring dan Mengurutkan Data
 
 Sekarang kita akan `filter()` dan `arrange()` data dengan cara tertentu. Untuk setiap contoh berikut, salin kode berikut ke dalam skrip Anda, dan lihat hasilnya. Perhatikan bagaimana kita membuat objek baru untuk menampung data yang diproses.
 
-Contoh 1: Temukan dokter di California yang dibayar $10.000 atau lebih oleh Pfizer untuk menjalankan "Professional Advising"!
+**Contoh 1:** Temukan dokter di California yang dibayar $10.000 atau lebih oleh Pfizer untuk menjalankan "Professional Advising"!
 
 ```{r, echo=T, results='hide'}
 ca_expert_10000 <- pfizer %>%                     # memuat semua `pfizer`    
@@ -182,7 +174,7 @@ ca_expert_10000 <- pfizer %>%                     # memuat semua `pfizer`
 ca_expert_10000                                   # cetak hasilnya
 ```
 
-Contoh 2: Sekarang tambahkan daftar urutan secara menurun pembayaran yang diterima oleh dokter di bagian akhir kode!
+**Contoh 2:** Sekarang tambahkan daftar urutan secara menurun pembayaran yang diterima oleh dokter di bagian akhir kode!
 
 ```{r, echo=T, results='hide'}
 ca_expert_10000 <- pfizer %>%                     # memuat semua `pfizer`    
@@ -195,7 +187,7 @@ ca_expert_10000                                   # cetak hasilnya
 # arrange((total))                                # mengurutkan secara menaik telah ditetapkan sebagai R default
 ```
 
-Contoh 3: Temukan dokter di California atau New York yang dibayar $10.000 atau lebih oelh Pfizer untuk menjalankan "Professional Advising"!
+**Contoh 3:** Temukan dokter di California atau New York yang dibayar $10.000 atau lebih oelh Pfizer untuk menjalankan "Professional Advising"!
 
 Perhatikan bahwa, dalam kasus ini kita menggunakan `|` operator Boolean, dan tanda kurung di sekitar bagian kueri tersebut. Ini memastikan bahwa bagian kueri ini dijalankan terlebih dahulu. Lihat apa yang terjadi jika Anda mengecualikan mereka.
 
@@ -208,7 +200,7 @@ ca_ny_expert_10000 <- pfizer %>%                  # memuat semua `pfizer`
 ca_ny_expert_10000                                # cetak hasilnya
 ```
 
-Contoh 4: Temukan dokter di negara bagian selain California yang dibayar $10.000 atau lebih oleh Pfizer untuk menjalankan "Professional Advising"!
+**Contoh 4:** Temukan dokter di negara bagian selain California yang dibayar $10.000 atau lebih oleh Pfizer untuk menjalankan "Professional Advising"!
 
 ```{r, echo=T, results='hide'}
 not_ca_expert_10000 <- pfizer %>%                 # memuat semua `pfizer`    
@@ -219,7 +211,7 @@ not_ca_expert_10000 <- pfizer %>%                 # memuat semua `pfizer`
 not_ca_expert_10000                               # cetak hasilnya
 ```
 
-Contoh 5: Temukan 20 dokter di empat negara bagian terbesar (CA, TX, FL, NY) yang dibayar paling tinggi untuk "Expert-Led Forums"!
+**Contoh 5:** Temukan 20 dokter di empat negara bagian terbesar (CA, TX, FL, NY) yang dibayar paling tinggi untuk "Expert-Led Forums"!
 
 ```{r, echo=T, results='hide'}
 ca_ny_tx_fl_prof_top20 <- pfizer %>%
@@ -233,7 +225,7 @@ ca_ny_tx_fl_prof_top20 <- pfizer %>%
 ca_ny_tx_fl_prof_top20
 ```
 
-Contoh 6: Saring data `pfizer` untuk semua pembayaran untuk menjalankan "Expert-Led Forums" atau untuk "Professional Advising", dan urutkan nama dokter berdasarkan abjad (nama belakang, kemudian nama depan)
+**Contoh 6:** Saring data `pfizer` untuk semua pembayaran untuk menjalankan "Expert-Led Forums" atau untuk "Professional Advising", dan urutkan nama dokter berdasarkan abjad (nama belakang, kemudian nama depan)
 
 ```{r, echo=T, results='hide'}
 expert_professional_advice <- pfizer %>%
@@ -243,9 +235,10 @@ expert_professional_advice <- pfizer %>%
 expert_professional_advice
 ```
 
-## 5.7 Mengganti Nama dan Mengubah (Mutate)
+## Mengganti Nama dan Mengubah (Mutate)
 
 Di bagian ini, Anda akan belajar bagaimana mengganti nama kolom dari sebuah data frame di R. Kemudian, Anda akan belajar bagaimana cara menghitung dan menambah variabel baru ke data frame di R. Anda akan belajar fungsi-fungsi R berikut ini dari package R yaitu dplyr:
+
 * `rename()` Kode ini digunakan untuk mengganti nama kolom dari sebuah data frame di R. 
 * `mutate()` Menghitung dan menambah variabel baru ke dalam sebuah tabel data. Hal ini tidak menghilangkan variabel yang ada.
 * `transmute()` Menghitung kolom baru tetapi menghilangkan variabel yang ada.
@@ -283,9 +276,10 @@ fda %>%
     )
 ```
 
-## 5.8 Menggabungkan Data
+## Menggabungkan Data
 
 Ada juga beberapa fungsi gabungan di dplyr untuk menggabungkan data dari dua data frame. Berikut ini adalah fungsi yang paling berguna:
+
 * `inner_join()` Mengembalikan nilai dari kedua tabel hanya jika ada kecocokan.
 * `left_join()` Mengembalikan semua nilai dari tabel yang pertama disebutkan, ditambah nilai dari tabel kedua yang cocok.
 * `semi_join()` Menyaring tabel yang pertama disebutkan untuk mendapatkan nilai yang memiliki kecocokan dengan tabel kedua.
@@ -305,9 +299,9 @@ expert_warned_semi <- semi_join(pfizer, fda,
                                 filter(category=="Expert-Led Forums")
 ```
 
-Kode dalam `by=c()` menentukan bagaimana gabungan harus dibuat. Jika instruksi tentang bagaimana cara menggabungkan tabel tidak disediakan, dplyr akan mencari kolom dengan nama yang cocok, dan melakukan penggabungan berdasarkan hal tersebut. Perbedaan antara dua gabungan di atas adalah yang pertama berisi semua kolom dari kedua data frame, sedangkan yang kedua hanya memberikan kolom dari data frame pfizer.
+Kode dalam `by=c()` menentukan bagaimana gabungan harus dibuat. Jika instruksi tentang bagaimana cara menggabungkan tabel tidak disediakan, `dplyr` akan mencari kolom dengan nama yang cocok, dan melakukan penggabungan berdasarkan hal tersebut. Perbedaan antara dua gabungan di atas adalah yang pertama berisi semua kolom dari kedua data frame, sedangkan yang kedua hanya memberikan kolom dari data frame pfizer.
 
-Dalam praktiknya, mungkin Anda ingin dan kemudian menggunakan fungsi select dari dplyr untuk memilih kolom yang ingin Anda pertahankan, misalnya:
+Dalam praktiknya, mungkin Anda ingin dan kemudian menggunakan fungsi select dari `dplyr` untuk memilih kolom yang ingin Anda pertahankan, misalnya:
 
 ```{r, echo=T, results='hide'}
 expert_warned <- inner_join(pfizer, fda, 
@@ -327,16 +321,17 @@ expert_warned <- inner_join(pfizer, fda,
                             select(2:5,10,12)
 ```
 
-## 5.9 Kelompok dan Ringkasan
+## Kelompok dan Ringkasan
 
-Bagian ini memperkenalkan cara menghitung ringkasan statistik dengan mudah di R menggunakan package dplyr. Anda akan belajar, bagaimana:
+Bagian ini memperkenalkan cara menghitung ringkasan statistik dengan mudah di R menggunakan package `dplyr`. Anda akan belajar, bagaimana:
+
 * Menghitung ringkasan statistik untuk data yang tidak dikelompokkan, serta untuk data yang dikelompokan menurut satu atau beberapa variabel. Fungsi R: `summarise()` dan `group_by()`.
 * Meringkas beberapa kolom variabel. Fungsi R:
  - `summarise_all()` Menerapkan fungsi ringkasan ke setiap kolom dalam data frame.
  - `summarise_at()` Menerapkan fungsi ringkasan ke kolom tertentu yang dipilih dengan vektor karakter.
  - `summarise_if()` Menerapkan fungsi ringkasan ke kolom yang dipilih dengan fungsi yang menampilkan TRUE
  
-Contoh 7: Hitunglah total pembayaran data `pfizer`, dengan urutan negara bagian secara menurun!
+**Contoh 7:** Hitunglah total pembayaran data `pfizer`, dengan urutan negara bagian secara menurun!
 
 ```{r, echo=T, results='hide'}
 state_sum <- pfizer %>%
@@ -347,7 +342,7 @@ state_sum <- pfizer %>%
 state_sum
 ```
 
-Contoh 8: Hitunglah beberapa ringkasan statistik tambahan dari data `pfizer`, dengan urutan negara bagian secara menurun!
+**Contoh 8:** Hitunglah beberapa ringkasan statistik tambahan dari data `pfizer`, dengan urutan negara bagian secara menurun!
 
 ```{r, echo=T, results='hide'}
 state_summary <- pfizer %>%
@@ -363,7 +358,7 @@ state_summary <- pfizer %>%
 state_summary
 ```
 
-Contoh 9: Kelompokkan dan rangkum data pfizer untuk beberapa kategori naik!
+**Contoh 9:** Kelompokkan dan rangkum data `pfizer` untuk beberapa kategori naik!
 
 ```{r, echo=T, results='hide'}
 state_summary <- pfizer %>%
@@ -379,7 +374,7 @@ state_summary <- pfizer %>%
 state_summary
 ```
 
-Contoh 10: Saring data `fda` untuk surat-surat yang telah dikirim dari awal tahun 2006 dan seterusnya dan rangkum!
+**Contoh 10:** Saring data `fda` untuk surat-surat yang telah dikirim dari awal tahun 2006 dan seterusnya dan rangkum!
 
 ```{r, echo=T, results='hide'}
 year_summary <- fda %>%
@@ -392,17 +387,17 @@ year_summary <- fda %>%
 year_summary
 ```
 
-Waspada: Menggunakan kembali variabel dapat menyebabkan hasil yang tidak dapat diharapkan, tetapi jangan khawatir. R akan memberikan peringatan seperti `summarise() ungrouping output (override with .groups argument)`.
+**Catatan:** Menggunakan kembali variabel dapat menyebabkan hasil yang tidak dapat diharapkan, tetapi jangan khawatir. R akan memberikan peringatan seperti `summarise() ungrouping output (override with .groups argument)`.
 
-## 5.10 Membagi Data
+## Membagi Data
 
 Seperti yang sudah saya sampaikan pada bab Pemrograman R tentang menulis fungsi untuk membagi data latihan dan data percobaan. Di sini, kita akan mempelajari lebih lanjut tentang bagaimana menggunakan beberapa packages untuk membagi data. Karena bagian ini sangat penting sebagai seorang data scientist khususnya ketika Anda menerapkan tugas Machine Learning untuk menganalisis data. Pada bagian ini biasanya kita perlu membagi dataset antara set latihan dan set percobaan. Set latihan memungkinkan algoritme untuk belajar dari data. untuk menguji kinerja model kita, kita dapat menggunakan set percobaan untuk mengembalikan ukuran kinerja. Jadi, mari kita lihat beberapa packages yang dapat Anda gunakan untuk membagi data:
 
-### 5.10.1 dplyr
+###  dplyr
 
 Anda dapat menggunakan `dplyr` untuk ini, membuat jadi sangat sederhana. itu memang memerlukan variabel id dalam dataset Anda, yang mana ini merupakan ide yang bagus, tidak hanya untuk membuat set-set tetapi juga untuk keterlacakan selama proyek Anda. Tambahkan jika belum ada.
 
-```{r, echo=T, results='hide'}
+```{r, eval=FALSE}
 library(dplyr)                                    # memuat package `dplyr`
 data(mtcars)                                      # menggunakan data dari environment R
 set.seed(123)                                     # untuk memastikan kita menghasilkan data yang sama
@@ -413,13 +408,13 @@ dim(train)                                        # mengecek dimensi set latihan
 dim(test)                                         # mengecek dimensi set percobaan 
 ```
 
-Catatan: Dataset ini hanya sebagai contoh, ini tidak cocok untuk tugas machine learning karena datanya terlalu sedikit.
+**Catatan:** Dataset ini hanya sebagai contoh, ini tidak cocok untuk tugas machine learning karena datanya terlalu sedikit.
 
-### 5.10.2
+### caTools
 
 Ada banyak pendekatan untuk mencapai partisi data. Untuk pendekatan yang lebih lengkap, lihat fungsi `createDataPartition` dalam package `caTools`.
 
-```{r, echo=, results='hide'}
+```{r, eval=FALSE}
 library(caTools)                                  # memuat package `caTools`
 data(mtcars)                                      # menggunakan data dari environment R
 set.seed(123)                                     # untuk memastikan kita mendapatkan data yang sama
@@ -432,11 +427,11 @@ dim(train)                                        # mengecek dimensi set latihan
 dim(test)                                         # mengecek dimensi set percobaan
 ```
 
-### 5.10.3
+### caret
 
 Packages hebat lainnya yang dapat Anda gunakan untuk membagi dataset adalah `caret`.
 
-```{r, echo=T, results='hide'}
+```{r, eval=FALSE, message=F}
 library(caret)                                    # memuat package `caret`
 
 data(mtcars)                                      # menggunakan data dari environment R
@@ -448,3 +443,4 @@ test<-mtcars[-intrain,]
 dim(train)                                        # mengecek dimensi set latihan
 dim(test)                                         # mengecek dimensi set percobaan
 ```
+

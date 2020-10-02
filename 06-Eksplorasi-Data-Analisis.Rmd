@@ -1,15 +1,15 @@
 # Eksplorasi Data Analisis {#Eksplorasi-Data-Analisis}
+***
 
 Analisis Data Eksplorasi (ADE) adalah pendekatan analisis data untuk meringkas dan memvisualisasikan karakteristik penting dari data. ADE dapat dianggap sebagai asumsi bebas, biasanya dilakukan dalam perilaku analisis data. ADE juga dikenal sebagai analitik visual atau statistik deskriptif. ADE juga merupakan praktik pengamatan, dan mengeksplorasi data, sebelum Anda menekankan beberapa hipotesis, menyesuaikan prediktor, dan tujuan lainnya pada statistik inferensial. ADE biasanya mencakup penghitungan ringkasan statistika sederhana yang menangkap beberapa properti yang diminati dalam data dan visualisasi.
 
 Seseorang yang bekerja dengan data, salah satu aktivitasnya yang paling menarik adalah mengeksplorasi dataset yang baru. Anda harus memehami variabel apa saja yang Anda miliki, berapa banyak records yang ada di dalam dataset, berapa banyak data yang hilang, apa struktur variabelnya, apa hubungan variabelnya, dan masih banyak lagi. Oleh karena itu, pada bagian ini akan kita akan menampilkan beberapa poin penting dalam ADE dasar sebagai berikut:
 
 * Bagaimana mengeksplorasi: dengan statistik ringkasan, atau secara visual?
-
 * Berapa banyak variabel yang dianalisis secara bersamaan: univariat, bivariat, atau multivariat?
-
 * Apa tipe dari variabel: kategorikal atau kontinu?
-Pada bagian ini, kita menggunakan dataset Students, download dan simpan di komputer Anda (PC).
+
+Pada bagian ini, kita menggunakan dataset Students, download dan simpan di komputer (PC) Anda .
 
 ## Kualitatif
 
@@ -17,40 +17,27 @@ Variabel kualitatif (kategorikal), yang disebut data `faktor` atau `karakter` di
 
 Variabel kategorikal dapat dibagi menjadi:
 
-* Kategorikal Nominal: data yang levelnya adalah label atau deskripsi, dan yang tidak dapat diurutkan. 
+* **Kategorikal Nominal:** data yang levelnya adalah label atau deskripsi, dan yang tidak dapat diurutkan. 
 data yang levelnya adalah label atau deskripsi, dan yang tidak dapat dipesan. Contoh variabel nominal adalah jenis kelamin, sekolah, dan pertanyaan dengan jawaban ya/tidak. Biasanya juga disebut variabel "kategorikal nominal" atau "kualitatif", dan tingkat variabel kadang-kadang disebut "kelas" atau "kelompok". 
 
-* Kategorikal Ordinal: dapat disusun atau diberi peringkat dalam urutan yang logis, tetapi interval antara level variabel belum tentu diketahui. Pengukuran subyektif seringkali merupakan variabel ordinal. Salah satu contoh adalah dengan meminta orang memberikan empat urutan peringkat ke suatu item berdasarkan prioritas. Contoh lainnya adalah meminta orang untuk menilai beberapa item berdasarkan skala peringkat Likert:"Pada skala satu sampai lima, apakah Anda setuju atau tidak setuju dengan pernyataan ini?". Contoh ketiga adalah tingkat pendidikan untuk orang dewasa, misalnya dengan mempertimbangkan "dibawah sekolah menengah", "sekolah menengah", "gelar asosiasi/sarjana", dll.
+* **Kategorikal Ordinal:** dapat disusun atau diberi peringkat dalam urutan yang logis, tetapi interval antara level variabel belum tentu diketahui. Pengukuran subyektif seringkali merupakan variabel ordinal. Salah satu contoh adalah dengan meminta orang memberikan empat urutan peringkat ke suatu item berdasarkan prioritas. Contoh lainnya adalah meminta orang untuk menilai beberapa item berdasarkan skala peringkat Likert:"Pada skala satu sampai lima, apakah Anda setuju atau tidak setuju dengan pernyataan ini?". Contoh ketiga adalah tingkat pendidikan untuk orang dewasa, misalnya dengan mempertimbangkan "dibawah sekolah menengah", "sekolah menengah", "gelar asosiasi/sarjana", dll.
 
 ### Kategorikal Univariat
 
 Analisis univariat mengeksplorasi variabel (atribut) satu per satu. Variabel dapat berupa kategorikal atau numerik. Ada perbedaan teknik statistik dan visualisasi dari penyelidikan untuk setiap jenis variabel. Variabel numerik dapat diubah menjadi bagian kategorikal dengan proses yang disebut binning atau diskritisasi. Dimungkinkan juga untuk mengubah variabel kategorikal menjadi bagian numerik dengan proses yang disebut pengkodean. Terakhir, penanganan yang tepat atas nilai yang hilang merupakan masalah penting dalam penambahan data. Sekarang, mari kita lihat cara mengeksplor data kategorikal univariat:
 
-```{r, echo=T, results='hide'}
+```{r, echo=T, results='hide', message=FALSE}
 library(readr)                                     # antarmuka dataset
 #setwd("C:/Users/Bakti/Desktop/")                  # mengatur working directory Anda
 df= read_csv("Data/students.csv")                  # mengimpor dataset
-```
-
-```{r, echo=T, results='hide'}
 #str(df)                                           # memeriksa struktur datanya jika diinginkan
 apply(is.na(df),2, which)                          # memeriksa NA dalam data frame
-```
-
-```{r, echo=T, results='hide'}
 df<-na.omit(df)                                    # menghapus data yang hilang
 head(df,3)                                         # untuk melihat 3 baris pertama data Anda
-```
-
-```{r, echo=T, results='hide'}
 Cat1 <- table(df$Gender)                           # menghitung frekuensinya
 Cat1
 ```
 
-```{r, echo=T, results='hide'}
-# lakukan untuk setiap variabel kategori
-```
-<br>
 Jika seandainya Anda menginginkan proporsi dari jumlah level, Anda dapat menggunakan `prop.table`.
 
 ```{r, echo=T, results='hide'}
@@ -61,7 +48,7 @@ prop.table(table(df$Gender))
 
 Contoh data bivariat dapat diberikan untuk membantu Anda memahami hubungan antara dua variabel dan untuk memahami ide di balik definisi dan makna analisis data bivariat. Perlu diperhatikan bahwa, dalam kasus ini, kita fokus pada variabel kategorikal.
 
-```{r, echo=T, results='hide'}
+```{r, echo=T, results='hide', message=FALSE}
 library(readr)                                     # antarmuka dataset
 library(dplyr)                                     # untuk memanipulasi data
 library(magrittr)                                  # untuk memanipulasi data mirip dengan dplyr
@@ -95,21 +82,23 @@ Variabel kuantitatif (Kontinu) adalah nilai-nilai dasar dalam R. Variabel-variab
 
 Ukuran tendensi sentral adalah nilai tunggal yang mencoba menggambarkan sekumpulan data dengan mengidentifikasi posisi sentral dalam kumpulan data itu. Dengan demikian, ukuran tendensi sentral terkadang disebut pengukuran lokasi sentral. Ukuran tendensi sentral juga digolongkan sebagai ringkasan statistik. Mean (rata-rata) kemungkinan besar adalah ukuran tendensi sentral yang paling Anda ketahui, tetapi ada juga yang lainnya, seperti kuantil, median, mode, dan Alpha Trimmed Mean.
 
-* Mean(Rata-rata): adalah ukuran tendensi sentral yang paling populer dan terkenal. mean dapat digunakan dengan data diskrit maupun kontinu, meskipun penggunaannya paling sering dengan data kontinu (lihat panduan Jenis Variabel kami untuk tipe data). Rata-rata sama dengan jumlah semua nilai dalam data set dibagi dengan seberapa banyak jumlah unit nilai dalam data set itu sendiri. Jadi, jika kita memiliki nilai di sebuah data set dan nilainya `...`, mean sampel, biasanya dinotasikan dengan (dilafalkan "x bar"), adalah:
-<center>
-$\bar{x}=\frac{(x_1+x_2+...+x_n)}{n}$, atau
-<center>
-$\bar{x}=\frac{\Sigma{x}}{n}$, atau
-<center>
-$\mu=\frac{\Sigma{x}}{n}$
+* **Mean(Rata-rata):** adalah ukuran tendensi sentral yang paling populer dan terkenal. mean dapat digunakan dengan data diskrit maupun kontinu, meskipun penggunaannya paling sering dengan data kontinu (lihat panduan Jenis Variabel kami untuk tipe data). Rata-rata sama dengan jumlah semua nilai dalam data set dibagi dengan seberapa banyak jumlah unit nilai dalam data set itu sendiri. Jadi, jika kita memiliki nilai di sebuah data set dan nilainya `...`, mean sampel, biasanya dinotasikan dengan (dilafalkan "x bar"), adalah:
 
-* Kuantil: kuantil $\alpha$ dari sampel $x$, dilambangkan dengan $x_\alpha$, didefinisikan (tidak unik) sebagai nilai di atas $100_\alpha$% dari sampel, dan di bawah $100(1-\alpha)$%. Kami menekankan bahwa kuantil sampel tidak ditentukan secara unik. Perhatikan `?quantile` untuk definisi berbeda `9(!)` yang diberikan oleh R.
+$$
+\begin{eqnarray*}
+\bar{x}&=&\frac{(x_1+x_2+...+x_n)}{n}, \text{atau}\\
+\bar{x}&=&\frac{\Sigma{x}}{n}, \text{Sample Mean}  \\
+\mu &=&\frac{\Sigma{x}}{N}, \text{Population Mean}
+\end{eqnarray*}
+$$
 
-* Median: Median dari sampel $x$, dilambangkan dengan $x_{0.5}$ dimana $\alpha=0.5$ kuantil sampel.
+* **Kuantil:** kuantil $\alpha$ dari sampel $x$, dilambangkan dengan $x_\alpha$, didefinisikan (tidak unik) sebagai nilai di atas $100_\alpha$% dari sampel, dan di bawah $100(1-\alpha)$%. Kami menekankan bahwa kuantil sampel tidak ditentukan secara unik. Perhatikan `?quantile` untuk definisi berbeda `9(!)` yang diberikan oleh R.
 
-* Mode: Mode adalah nilai frekuensi yang paling sering di dataset kami. Pada histogram, mode mewakilkan batang tertinggi dalam diagram batang atau histogram. Oleh karena itu, Anda terkadang dapat menganggap mode sebagai opsi paling populer. Biasanya, mode digunakan untuk data kategorikal dimana kita ingin mengetahui kategori mana yang paling umum.
+* **Median:** Median dari sampel $x$, dilambangkan dengan $x_{0.5}$ dimana $\alpha=0.5$ kuantil sampel.
 
-* Alpha Trimmed Mean: Pemangkasan rata-rata $\alpha$ dari sampel $x$, dilambangkan $\bar{x}_\alpha$ adalah rata rata dari sampel setelah menghilangkan pengamatan proporsi terbesar $\alpha$ dan pengamatan proporsi terkecil $\alpha$. Rata-rata dan median seerhana adalah contoh dari pemangkasan rata-rata $\alpha$: masing-masing $\bar{x}_0$ dan $\bar{x}_{0.5}$.
+* **Mode:** Mode adalah nilai frekuensi yang paling sering di dataset kami. Pada histogram, mode mewakilkan batang tertinggi dalam diagram batang atau histogram. Oleh karena itu, Anda terkadang dapat menganggap mode sebagai opsi paling populer. Biasanya, mode digunakan untuk data kategorikal dimana kita ingin mengetahui kategori mana yang paling umum.
+
+* **Alpha Trimmed Mean:** Pemangkasan rata-rata $\alpha$ dari sampel $x$, dilambangkan $\bar{x}_\alpha$ adalah rata rata dari sampel setelah menghilangkan pengamatan proporsi terbesar $\alpha$ dan pengamatan proporsi terkecil $\alpha$. Rata-rata dan median seerhana adalah contoh dari pemangkasan rata-rata $\alpha$: masing-masing $\bar{x}_0$ dan $\bar{x}_{0.5}$.
 
 Berikut ini adalah implementasi R:
 
@@ -117,25 +106,10 @@ Berikut ini adalah implementasi R:
 Quan <- df %>% 
 select_if(is.numeric)                              # hanya memilih kolom numerik
 names(Quan)                                        # memeriksa nama-nama variabel Kuantitatif
-```
-
-```{r, echo=T, results='hide'}
 mean(Quan$Grade)                                   # rata-rata dari `Grade`
-```
-
-```{r, echo=T, results='hide'}
 quantile(Quan$Grade)                               # kuantil dari `Grade`
-```
-
-```{r, echo=T, results='hide'}
 median(Quan$Grade)                                 # median dari `Grade`
-```
-
-```{r, echo=T, results='hide'}
 mode(Quan$Grade)                                   # Mode dari `Grade`
-```
-
-```{r, echo=T, results='hide'}
 summary(Quan)                                      # ringkasan statistik sederhana dalam satu fungsi 
 ```
 
@@ -143,35 +117,26 @@ summary(Quan)                                      # ringkasan statistik sederha
 
 Skala/Variabilitas data, terkadang dikenal sebagai penyebaran, dapat dianggap sebagai variabilitas sebagai berikut:
 
-* Varians: Varians adalah ukuran numerik tentang bagaimana nilai data tersebar di sekitar mean. Secara khusus, varians sampel didefinisikan sebagai $s^2$. Demikian pula, varians populasi $\sigma^2$ didefinisikan dalam hal rata-rata populasi $\mu$ dan ukuran populasi $N$:
+* **Varians:** Varians adalah ukuran numerik tentang bagaimana nilai data tersebar di sekitar mean. Secara khusus, varians sampel didefinisikan sebagai $s^2$. Demikian pula, varians populasi $\sigma^2$ didefinisikan dalam hal rata-rata populasi $\mu$ dan ukuran populasi $N$:
 <center>
 $s^2=\frac{1}{n-1}{\Sigma^n_{i=1}{(x_i-\bar{x})^2}}$
 <center>
 $\sigma^2=\frac{1}{N-1}{\Sigma^n_{i=1}{(x_i-\mu)^2}}$
 
-* Deviasi Standar: Deviasi standar dari sebuah variabel penelitian adalah akar kuadrat dari variansinya, dilambangkan dengan $\sigma$ dan didefinisikan sebagai:
+* **Deviasi Standar:** Deviasi standar dari sebuah variabel penelitian adalah akar kuadrat dari variansinya, dilambangkan dengan $\sigma$ dan didefinisikan sebagai:
 <center>
 $\sigma=\sqrt{\frac{1}{N-1}{\Sigma^n_{i=1}{(x_i-\mu)^2}}}$
 
-* MAD: Median Absolute Deviation (Deviasi Absolut Median) dari median, dilambangkan dengan `MAD(x)`, didefinisikan sebagai: $MAD(x):=c|x-x_{0.5}|_{0.5}$ di mana $c$ adalah konstanta, biasanya ditentukan $c=1.4826$ sehingga MAD dan $\sigma$ memiliki batas sampel yang sama besar.
+* **MAD:** Median Absolute Deviation (Deviasi Absolut Median) dari median, dilambangkan dengan `MAD(x)`, didefinisikan sebagai: $MAD(x):=c|x-x_{0.5}|_{0.5}$ di mana $c$ adalah konstanta, biasanya ditentukan $c=1.4826$ sehingga MAD dan $\sigma$ memiliki batas sampel yang sama besar.
 
-* IQR: Inter Quantile Range (Antar Rentang Kuantil) dari sampel $x$, dilambangkan dengan $IQR(x)$, didefinisikan sebagai $IQR(x):=x_{0.75}-x_{0.25}$.
+* **IQR:** Inter Quantile Range (Antar Rentang Kuantil) dari sampel $x$, dilambangkan dengan $IQR(x)$, didefinisikan sebagai $IQR(x):=x_{0.75}-x_{0.25}$.
 
 Berikut ini adalah implementasi R:
 
 ```{r, echo=T, results='hide'}
 var(Quan$Grade)                                    # Varian dari `Grade`
-```
-
-```{r, echo=T, results='hide'}
 sd(Quan$Grade)                                     # Deviasi standar dari `Grade`
-```
-
-```{r, echo=T, results='hide'}
 mad(Quan$Grade)                                    # Deviasi Absolut Median dari `Grade`
-```
-
-```{r, echo=T, results='hide'}
 IQR(Quan$Grade)                                    # Antar Rentang Kuantile dari `Grade`
 ```
 
@@ -267,7 +232,7 @@ cor(Quan)                                           # menerapkan fungsi `corr()`
 ## ADE dengan cara Lazy-way
 
 Jalankan semua fungsi di posting ini satu kali dengan fungsi berikut:
-```{r, echo=T, results='hide'}
+```{r, eval=FALSE, message=FALSE}
 library(funModeling) 
 library(tidyverse) 
 library(Hmisc)
@@ -296,7 +261,7 @@ Fungsi `skim` dari package `skimr`. Fungsi skim adalah tambahan yang baik untuk 
 ### Fungsi Lain
 Gunakan kode berikut untuk mengetahui lebih lanjut tentang fungsi:
 
-```{r, echo=T, results='hide'}
+```{r, eval=F}
 ?df_status
 ?freq
 ?profiling_num
@@ -308,7 +273,7 @@ Gunakan kode berikut untuk mengetahui lebih lanjut tentang fungsi:
 
 Dan akhirnya pièce de résistance, daya tarik utama dan alasan saya menulis blog ini; fungsi create_report dalam package DataExplorer. Fungsi satu baris yang menarik mengagumkan ini akan menarik profil data lengkap dari data frame Anda. Ini akan menghasilkan file HTML dengan statistik dasar, struktur, data yang hilang, visualisasi distribusi, matriks korelasi, dan analisis komponen utama dari data frame Anda! Saya baru-baru ini mengetahui tentang fungsi ini dalam sebuah lokakarya yang diberikan oleh Stephe Locke yang dipandu oleh R Ladies Austin. Fungsi ini berdampak besar!
 
-```{r, echo=T, results='hide'}
+```{r, eval=FALSE}
 library(DataExplorer)
 DataExplorer::create_report(df)
 ```
