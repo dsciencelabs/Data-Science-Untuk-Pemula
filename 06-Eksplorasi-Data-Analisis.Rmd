@@ -1,7 +1,7 @@
 # Eksplorasi Data Analisis {#Eksplorasi-Data-Analisis}
 ***
 
-Analisis Data Eksplorasi (ADE) adalah pendekatan analisis data untuk meringkas dan memvisualisasikan karakteristik penting dari data. ADE dapat dianggap sebagai asumsi bebas, biasanya dilakukan dalam perilaku analisis data. ADE juga dikenal sebagai analitik visual atau statistik deskriptif. ADE juga merupakan praktik pengamatan, dan mengeksplorasi data, sebelum Anda menekankan beberapa hipotesis, menyesuaikan prediktor, dan tujuan lainnya pada statistik inferensial. ADE biasanya mencakup penghitungan ringkasan statistika sederhana yang menangkap beberapa properti yang diminati dalam data dan visualisasi.
+**Analisis Data Eksplorasi (ADE)** adalah pendekatan analisis data untuk meringkas dan memvisualisasikan karakteristik penting dari data. ADE dapat dianggap sebagai asumsi bebas, biasanya dilakukan dalam perilaku analisis data. ADE juga dikenal sebagai analitik visual atau statistik deskriptif. ADE juga merupakan praktik pengamatan, dan mengeksplorasi data, sebelum Anda menekankan beberapa hipotesis, menyesuaikan prediktor, dan tujuan lainnya pada statistik inferensial. ADE biasanya mencakup penghitungan ringkasan statistika sederhana yang menangkap beberapa properti yang diminati dalam data dan visualisasi.
 
 Seseorang yang bekerja dengan data, salah satu aktivitasnya yang paling menarik adalah mengeksplorasi dataset yang baru. Anda harus memehami variabel apa saja yang Anda miliki, berapa banyak records yang ada di dalam dataset, berapa banyak data yang hilang, apa struktur variabelnya, apa hubungan variabelnya, dan masih banyak lagi. Oleh karena itu, pada bagian ini akan kita akan menampilkan beberapa poin penting dalam ADE dasar sebagai berikut:
 
@@ -168,33 +168,26 @@ Saat berhadapan dengan variabel kontinu bivariat, atau multivariat, kita tentu d
 #### Kovariansi {-}
 
 Kovariansi antara dua contoh, $x$ dan $y$, dengan panjang yang sama $n$, didefinisikan sebagai
-<center>
-$Cov(x,y):=\frac{1}{(n-1)}{\Sigma{(x_i-\bar{x})}{(y_i-\bar{y})}}$
+$$Cov(x,y):=\frac{1}{(n-1)}{\Sigma{(x_i-\bar{x})}{(y_i-\bar{y})}}$$
+
 Kami menekankan ini bukanlah kovariansi yang Anda sudah pelajari di kelas probabilitas, karena ini bukan kovariansi antara dua variabel acak, melainkan antara dua sampel. Untuk alasan ini, beberapa penulis menyebutnya kovarians empiris, atau kovarians sampel.
 
 #### Koefisien Korelasi Pearson {-}
 
 Koefisien korelasi Pearson, yang dikenal sebagai korelasi produk momen Pearson, atau sederhananya, korelasi, dilambangkan dengan $\rho(x,y)$, didefinisikan sebagai
-<center>
-$\rho(x,y):=\frac{Cov(x,y)}{\sigma_x\sigma_y}$
+$$\rho(x,y):=\frac{Cov(x,y)}{\sigma_x\sigma_y}$$
+
 Jika Anda menganggap definisi ini membingungkan, anggap saja korelasi sebagai kovariansi antara x dan y setelah mengubahnya menjadi skala `skor-z` tanpa unit.
 
 #### Skor-Z {-}
 
 Skor-z dari sampel $x$ didefinisikan sebagai observasi yang dinormalisasi dengan skala tengah-tengah:
-<center>
-$z_i(x):=\frac{x_i-\bar{x}}{\sigma_x}$
+$$z_i(x):=\frac{x_i-\bar{x}}{\sigma_x}$$
 Jadi kita punya, $\rho(x,y):=Cov(z(x),z(y))$
 
 ```{r, echo=T, results='hide'}
 cov(Quan$Grade,Quan$Sleep)                          # menerapkan fungsi `cov()`
-```
-
-```{r, echo=T, results='hide'}
 cor(Quan$Grade,Quan$Sleep)                          # menerapkan fungsi `corr()`
-```
-
-```{r, echo=T, results='hide'}
 zscore=(Quan$Grade-mean(Quan$Grade))/sd(Quan$Grade) # manual skor-z
 ```
 
@@ -205,27 +198,29 @@ Kovariansi adalah ringkasan sederhana dari hubungan antara dua variabel, tetapi 
 #### Matriks Sampel Kovarians {-}
 
 Diberikan pengamatan $n$ pada variabel $p$, dilambangkan dengan $x_{i,j}$ pengamatan ke-$i$ dari variabel ke-$j$. Matriks sampel kovarians, dilambangkan dengan $\hat{\Sigma}$ didefinisikan sebagai
-<center>
-$\hat{\Sigma}_{k,l}:=\frac{1}{(n-1)}{\Sigma[(x_{i,k}-\bar{x}_k)(y_{i,l}-\bar{y}_l)]}$
+
+$$\hat{\Sigma}_{k,l}:=\frac{1}{(n-1)}{\Sigma[(x_{i,k}-\bar{x}_k)(y_{i,l}-\bar{y}_l)]}$$
 di mana $\bar{x}_k:=\frac{1}{n}\Sigma_ix_{i,k}$. Dengan kata lain, entri ke-k,l dalam $\hat{\Sigma}$ adalah kovarians sampel antara variabel $k$ dan $l$.
 
 #### Matriks Sampel Korelasi {-}
 
 Matriks korelasi mengacu pada deretan angka simetris.
 Matriks korelasi: R
-<center>
-$R=[]$ ----------(Saya belum tau cara membuat matriksnya, Pak)----------
-<center>
-$Y_{j,k}=\frac{S_{j,k}}{S_jS_k}=\frac{\Sigma^{n}_{i=1}(x_{i,j}-\bar{x}_j)(x_{i,k}-\bar{x}_k)}{\sqrt{\Sigma^n_{i=1}{(x_{i,j}-\bar{x}_j)^2}}\sqrt{\Sigma^n_{i=1}(x_{i,k}-\bar{x}_k)^2}}$
+
+\[R = \begin{pmatrix}    1   & Y_{12} & Y_{13} & .. & Y_{1p}\\
+                      Y_{21} &    1   & Y_{23} & .. & Y_{2p}\\ 
+                      Y_{31} & Y_{32} &    1   & .. & Y_{3p}\\  
+                         :   &    :   &    :   &    &   :   \\
+                      Y_{p1} & Y_{p2} & Y_{p3} & .. &   1   &  
+       \end{pmatrix}\]
+
+$$Y_{j,k}=\frac{S_{j,k}}{S_jS_k}=\frac{\Sigma^{n}_{i=1}(x_{i,j}-\bar{x}_j)(x_{i,k}-\bar{x}_k)}{\sqrt{\Sigma^n_{i=1}{(x_{i,j}-\bar{x}_j)^2}}\sqrt{\Sigma^n_{i=1}(x_{i,k}-\bar{x}_k)^2}}$$
 $Y_{j,k}=$ koefisien korelasi $x_j$ dan $x_k$
 
 Berikut ini adalah implementasi R:
 
 ```{r, echo=T, results='hide'}
 cov(Quan)                                           # menerapkan fungsi `cov()`
-```
-
-```{r, echo=T, results='hide'}
 cor(Quan)                                           # menerapkan fungsi `corr()`
 ```
 
