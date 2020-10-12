@@ -1,4 +1,867 @@
-# Vusualisasi Data Lanjut {#Vusualisasi-Data-Lanjut}
+# Visualisasi Data Lanjut {#Visualisasi-Data-Lanjut}
 ***
 
-Disini di tuliskan materi
+## Deret Waktu
+
+Deret waktu adalah sekumpulan nilai kuantitatif yang diperoleh pada titik-titik waktu yang berurutan. Interval antara titik-titik waktu (mis., jam, hari, minggu, bulan, atau tahun) biasanya sama.
+
+### Grafik Garis
+
+Grafik bergantung dengan waktu yang paling umum adalah grafik garis deret waktu. Mari kita pertimbangkan deret waktu Ekonomi AS yang disertakan dengan package ggplot2. Ini berisi data ekonomi bulanan AS yang dikumpulkan dari Januari 1967 hingga Januari 2015. Mari kita plot tingkat menabung pribadi `psavert`. Kita dapat melakukan ini dengan plot garis sederhana.
+
+```{r, echo=T, results='hide'}
+library(ggplot2)                                  # visualisasi data 
+data(economics, package = "ggplot2")              # memuat data
+ggplot(economics, aes(x = date, y = psavert)) +   # menetapkan sumbu x dan y dari dataset
+  geom_line(color = "indianred",size=0.6) +       # menambahkan grafik garis, warna dan ukuran
+  theme_minimal()+                                # tema untuk tampilan yang lebih baik
+  labs(title = "Personal Savings Rate",           # judul untuk grafik
+       x = "Date",                                # menamakan kembali sumbu x
+       y = "Rate")                                # menamakan kembali sumbu y
+```
+
+Fungsi `scale_x_date` dapat digunakan untuk memformat ulang tanggal. Pada grafik berikut, tanda centang muncukl setiap 5 tahun, dan tanggal akan ditampilkan dengan format MMM-YY. Selain itu, garis deret waktu diberi warna off-red dan dibuat lebih tebal, garis tren (loess), dan judul ditambahkan, dan tema disederhanakan.
+
+```{r, echo=T, results='hide'}
+library(ggplot2)                                  # visualisasi data
+library(scales)                                   # penskalaan dan pemusatan objek seperti matriks
+data(economics, package = "ggplot2")              # memuat data
+ggplot(economics, aes(x = date, y = psavert)) +   # menetapkan sumbu x dan y dari dataset
+  geom_line(color = "indianred", size=0.6) +      # menambahkan grafik garis, warna, dan ukuran
+  geom_smooth(formula = y~x, method = 'loess') +  # grafik hubungan antara x dan y
+  theme_minimal()+                                # tema untuk tampilan yang lebih baik
+  scale_x_date(date_breaks = '5 years',  
+               labels = date_format("%b-%y")) +
+  labs(title = "Personal Savings Rate",
+       subtitle = "1967 to 2015",
+       x = "",
+       y = "Rate") 
+```
+
+**Catatan:** Ketika memplot deret waktu, pastikan bahwa variabel datanya adalah kelas tanggal dan bukan kelas karakter. Lihat nilai tanggal untuk lebih jelasnya.
+
+Mari tutup bagian ini dengan deret waktu multivariat (lebih dari satu deret). Kita akan membandingkan harga penutupan untuk Appel dan Facebook dari 1 Jan 2019 hingga hari ini.
+
+```{r, echo=T, results='hide'}
+library(quantmod)                                 # kerangka pemodelan keuangan kuantitatif
+library(dplyr)                                    # manipulasi data
+library(ggplot2)                                  # visualisasi data
+# mendapatkan harga penutupan Apple (AAPL)
+apple <- getSymbols("AAPL",src = "yahoo",
+                    return.class = "data.frame", 
+                    from="2019-01-01")
+# memproses data yang ingin kita analisis
+apple <- AAPL %>%                                 
+  mutate(Date = as.Date(row.names(.))) %>%
+  select(Date, AAPL.Close) %>%
+  rename(Close = AAPL.Close) %>%
+  mutate(Company = "Apple")
+# mendapatkan harga penutuoan facebook (FB)
+facebook <- getSymbols("FB", src = "yahoo",
+                       return.class = "data.frame", 
+                       from="2019-01-01")
+# memproses data yang ingin kita analisis 
+facebook <- FB %>% 
+  mutate(Date = as.Date(row.names(.))) %>%
+  select(Date, FB.Close) %>%
+  rename(Close = FB.Close) %>%
+  mutate(Company = "Facebook")
+# menggabungkan data dari kedua perusahaan
+mseries <- rbind(apple, facebook)
+# memvisualisasikan data
+ggplot(mseries, aes(x=Date, y= Close, color=Company)) + 
+  geom_line(size=1) +
+  scale_x_date(date_breaks = '1 month', 
+               labels = scales::date_format("%b-%y")) +
+  scale_y_continuous(limits = c(120, 380), 
+                     breaks = seq(120, 380, 10),
+                     labels = scales::dollar) +
+  labs(title = "NASDAQ Closing Prices",
+       subtitle = "Jan 2019 until today",
+       caption = "source: Yahoo Finance",
+       y = "Closing Price") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  scale_color_brewer(palette = "Dark2")
+```
+
+### Grafik Area
+
+Grafik area sederhana pada dasarnya adalah grafik garis, dengan isian dari garis menuju sumbu x.
+
+```{r, echo=T, results='hide'}
+library(ggplot2)                                  # visualisasi data
+data(economics, package = "ggplot2")              # memuat data
+ggplot(economics, aes(x = date, y = psavert)) +
+  geom_area(fill="azure3", color="indianred3") +
+  theme_minimal() +
+  labs(title = "Personal Savings Rate",
+       x = "Date",
+       y = "Personal Savings Rate")
+```
+
+Grafik area bertumpuk dapat digunakan untuk menunjukkan perbedaan antara grup dari waktu ke waktu. Pertimbangkan data set `uspopage` dari package `gcookbook`. Kita akan memplot distribusi usia populasi AS antara tahun 1900 dan 2002.
+
+```{r, echo=T, results='hide'}
+library(ggplot2)                                  # data visualization
+library(gcookbook)                                # data kesehatan dan ekonomi tentang negara-negara
+data(uspopage, package = "gcookbook")             # memuat data
+ggplot(uspopage, aes(x = Year,
+                     y = Thousands, 
+                     fill = AgeGroup)) +
+  geom_area() +
+  theme_minimal()+
+  labs(title = "US Population by age",
+       x = "Year",
+       y = "Population in Thousands")
+```
+
+Cara terbaik adalahmenghindari notasi ilmiah pada grafik Anda. Seberapa besar kemungkinan rata-rata pembaca akan mengetahui bahwa 3e+05 artinya 300,000,000? Mudah untuk mengubah skala di ggplot2. Cukup bagi variabel Ribuan dengan 1000 dan laporkan sebagai Jutaan. Sementara kita melakukannya, mari kita
+
+* membuat batasan hitam untuk menyoroti perbedaan antar grup,
+* membalik urutan grup agar sesuai dengan bertambahnya usia,
+* meningkatkan pelabelan,
+* memilih skema warna yang berbeda.
+
+Tingkat variabel `AgeGroup` dapat dibalik menggunakan fungsi `fct_rev` di package `forcats`.
+
+```{r, echo=T, results='hide'}
+library(ggplot2)                                  # visualisasi data
+library(gcookbook)                                # data kesehatan dan ekonomi tentang negara-negara
+data(uspopage, package = "gcookbook")             # memuat data
+ggplot(uspopage, aes(x = Year,
+                     y = Thousands/1000, 
+                     fill = forcats::fct_rev(AgeGroup))) +
+  geom_area(color = "black") +
+  labs(title = "US Population by age",
+       subtitle = "1900 to 2002",
+       caption = "source: U.S. Census Bureau, 2003, HS-3",
+       x = "Year",
+       y = "Population in Millions",
+       fill = "Age Group") +
+  scale_fill_brewer(palette = "Set2") +
+  theme_minimal()
+```
+
+**Tantangan Anda:** Lakukan hal yang sama untuk memvisualisasikan data populasi Indonesia menggunakan dataset `economics`
+
+### Grafik Barbel
+
+Grafik khusus ini berguna untuk menampilkan perubahan antara dua titik waktu untuk beberapa grup atau pengamatan. Menggunakan fungsi `geom_dumbbell` dari package `ggalt`.
+
+Menggunakan dataset `gapminder` mari kita plot perubahan harapan hidup di Asia dari tahun 1952 sampai 2007. Dataset dalam format panjang. Kita perlu mengubahnya menjadi format lebar untuk membuat plot barbel. Dalam grafik ini, kita akan mengurutkan berdasarkan harapan hidup tahun 1952, dan memodifikasi ukuran garis dan titik, memberi warna titik, menambahkan judul dan label, dan menyederhanakan tema.
+
+```{r, echo=T, results='hide'}
+library(ggalt)                                    # mengandung tambahan geom, skala, dll
+library(dplyr)                                    # manipulasi data
+library(tidyr)                                    # data berantakan dan rapi
+library(ggplot2)                                  # visualisasi data
+data(gapminder, package = "gapminder")            # memuat data
+# data subset
+plotdata_long <- filter(gapminder,
+                        continent == "Asia" &
+                        year %in% c(1952, 2007)) %>%
+  select(country, year, lifeExp)
+# mengubah data format lebar
+plotdata_wide <- spread(plotdata_long, year, lifeExp)
+names(plotdata_wide) <- c("country", "y1952", "y2007")
+# membuat plot barbel
+ggplot(plotdata_wide, 
+       aes(y = reorder(country, y1952),
+           x = y1952,
+           xend = y2007)) +  
+  geom_dumbbell(size_x = 2,
+                size = 0.8,
+                size_xend = 2,
+                colour_x = "aquamarine3", 
+                colour = "cornflowerblue", 
+                colour_xend = "indianred") +
+  theme_minimal() + 
+  labs(title = "Change of Life Expectancy in Asia",
+       subtitle = "1952 to 2007",
+       x = "Life Expectancy (years)",
+       y = "")
+```
+
+Lebih mudah untuk melihat pola di sini. Misalnya `Afganistan` memulai dengan harapan hidup terendah pada tahun 1952 dan masih terendah pada tahun 2007. `Israel` memulai dengan harapan hidup yang relatif tinggi dengan hanya membuat sedikit kemajuan.
+
+### Grafik Kemiringan
+
+Jika ada beberapa kelompok dan beberapa titik waktu, grafik kemiringan dapat membantu. Mari kita plot harapan hidup dari tujuh negara Asia Tenggara pada tahun 1992, 1997, 2002, dan 2007. Sekali lagi, kita akan menggunakan data `gapminder`.
+
+Untuk membuat grafik kemiringan, kita akan menggunakan fungsi `newggslopegraph` dari package `CGPfunctions`. Parameter fungsi `newggslopegraph` adalah (berurutan)
+
+* Data frame,
+* Variabel waktu (yang harus sebagai faktor),
+* Variabel numerik yang akan diplot,
+* Variabel Pengelompokkan (membuat satu garis per kelompok).
+
+```{r, echo=T, results='hide'}
+library(ggalt)                                    # mengandung tambahan geom, skala, dll
+library(dplyr)                                    # manipulasi data
+library(tidyr)                                    # data berantakan dan rapi
+library(ggplot2)                                  # visualisasi data
+library(CGPfunctions)                             # fungsi lain-lain (grafik kemiringan)
+data(gapminder, package = "gapminder")            # memuat data
+# Memilih tujuh data negara Asia Tenggara 
+# untuk tahun 1992, 1997, 2002, dan 2007
+df <- gapminder %>%
+  filter(year %in% c(1992, 1997, 2002, 2007) &
+           country %in% c("Indonesia", "Singapore", 
+                          "Malaysia", "Vietnam",
+                          "Philippines","Thailand",
+                          "Myanmar")) %>%
+  mutate(year = factor(year),
+         lifeExp = round(lifeExp)) 
+# membuat grafik kemiringan
+newggslopegraph(df, year, lifeExp, country) +
+  labs(title="Life Expectancy by Country", 
+       subtitle="Southeast Asia", 
+       caption="source: gapminder")
+```
+
+Pada grafik di atas, `Singapore` memiliki harapan hidup tertinggi dalam rentang tahun. `Myanmar` memiliki harapan hidup terendah hingga akhir penelitian.
+
+## Grafik Lain
+
+Grafik-grafik pada bagian ini dapat sangat berguna di kehidupan sehari-hari Anda sebagai seorang data scientist, tetapi ini mungkin tidak terlalu mudah dibandingkan dengan grafik-grafik yang telah Anda pelajari sejauh ini.
+
+### Grafik Gelembung
+
+Plot gelembung adalah plot sebaran yang mana dimensi ketiga ditambahkan: nilai variabel numerik tambahan ditunjukkan melalui ukuran titik. Anda membutuhkan 3 variabel numerik sebagai input: satu diwakili oleh sumbu x, satu oleh sumbu y, dan satu oleh ukuran titik.
+
+Berikut ini adalah contoh yang menggunakan abstrak dataset `gapminder` yang terkenal melalui Hans Rosling Ted Talk. Ini memberikan rata-rata harapan hidup, PDB per kapita, dan ukuran populasi untuk lebih dari 100 negara. Dataset ini tersedia melalui package R yaitu `gapminder`.
+
+```{r, echo=T, results='hide'}
+library(gapminder)                                 # dataset
+library(tidyverse)                                 # manipulasi data
+library(hrbrthemes)                                # untuk `theme_ipsum()` dan legend
+library(ggplot2)                                   # visualisasi data
+library(gridExtra)                                 # fungsi lain-lain untuk grafik "Kisi"
+library(ggrepel)                                   # geom ekstra untuk ggplot2
+library(viridis)                                   # skala warna
+# Dataset tersedia di library gapminder
+data <- gapminder %>% 
+  filter(year=="2007") %>% 
+  dplyr::select(-year)
+# Menampilkan plot gelembung
+data %>%
+mutate(pop=pop/1000000) %>%
+arrange(desc(pop)) %>%
+mutate(country = factor(country, country)) %>%
+ggplot( aes(x=gdpPercap, y=lifeExp, size = pop, color = continent)) +
+  geom_point(alpha=0.7) +
+  scale_size(range = c(1, 15), name="Population (M)") +
+  scale_color_viridis(discrete=TRUE, guide=FALSE) +
+  theme_ipsum() +
+  theme(legend.position="bottom")
+```
+
+Pada grafik ini, hubungan antara `gdp` per kapita dan Angka Harapan Hidup cukup jelas: negara-negara kaya cenderung hidup lebih lama, dengan efek ambang batas ketika `gdp` per kapita mencapai ~10,000. Hubungan ini dapat dideteksi menggunakan plot sebar klasik, tetapi ukuran gelembung memungkinkan variasi hasil ini dengan tingkat informasi ketiga: populasi negara. 
+
+namun, ini dapat membuat frustasi jika tidak mengetahui negara mana yang berbeda di bagian ekstrim dari grafik, atau negara mana yang berada di luar tren umum. Seperti biasa, memberi anotasi pada grafik adalah langkah penting untuk membuatnya berwawasan:
+
+```{r, echo=T, results='hide'}
+# Menyiapkan data
+tmp <- data %>%
+mutate(annotation = case_when(
+  gdpPercap > 5000 & lifeExp < 60 ~ "yes",
+  lifeExp < 30 ~ "yes", 
+  gdpPercap > 40000 ~ "yes")) %>%
+mutate(pop=pop/1000000) %>%
+arrange(desc(pop)) %>%
+mutate(country = factor(country, country))
+# Plot
+ggplot(tmp, aes(x=gdpPercap, y=lifeExp, size = pop, color = continent)) +
+  geom_point(alpha=0.7) +
+  scale_size(range = c(1.4, 19), name="Population (M)") +
+  scale_color_viridis(discrete=TRUE) +
+  theme_ipsum() +
+  theme(legend.position="none") +
+  geom_text_repel(data=tmp %>% filter(annotation=="yes"), aes(label=country), size=4 )
+```
+
+### Biplot
+
+Biplot adalah grafik khusus yang mencoba mempresentasikan hubungan antara pengamatan, antara variabel, dan antara pengamatan dan variabel, di dalam ruang dimensi rendah (biasanya dua dimensi). Paling mudah untuk melihat cara kerjanya dengan sebuah contoh. Mari kita buat biplot untuk dataset `mtcars`, menggunakan fungsi `fviz_pca` dari package `factorextra`.
+
+```{r, echo=T, results='hide'}
+library(factoextra)                                # menggunakan fungsi `fviz_pca`
+data(mtcars)                                       # memuat data
+fit <- prcomp(x=mtcars, center=TRUE, scale=TRUE)   # mencocokkan dengan model komponen utama
+fviz_pca(fit, repel = TRUE, labelsize = 3) +       # memplot hasilnya
+      theme_bw() +
+      labs(title = "Biplot of mtcars data")
+```
+
+`Dim1` dan `Dim2` adalah dua komponen utama - kombinasi linear dari variabel $p$ asli.
+
+$$PC1=\beta_{10}+\beta_{11}x_1+\beta_{12}x_2+\beta_{13}x_3+...+\beta_{1p}x_p$$
+$$PC2=\beta_{20}+\beta_{21}x_1+\beta_{22}x_2+\beta_{23}x_3+...+\beta_{2p}x_p$$
+
+Bobot dari kombinasi linear ($\beta_{ij}s$) ini dipilih untuk memaksimalkan variansi yang diperhitungkan dalam variabel asli. Selain itu, komponen utama ($PCs$) dibatasi agar tidak berkorelasi satu sama lain.
+
+Dalam grafik ini, PC pertama menyumbang 60% dari variabilitas dalam data asli. PC kedua menyumbang 24%. Bersamaan, mereka menyumbang 84% dari variabilitas dalam variabel asli $p=11$. Seperti yang Anda lihat, pengamatan (mobil) dan variabel (karakteristik mobil) diplot dalam grafik yang sama.
+
+* Titik-titik mewakili pengamatan. Jarak yang lebih dekat antar titik menunjukkan nilai yang serupa pada kumpulan variabel asli. Misalnya, Toyota Corolla dan Honda Civic mirip satu sama lain, seperti halnya Chrysler Imperial dan Lincoln Continental. Namun, Toyota Corolla sangat berbeda dari Lincoln Continental.
+* Vektor (panah) mewakili variabel. Sudut antar vektor sebanding dengan korelasi antar variabel. Contoh, `gear` dan `am` berkorelasi positif, `gear` dan `qsec` tidak berkorelasi (sudut 90 derajat), dan `am` dengan `wt` berkorelasi negatif (sudut lebih besar dari 90 derajat).
+* Pengamatan yang terjauh sepanjang arah vektor variabel, memiliki nilai tertinggi pada variabel tersebut. Sebagai contoh, Toyota Corolla dan honda Civic memiliki nilai `mpg` yang lebih tinggi. Toyota Corona memiliki `qsec` yang lebih tinggi. Duster 360 memiliki lebih banyak `cyl`. Hati-hati dalam menafsirkan biplot. Mereka hanya akurat jika presentase varian yang diperhitungkan tinggi. Selalu periksa kesimpulan Anda dengan data asli.
+
+Lihat artikel oleh Forrest Young untuk mempelajari lebih lanjut tentang menafsirkan biplot dengan benar.
+
+### Peta Panas (Heatmaps)
+
+`heatmap` menampilkan sekumpulan data menggunakan ubin berwarna untuk setiap nilai variabel dalam setiap pengamatan. Mari buat peta panas untuk kumpulan data `mtcars` yang dilengkapi dengan basis R. Data set `mtcars` berisi informasi tentang 32 mobil yang diukur pada 11 variabel.
+
+```{r, echo=T, results='hide'}
+data(mtcars)
+library(superheat)
+superheat(mtcars,
+          scale = TRUE,
+          left.label.text.size=3,
+          bottom.label.text.size=3,
+          bottom.label.size = .05,
+          row.dendrogram = TRUE )
+```
+
+Di sini terlihat bahwa Toyota Corolla dan Fiat 128 memiliki karakteristik yang mirip. Lincoln Continental dan Cadillac Fleet-wood juga memiliki karakteristik yang mirip. Fungsi `superheat` membutuhkan data dalam format tertentu. Secara khusus
+
+* Semua data harus numerik
+* Nama baris digunakan untuk melabelkan sumbu kiri. Jika label yang diinginkan ada di dalam variabel kolom
+* variabel harus diubah menjadi nama baris (lebih lanjut tentang hal ini ada di bawah)
+* Nilai hilang diperbolehkan
+
+Mari kita gunakan peta-panas untuk menampilkan perubahan pada harapan hidup dari waktu ke waktu untuk negara-negara di Asia. Datanya berasal dari dataset `gapminder`.
+
+Karena datanya di dalam format panjang, pertama-tama kita harus mengubahnya menjadi format lebar. Kemudian kita perlu memastikan bahwa ini merupakan dataframe dan mengubah variabel negara menjadi nama baris. Terakhir, kita akan mengurutkan data berdasarkan harapan hidup tahun 2007. Selagi kita melakukannya, mari kita ubah skema warnanya.
+
+```{r, echo=T, results='hide'}
+library(tidyr)                                     # manipulasi data
+library(dplyr)                                     # manipulasi data
+library(RColorBrewer)                              # skema warna
+library(superheat)                                 # library headmap
+data(gapminder, package="gapminder")               # memuat data
+asia <- gapminder %>%                              # subset negara-negara Asia
+  filter(continent == "Asia") %>%
+  select(year, country, lifeExp)
+plotdata <- spread(asia, year, lifeExp)            # mengubah dari format panjang ke format lebar
+plotdata <- as.data.frame(plotdata)                # menyimpan negara sebagai nama baris
+row.names(plotdata) <- plotdata$country
+plotdata$country <- NULL
+sort.order <- order(plotdata$"2007")               # urutan baris
+colors <- rev(brewer.pal(5, "Blues"))              # warna 
+# membuat heat map
+superheat(plotdata,
+          scale = FALSE,
+          left.label.text.size=3,
+          bottom.label.text.size=3,
+          bottom.label.size = .05,
+          heat.pal = colors,
+          order.rows = sort.order,
+          title = "Life Expectancy in Asia")
+```
+
+### Matriks Plot Korelasi
+
+Plot korelasi membantu Anda memvisualisasikan hubungan berpasangan antara kumpulan variabel kuantitatif dengan menampilkan korelasinya menggunakan warna atau bayangan. Untuk mengeksplorasi hubungan antara variabel kuantitatif, kita dapat menghitung koefisien korelasi Pearson Product-Moment.
+
+```{r, echo=T, results='hide'}
+library(dplyr)                                    # manipulasi data
+library(ggplot2)                                  # visualisasi data
+library(corrplot)                                 # visualisasi matriks korelasi
+library(RColorBrewer)                             # membuat palet warna yang tampak bagus
+data(mtcars)                                      # memuat data 
+df <- dplyr::select_if(mtcars,is.numeric)         # memilih variabel numerik
+corM <- cor(df, use="complete.obs")               # menghitung matriks korelasi
+round(corM,2)                                     # menyesuaikan korelasi dalam dua angka dibelakang koma (dua desimal)
+```
+
+```{r, echo=T, results='hide'}
+# corrplot(corM)                                  # visualisasi default dari matriks korelasi
+# corrplot(corM, method="circle", type="lower")   # metode visualisasi "circle" jenis bawah
+# corrplot(corM, method="pie", type="upper")      # metode visualisasi "pie" jenis atas
+# corrplot(corM, method="number", type="upper",   # metode visualisasi "number" jenis atas
+#          tl.col="indianred2", number.cex=0.8)
+# corrplot(corM, method="number", type="upper",   # korelasi dengan `hclust` (clustering)
+#          tl.col="indianred3",number.cex=0.8,
+#          order="hclust")
+corrplot(corM, method="number", type="upper",     # korelasi dengan `hclust` membagi 4 warna
+         number.cex=0.8, tl.col="indianred4", 
+         order="hclust", 
+         col=brewer.pal(n=4, name="RdBu"))
+```
+
+Bagi mereka yang tertarik untuk menggambar `correlogram` ini dengan data mereka sendiri, berikut adalah kode fungsi yang saya adaptasi berdasarkan fungsi `corrplot()` dari package `corrplot` (sekali lagi terima kasih kepada semua kontributor package ini):
+
+```{r, echo=T, results='hide'}
+dat <- mtcars[, c(1, 3:7)]
+# devtools::install_github("laresbernardo/lares")
+library(lares)
+corr_cross(dat,       # nama dataset
+  max_pvalue = 0.05,  # hanya menampilkan korelasi signifikan (pada tingkat 5%)
+  top = 10            # menampilkan 10 pasangan variabel teratas (berdasarkan koefisien korelasi)
+)
+```
+
+Menggunakan fungsi `corr_var()` jika Anda ingin fokus pada korelasi satu variabel terhadap variabel lainnya, dan mengembalikan yang tertinggi dalam plot:
+
+```{r, echo=T, results='hide'}
+dat <- mtcars[, c(1, 3:7)]
+corr_var(dat,              # nama dataset
+  disp,                    # nama variabel yang akan difokuskan
+  top = 5                  # menampilkan 5 korelasi teratas
+) 
+```
+
+### Matriks Plot Sebar
+
+Matriks plot sebar adalah kumpulan plot sebar yang disusun sebagai kisi atau jaring (grid). Ini mirip dengan plot korelasi tetapi bukan menampilkan korelasi, melainkan menampilkan data yang mendasarinya.
+
+Kita dapat membuat matriks plot sebar menggunakan fungsi `ggpairs` dalam package `GGally`. Dalam hal ini, kita mengilustrasikan matriks plot sebar dengan memeriksa hubungan antara ukuran mamalia dan karakteristik tidur. Datanya berasal dari dataset `msleep` yang dikirimkan dengan `ggplot2`. Bobot otak dan bobot tubuh sangat miring (pikirkan tikus dan gajah) jadi kami akan mengubahnya menjadi log bobot otak dan log bobot tubuh sebelum membuat grafik.
+
+```{r, echo=T, results='hide'}
+library(GGally)                                    # meunggunakan fungsi `ggpairs`
+library(dplyr)                                     # manipulasi data
+data(msleep, package="ggplot2")                    # memuat/mempersiapkan data
+msleep <- na.omit(msleep)                          # menghapus nilai hilang
+df <- msleep %>% 
+mutate(log_brainwt = log(brainwt),log_bodywt = log(bodywt)) %>%
+select(log_brainwt, log_bodywt, sleep_total, sleep_rem)
+# fungsi kostum untuk plot densitas
+my_density <- function(data, mapping, ...){
+  ggplot(data = data, mapping = mapping) + 
+    geom_density(alpha = 0.5, fill = "indianred3", ...)
+}
+# fungsi kostum untuk plot sebar
+my_scatter <- function(data, mapping, ...){
+  ggplot(data = data, mapping = mapping) + 
+    geom_point(alpha = 0.5,color = "indianred3") + 
+    geom_smooth(method=lm, se=FALSE, ...)
+}
+# membuat matriks plot sebar
+ggpairs(df, 
+        lower=list(continuous = my_scatter), 
+        diag = list(continuous = my_density)) +
+  labs(title = "Mammal size and sleep characteristics") +
+  theme_bw()
+```
+
+Kode yang Anda lihat di atas membuat Anda dapat menulis fungsi yang bersifat fleksibilitas. Selain itu, karena plot yang dihasilkan adalah grafik ggplot2, fungsi tambahan dapat ditambahkan untuk mengubah tema, judul, label, dll. Lihat bantuan untuk lebih jelasnya.
+
+### Grafik Radar
+
+Grafik radar (juga disebut grafik laba-laba atau grafik bintang) menampilkan satu atau lebih kelompok atau pengamatan pada tiga atau lebih variabel kuantitatif. Grafik radar dabat dibuat dengan fungsi `ggradar` dalam package `ggradar`. Sayangnya, package tersebut tidak tersedia di CRAN, jadi kita harus menginstalnya dari Github.
+
+Dalam contoh di bawah ini, kita akan membandingkan anjing, babi, dan sapi dalam hal ukuran tubuh, ukuran ptak, dan karakteristik tidur (total waktu tidur, panjang siklus tidur, jumlah tidur REM). Datanya berasal dari dataset Mammal Sleep.
+
+```{r, echo=T, results='hide'}
+# install.packages("devtools")
+# devtools::install_github("ricardo-bion/ggradar")
+library(ggplot2)                                   # dataset dan visualisasi
+library(dplyr)                                     # manipulasi data
+library(scales)                                    # penskalaan data      
+library(ggradar)                                   # visualisasi radar
+data(msleep, package = "ggplot2")                  # mempersiapkan data 
+plotdata <- msleep %>%
+  filter(name %in% c("Cow", "Dog", "Pig")) %>%
+  select(name, sleep_total, sleep_rem, 
+         sleep_cycle, brainwt, bodywt) %>%
+  rename(group = name) %>%
+  mutate_at(vars(-group),
+            funs(rescale))
+# menghasilkan grafik radar
+ggradar(plotdata, 
+        grid.label.size = 4,
+        axis.label.size = 4, 
+        group.point.size = 5,
+        group.line.width = 1.5,
+        legend.text.size= 10) +
+  labs(title = "Mammals, size, and sleep")
+```
+
+Kita dapat melihat dari grafik bahwa, secara relatif, sapi memiliki bobot otak dan bobot tubuh yang besar, siklus tidur yang panjang, total waktu tidur yang singkat, dan sedikit waktu pada tidur REM. Anjing sebagai perbandingannya, memiliki bobot tubuh dan bobot otak yang kecil, siklus tidur yang pendek, total waktu tidur yang panjang, serta waktu tidur panjang dalam REM (Kesimpulan yang jelas adalah bahwa saya ingin menjadi seekor anjing - tetapi dengan otak yang lebih besar).
+
+### Awan Kata
+
+Awan kata (juga disebut awan penanda), pada dasarnya merupakan infografis yang menunjukkan frekuensi kata dalam kumpulan teks (mis., Tweet, dokumen teks, sekumpulan dokumen teks). Ada skrip yang sangat bagus yang dibuat oleh STHDA yang akan menghasilkan awan kata langsung dari file teks. Untuk mendemonstrasikan, kita akan memproses "I have a dream speech" dari "Martin Luther King".
+
+```{r, echo=T, results='hide'}
+library("tm")                                      # untuk penggalian teks
+library("SnowballC")                               # untuk membendung teks
+library("wordcloud")                               # generator awan kata
+library("RColorBrewer")                            # palet warna
+text <- readLines("Data/speech.txt")               # membaca file teks dari PC Anda
+docs <- Corpus(VectorSource(text))                 # memuat data sebagai korpus
+# transformasi teks
+toSpace <- content_transformer(function(x, 
+                pattern) gsub(pattern, " ", x))
+docs <- tm_map(docs,toSpace, "/")
+docs <- tm_map(docs,toSpace, "@")
+docs <- tm_map(docs,toSpace, "\\|")
+docs <- tm_map(docs,content_transformer(tolower)) # mengubah teks menjadi huruf kecil
+docs <- tm_map(docs,removeNumbers)                # menghapus angka-angka
+docs <- tm_map(docs,removeWords,                 
+               stopwords("english"))              # hapus kata sandi umum berbahasa Inggris
+docs <- tm_map(docs, removeWords, 
+               c("blabla1", "blabla2"))           # tentukan kata sandi Anda sebagai vektor karakter
+docs <- tm_map(docs, removePunctuation)           # menghapus tanda baca
+docs <- tm_map(docs, stripWhitespace)             # menghilangkan ruang putih ekstra
+# membuat matriks dokumen istilah
+dtm <- TermDocumentMatrix(docs)
+m <- as.matrix(dtm)
+v <- sort(rowSums(m),decreasing=TRUE)
+d <- data.frame(word = names(v),freq=v)
+# pentingnya kata-kata dapat diilustrasikan sebagai awan kata sebagai berikut:
+set.seed(1234)
+wordcloud(words = d$word, freq = d$freq, min.freq = 1,
+          max.words=200, random.order=FALSE, rot.per=0.35, 
+          colors=brewer.pal(8, "Dark2"))
+```
+
+## Grafik Interaktif
+
+Pada bagian ini, kita akan menunjuk beberapa opsi terbaik untuk menghasilkan grafik interaktif yang dapat ditempatkan di halaman web. Sehingga Anda dapat mengeksplorasinya lebih jauh pada grafik atau gambar yang dapat ditempatkan pada makalah, poster, slide, dan artikel jurnal. Kita dapat menerapkan salah satu widget HTML yang paling sering digunakan untuk R dengan menggunakan library JavaScript.
+
+**Catatan:** Jika Anda membaca ini di iPad, beberapa fitur tidak akan tersedia (seperti mengarahkan mouse)
+
+### leaflet
+
+Leaflet adalah library JavaScript untuk peta interaktif. Package ini dapat digunakan untuk menghasilkan grafik leaflet R. Berikut ini adalah contoh sederhananya. Sama seperti dygraphs, Anda menjelajahi peta dengan mengklik pin, memperbesar dan memperkecil dengan tombol +/- atau mouse wheel (scroll), dan menyeret peta dengan kursor tangan.
+
+```{r, echo=T, results='hide'}
+library(leaflet)                                  # membuat grafik leaflet
+leaflet() %>%
+   addTiles() %>%
+   addMarkers(lng=174.768958, lat=-36.852656, 
+             popup="The birthplace of R </br>
+                    University of Auckland")
+```
+
+Untuk opsi lebih lanjut tentang leaflet.
+
+### plotly
+
+`Plotly` adalah layanan komersial dan juga produk open source untuk membuat visualisasi interaktif kelas atas. Package ini memungkinkan Anda membuat grafik interaktif `plotly` dari dalam R. Selain itu, grafik ggplot2 apa pun dapat diubah menjadi grafik `plotly`.
+
+Dengan menggunakan data Fuel Economy, kita akan membuat grafik interaktif yang menampilkan jarak tempuh jalan raya vs. perpindahan mesin menurut kelas mobil. Mengarahkan mouse ke suatu titik akan menampilkan informasi tentang titik tersebut. mengklik pada titik legend akan menghapus kelas tersebut dari plot. Mengkliknya lagi akan mengembalikannya.
+
+```{r, echo=T, results='hide'}
+library(ggplot2)                                  # visualiSasi data
+library(plotly)                                   # visualisasi interaktif
+library(htmlwidgets)                              # menyimpan html
+p <- ggplot(mpg, aes(x = displ, 
+                     y = hwy, 
+                 color = class)) +
+      geom_point(size=2) +
+      theme_bw()+
+      labs(x = "Engine displacement",
+           y = "Highway Mileage",
+       color = "Car Class") 
+ggplotly(p)
+#htmlwidgets::saveWidget(ggplotly(p),"plotly.html") # menyimpan html 
+```
+
+Ada beberapa sumber informasi yang bagus tentang plotly. Lihat halaman R plotly dan plotly online untuk R book. Selain itu, DataCamp menawarkan tutorial interaktif gratis.
+
+### rbokeh
+
+`rbokeh` adalah antarmuka ke pustaka grafik Bokeh. Kita akan membuat grafik lain menggunakan dataset `mtcars`, yang meunjukkan perpindahan mesin vs. mil per galon menurut jumlah silinder mesin. Arahkan mouse, dan coba berbagai kontrol di sebelah kanan gambar. 
+
+```{r, echo=T, results='hide'}
+library(rbokeh)                                   # plot interaktif dengan `rbokeh`
+data(mtcars)                                      # mempersiapkan/memuat data 
+mtcars$name <- row.names(mtcars)                  # membuat variabel baru berdasarkan nama baris `mtcars`
+mtcars$cyl <- factor(mtcars$cyl)                  # menandakan variabel `cyl` sebagai faktor
+b<-figure() %>%                                       # buat grafik 
+    ly_points(disp, mpg, data=mtcars,
+    color = cyl, glyph = cyl,
+    hover = list(name, mpg, wt))
+b
+#htmlwidgets::saveWidget(bokeh, "b.html")        # menyimpan html 
+```
+
+Lebih lanjut mengenai `rbokeh`.
+
+### rCharts
+
+`rCharts` menggunakan antarmuka rumus untuk menentukan plot, seperti package kisi/jaring (lattice). Berikut adalah beberapa contoh yang dapat Anda coba untuk membuat berbagai grafik interaktif di konsol R Anda:
+
+**NVD3** adalah library `d3js` favorit saya, yang menghasilkan visualisasi interaktif yang luar biasa dengan sedikit penyesuaian. Contoh berikut menunjukkan grafik batang dari warna rambut vs. warna mata. Coba arahkan mouse ke atas batang. Anda dapat memilih secara interaktif antara plot yang dikelompokkan vs. plot yang bertumpuk dan menyertakan atau mengecualikan kasus menurut warna mata.
+
+```{r, echo=T, results='hide'}
+require(devtools)                                  # untuk mendownload package yang dibutuhkan dari Github
+install_github('ramnathv/rCharts')                 # menginstal package dari Github
+library(rCharts)                                   # memuat package
+hair_eye_male<-subset(as.data.frame(HairEyeColor), # menyaring data
+                      Sex == "Male")
+n <- nPlot(Freq ~ Hair, 
+           group = 'Eye', 
+           data = hair_eye_male, 
+           type = 'multiBarChart')
+n$set(width = 800, pointSize = 0, lineWidth = 1)   # mengatur skala, ukuran titik, lebar garis
+n$save('HTML/NVD3.html', standalone = TRUE)        # menyimpan hasil sebagai html
+shiny::includeHTML("HTML/NVD3.html")               # membuka hasilnya
+```
+
+Library berikutnya yang akan kita jelajahi adalah **Morris**
+
+```{r, echo=T, results='hide'}
+data(economics, package = 'ggplot2')
+econ <- transform(economics, 
+                  date = as.character(date))
+m <- mPlot(x = 'date',
+           y = c('psavert', 'uempmed'), 
+        type = 'Line', data = econ)
+m$set(width = 800, pointSize = 0, lineWidth = 1)   # mengatur skala, ukuran titik, lebar garis
+m$save('HTML/Morris.html', standalone = TRUE)      # menyimpan hasilnya sebagai html
+shiny::includeHTML("HTML/Morris.html")             # membuka hasilnya
+```
+
+Lebih lanjut tentang `rCharts`.
+
+### googleVis
+
+Contoh-contoh berikut diambil dari demo `googleVis`. Anda dapat menjalankan demo melalui
+
+```{r, echo=T, results='hide'}
+library(googleVis)                                # grafik interaktif
+library(htmlwidgets)                              # menyimpan html
+# demo(googleVis)
+set.seed(123)
+datHist=data.frame(A=rpois(100, 20),
+                   B=rpois(100, 5),
+                   C=rpois(100, 50))
+
+Hist <- gvisHistogram(datHist, options=list(
+  legend="{ position: 'top', maxLines: 2 }",
+  colors="['#5C3292', '#1A8763', '#871B47']",
+  width=800, height=600))
+plot(Hist)
+```
+
+Lebih lanjut mengenai `googleVis`.
+
+### Mengungkap Package
+
+Ada beberapa package untuk grafik interaktif (tidak tercakup dalam buku ini), silakan kunjungi situs berikut jika Anda tertarik:
+
+* `dygraphs`
+* `highcharter`
+
+## Animasi Interaktif
+
+Grafik animasi interaktif menampilkan beberapa status grafik satu demi satu. Ketika membuat animasi, plotnya tidak bergerak. Sebaliknya, banyak plot individual dibangun dan kemudian digabungkan bersama menjadi bingkai film, seperti flip-book atau kartun jadul. Setiap bingkai adalah plot yang berbeda saat menyampaikan gerakan, yang dibangun menggunakan beberapa himpunan bagian yang relevan dari data agregat.Himpunan bagian mendorong aliran animasi saat digabungkan kembali.
+
+<center>
+<img src="D:/Matana University/Data Scientist Handbook/Data-Science-Untuk-Pemula/Interactive Animation (chapter 8.4).png" style = "width:100%;">
+</center>
+
+Ada empat opsi package yang biasanya saya gunakan untuk menganimasikan data di R:
+
+### plotly (interaktif)
+
+Package pertama yang dibahas di sini adalah `plotly`. Ada hubungan cinta/benci dengan banyak praktisi visualisasi dan package ini. Ini memungkinkan pembuatan plot interaktif yang indah dan sederhana. Namun, dengan kemudahan datang beberapa kerugian dalam fleksibilitas dan gaya. Anda juga harus berurusan dengan logo `plotly` dalam segala hal. Namun, saya pribadi berpikir trade-off biasanya sepadan. Berikut ini adalah contoh animasi dari dokumen `plotly` (menggunakan argumen frame) dari dataset `gapminder` yang sama yang kita lihat dengan package `gganimate`:
+
+```{r, echo=T, results='hide'}
+library(gapminder)
+library(plotly)
+library(htmlwidgets)
+df <- gapminder 
+fig <- df %>%
+  plot_ly(
+    x = ~gdpPercap, 
+    y = ~lifeExp, 
+    size = ~pop, 
+    color = ~continent, 
+    frame = ~year, 
+    text = ~country, 
+    hoverinfo = "text",
+    type = 'scatter',
+    mode = 'markers'
+  )
+fig <- fig %>% layout(
+    xaxis = list(
+      type = "log"
+    )
+  )
+
+fig <- fig %>%
+  animation_opts(
+    1000, easing = "elastic", redraw = FALSE
+  )
+```
+
+### gganimate
+
+Hal terpenting tentang visualisasi adalah ketika visualisasi memaksa kita untuk menyadari sesuatu yang tidak kita ketahui. Grafik yang menarik secara visual dengan mudah menarik perhatian kita. Menganimasikan data seperti menghembuskan kehidupan ke debu, ini adalah tindakan penciptaan. Bagaimana Anda membuat animasi menarik yang berwawasan? Pada artikel ini, kita akan belajar cara membuat animasi yang indah menggunakan package R, `gganimate`.
+
+**Contoh:** Data Tingkat Bunuh Diri didapatkan dari Kaggle setelah dikumpulkan dari berbagai sumber (WHO, UNDP, World Bank). Data tersebut membandingkan info sosial ekonomi dengan tingkat bunuh diri per negara dari tahun 1985 hingga 2016. Inspirasinya adalah untuk menghasilkan strategi pencegahan bunuh diri di berbagai negara.
+
+#### Langkah Pertama {-}
+
+Mari kita lihat bagaimana kita mengumpulkan, memanipulasi, dan membangun grafik batang untuk dataset ini menggunakan `ggplot`.
+
+```{r, echo=T, results='hide'}
+# memuat library yang dibutuhkan
+library(tidyverse)
+library(reshape2)
+library(ggthemes)
+library(gganimate)
+library(gifski)
+# memuat dataset
+suicide_data<-read.csv("Data/master.csv",
+                       header = TRUE,
+                       stringsAsFactors = FALSE)
+# memilih kolom untuk dikerjakan 
+suicide_sub<-suicide_data %>% 
+  select("ï..country","year" ,"sex","suicides_no")%>% 
+  rename("country"="ï..country" )
+# fungsi untuk menjumlahkan total bunuh diri per negara
+n<-unique(suicide_sub$country)
+country<-function(x){
+  suicide2<-suicide_sub %>% filter(country==x)
+  sum(suicide2$suicides_no)
+}
+# mengembalikan daftar dengan semua total kematian per negara
+country_total<-sapply(n,function(x) country(x))
+# membuat dataframe dengan total 10 kasus bunuh diri teratas per negara
+df<-do.call(rbind,Map(data.frame,Country=n,Total_Suicides=country_total))
+df2<-df %>% arrange(desc(Total_Suicides))
+df3<-head(df2,n=10)
+write.csv(df3,"Data/total_suicide.csv")
+# memplot 10 negara teratas yang memimpin total tingkat bunuh diri
+ggplot(df3,aes(reorder(Country,Total_Suicides),
+               Total_Suicides,
+               fill=as.factor(Country)))+
+    geom_col()+
+    theme_bw()+
+    coord_flip(clip = "off", expand = FALSE)+
+    guides( fill = FALSE) +
+    labs(title="Top 10 Total Suicide Deaths Per-contry from 1985-2016", 
+         y="Total Suicides", x="Country")+
+    scale_y_continuous(labels = scales::comma) +
+     geom_text(aes(label = paste(Total_Suicides,"")), hjust = 1)
+
+# gunakan `ggplotly()` untuk menampilkan plot yang interaktif jika Anda mau
+```
+
+#### Langkah Kedua {-}
+
+Membangun grafik batang statis kita sebagai berikut:
+
+```{r, echo=T, results='hide'}
+library(dplyr)
+# subset data awal dengan 10 negara teratas
+top_suicide<-suicide_sub %>%
+  filter(country==c("Russian Federation","United States",
+                     "Japan","France","Ukraine","Germany",
+                     "Republic of Korea","Brazil","Poland",
+                     "United Kingdom"))
+# menyaring tahun dengan data yang konsisten
+top_suicide2<-top_suicide %>%
+  filter(year %in%c(1990:2014)) 
+top_suicide2$sex<-as.factor(top_suicide2$sex)
+# menjumlah total kasus bunuh diri laki-laki dan perempuan per negara untuk setiap tahun
+sm3<-aggregate(suicides_no~country+year,top_suicide2,sum)
+# memastikan kita memiliki peringkat non-integer saat meluncur
+sm4<-sm3 %>%
+  group_by(year) %>% 
+  mutate(rank = min_rank(-suicides_no) * 1) %>%
+  ungroup()
+# memplot plot statis
+static_plot<-ggplot(sm4,aes(rank,
+                            group=country,
+                            fill=as.factor(country),
+                            color=as.factor(country))) +
+  geom_tile(aes(y = suicides_no/2,
+    height = suicides_no,
+    width = 0.9), alpha = 0.8, color = NA) +
+  geom_text(aes(y = 0, label = paste(country, " ")), vjust = 0.2, hjust = 1)+
+  geom_text(aes(y=suicides_no,label = paste(" ",suicides_no)), hjust=0)+
+  coord_flip(clip = "off", expand = TRUE) +
+  scale_y_continuous(labels = scales::comma) +
+  scale_x_reverse() +
+  guides(color = FALSE, fill = FALSE) +
+  theme_minimal() +
+    theme(
+    plot.title=element_text(size=25, hjust=0.5, face="bold", colour="grey", vjust=-1),
+    plot.subtitle=element_text(size=18, hjust=0.5, face="italic", color="grey"),
+    plot.caption =element_text(size=8, hjust=0.5, face="italic", color="grey"),
+    axis.ticks.y = element_blank(), 
+    axis.text.y = element_blank(), 
+    plot.margin = margin(1,1,1,4, "cm"))
+static_plot
+```
+
+#### Langkah Ketiga {-}
+
+Ini merupakan langkah terakhir untuk membuat plot animasi kita menggunakan `gganimate`, perhatikan kode berikut ini:
+
+```{r, echo=T, results='hide'}
+# membuat animasi terakhir
+plt<-static_plot + 
+  transition_states(states = year, transition_length = 4, state_length = 1) + 
+  ease_aes('cubic-in-out') +
+#view_follow(fixed_x = TRUE) +
+ labs(title = 'Total Suicides per Year : {closest_state}', 
+ subtitle = "Top 10 Countries",
+ caption = "Data Source: World Bank Data",
+ x="Countries",y="Total Suicides per year")
+# mengubah animasi menjadi bentuk gif
+final_animation<-animate(plt,100,
+                         fps = 20,
+                         duration = 30, 
+                         width = 950, 
+                         height = 750, 
+                         renderer = gifski_renderer())
+# mengubah animasi menjadi bentuk mp4
+# animate(plt,100,
+#         fps = 20,
+#         duration = 30, 
+#         width = 950, 
+#         height = 750, 
+#         renderer = ffmpeg_renderer())
+# menyimpan animasi
+anim_save("images/suicide_animate.gif",animation=final_animation)
+```
+
+#### Fitur Utama dari `gganimate` {-}
+
+* `transition_`: fungsi ini menentukan bagaimana data harus disebarkan dan bagaimana hubungannya dengan dirinya sendiri dari waktu ke waktu.
+  * `transition_reveal`: ini memungkinkan Anda membiarkan data menghilang secara bertahap.
+  * `transition_time`: panjang transisi antar negara bagian diatur agar sesuai dengan perbedaan waktu aktual di antara keduanya.
+  * `transition_state`: ini digunakan untuk menganimasikan plot berdasarkan variabel kategori atau diskrit.
+* `view_`: ini digunakan untuk menentukan bagaimana sumbu harus berubah seiring dengan animasinya.
+  * `view_follow(fixed_y=TRUE)`: ini berarti sumbu y akan tetap ketika animasi dijalankan.
+  * `view_follow(fixed_x=TRUE)`: sumbu x akan tetap saat animasi dijalankan.
+* `ease_aes()`: ini menjelaskan bagaimana estetika yang berbeda harus dikurangi selama animasi.
+  * `ease_aes("cubic-in-out")`
+  * `ease_aes("sine-in-out")`
+* `enter_/exit_`: ini digunakan untuk menentukan bagaimana data baru harus muncul dan data lama menghilang selama proses animasi atau Anda menggunakan `enter_fade/exit_shrink`
+* `State_length`: ini mengacu pada panjang relatif dari jeda negara bagian
+* `transition_length`: ini adalah panjang relatif animasi
+* Rendering: ini adalah jenis komputasi untuk menampilkan hasil akhir. Parameter yang digunakan antara lain:
+  * `nframes`: ini mengatur jumlah frame yang digunakan (defaultnya adalah 100)
+  * Frame per `second(fps)`: ini adalah jumlah waktu yang dihabiskan pada setiap frame per detik (defaultnya adalah 10) 
+  * Renderer: ini mengatur fungsi untuk menggabungkan setiap frame menjadi sebuah animasi (defaultnya `gifski_renderer()`)
+  * Jika kita ingin mengakhiri loop, kita gunakan: `renderer=gifski_renderer(loop=FALSE)`. Untuk menyimpan plot animasi sebagai vidio, kita gunakan `renderer=ffmpeg_renderer()`.
+* Duration: ini adalah total waktu yang dibutuhkan frame untuk beranimasi, yaitu `duration=30`. 
+* Layout: Kita dapat mengubah tinggi dan lebar plot kita dengan menentukan ukurannya. Kita menyimpan hasil animasi ke sebuah objek, misalnya disebut `final_animation`.
+* Untuk menyimpan animasi kita, kita akan menggunakan fungsi `anim_save()` dengan parameter: 
+  * Animation: ini adalah hasil akhir dari plot animasi kita.
+  * Path: lokasi di mana kita ingin menyimpan animasi kita.
+
+Lebih lanjut mengenai `gganimate`.
+
+### animation
+
+Package ini bagus, khususnya karena memiliki grafik statistik yang luar biasa sebagai contoh. Ini adalah salah satu yang menganimasikan penurunan gradien dan membuat haliman HTML dengan kontrol: 
+
+```{r, echo=T, results='hide'}
+library(animation)
+saveGIF({ani.options(interval = 1)
+par(mar = c(3, 3, 1, 1.5), mgp = c(1.5, 0.5, 0))
+kmeans.ani()})
+```
+
+**Penting:** Anda dapat klik di sini untuk mengetahui lebih lanjut mengenai package `animation`.
