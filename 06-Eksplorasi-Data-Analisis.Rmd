@@ -9,7 +9,7 @@ Seseorang yang bekerja dengan data, salah satu aktivitasnya yang paling menarik 
 * Berapa banyak variabel yang dianalisis secara bersamaan: univariat, bivariat, atau multivariat?
 * Apa tipe dari variabel: kategorikal atau kontinu?
 
-Pada bagian ini, kita menggunakan dataset Students, download dan simpan di komputer (PC) Anda .
+Pada bagian ini, kita menggunakan [dataset Students](https://raw.githubusercontent.com/Bakti-Siregar/dataset/master/Bookdown-Data-Science-for-Beginners/students.csv), unduh dan simpan di komputer (PC) Anda .
 
 ## Kualitatif
 
@@ -24,7 +24,7 @@ data yang levelnya adalah label atau deskripsi, dan yang tidak dapat dipesan. Co
 
 ### Kategorikal Univariat
 
-Analisis univariat mengeksplorasi variabel (atribut) satu per satu. Variabel dapat berupa kategorikal atau numerik. Ada perbedaan teknik statistik dan visualisasi dari penyelidikan untuk setiap jenis variabel. Variabel numerik dapat diubah menjadi bagian kategorikal dengan proses yang disebut binning atau diskritisasi. Dimungkinkan juga untuk mengubah variabel kategorikal menjadi bagian numerik dengan proses yang disebut pengkodean. Terakhir, penanganan yang tepat atas nilai yang hilang merupakan masalah penting dalam penambahan data. Sekarang, mari kita lihat cara mengeksplor data kategorikal univariat:
+Analisis univariat mengeksplorasi variabel (atribut) satu per satu. Variabel dapat berupa kategorikal atau numerik. Ada perbedaan teknik statistik dan visualisasi dari penyelidikan untuk setiap jenis variabel. Variabel numerik dapat diubah menjadi bagian kategorikal dengan proses yang disebut [binning atau diskritisasi](https://www.saedsayad.com/binning.htm). Dimungkinkan juga untuk mengubah variabel kategorikal menjadi bagian numerik dengan proses yang disebut [pengkodean](https://www.saedsayad.com/encoding.htm). Terakhir, penanganan yang tepat atas nilai yang hilang merupakan masalah penting dalam penambahan data. Sekarang, mari kita lihat cara mengeksplor data kategorikal univariat:
 
 ```{r, echo=T, results='hide', message=FALSE}
 library(readr)                                     # antarmuka dataset
@@ -142,7 +142,7 @@ IQR(Quan$Grade)                                    # Antar Rentang Kuantile dari
 
 #### Kecondongan (Skewness) {-}
 
-Kecondongan atau Asimetri mengacu pada distorsi atau asimetri dalam kurva lonceng simetris, atau distribusi normal, dalam dataset. Jika kurva bergeser ke kiri atau ke kanan, maka dikatakan condong. Kecondongan dapat dikuantifikasi sebagai representasi dari sejauh mana suatu distribusi bervariasi dari distribusi normal. Distribusi normal memiliki kemiringan nol, sedangkan distribusi normal log, sebagai contoh, akan menunjukkan beberapa derajat kemiringan ke kanan.
+Kecondongan atau Asimetri mengacu pada distorsi atau asimetri dalam kurva lonceng simetris, atau [distribusi normal](https://www.investopedia.com/terms/n/normaldistribution.asp), dalam dataset. Jika kurva bergeser ke kiri atau ke kanan, maka dikatakan condong. Kecondongan dapat dikuantifikasi sebagai representasi dari sejauh mana suatu distribusi bervariasi dari distribusi normal. Distribusi normal memiliki kemiringan nol, sedangkan [distribusi normal log](https://www.investopedia.com/articles/investing/102014/lognormal-and-normal-distribution.asp), sebagai contoh, akan menunjukkan beberapa derajat kemiringan ke kanan.
 
 ```{r, echo=T, results='hide'}
 library(e1071)                                      # memuat e1071
@@ -204,7 +204,7 @@ di mana $\bar{x}_k:=\frac{1}{n}\Sigma_ix_{i,k}$. Dengan kata lain, entri ke-k,l 
 
 #### Matriks Sampel Korelasi {-}
 
-Matriks korelasi mengacu pada deretan angka simetris.
+[Matriks korelasi](http://users.stat.umn.edu/~helwig/notes/datamat-Notes.pdf) mengacu pada deretan angka simetris.
 Matriks korelasi: R
 
 \[R = \begin{pmatrix}    1   & Y_{12} & Y_{13} & .. & Y_{1p}\\
@@ -266,7 +266,7 @@ Gunakan kode berikut untuk mengetahui lebih lanjut tentang fungsi:
 
 ## Laporan ADE
 
-Dan akhirnya pièce de résistance, daya tarik utama dan alasan saya menulis blog ini; fungsi create_report dalam package DataExplorer. Fungsi satu baris yang menarik mengagumkan ini akan menarik profil data lengkap dari data frame Anda. Ini akan menghasilkan file HTML dengan statistik dasar, struktur, data yang hilang, visualisasi distribusi, matriks korelasi, dan analisis komponen utama dari data frame Anda! Saya baru-baru ini mengetahui tentang fungsi ini dalam sebuah lokakarya yang diberikan oleh Stephe Locke yang dipandu oleh R Ladies Austin. Fungsi ini berdampak besar!
+Dan akhirnya pièce de résistance, daya tarik utama dan alasan saya menulis blog ini; fungsi `create_report` dalam package `DataExplorer`. Fungsi satu baris yang menarik mengagumkan ini akan menarik profil data lengkap dari data frame Anda. Ini akan menghasilkan file HTML dengan statistik dasar, struktur, data yang hilang, visualisasi distribusi, matriks korelasi, dan analisis komponen utama dari data frame Anda! Saya baru-baru ini mengetahui tentang fungsi ini dalam sebuah [workshop yang diberikan oleh Stephe Locke](https://www.eventbrite.com/e/modern-r-for-data-science-workshop-w-steph-locke-tickets-50536282381#) yang dipandu oleh [R Ladies Austin](https://www.meetup.com/rladies-austin/). Fungsi ini berdampak besar!
 
 ```{r, eval=FALSE}
 library(DataExplorer)
