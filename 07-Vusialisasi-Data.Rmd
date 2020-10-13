@@ -255,7 +255,7 @@ Sebagian besar peserta tampaknya berusia 20-an tahun dengan kelompok lain berusi
 
 Cara lainnya adalah Anda dapat menggunakan `binwidth`, lebar nampan yang diwakili oleh batang.
 
-```{r, echo=T, results='hide'}
+```{r, eval=FALSE}
 library(ggplot2)                                     # untuk visualisaSi
 library(scales)                                      # menentukan jeda atau label secara otomatis
 ggplot(Marriage, 

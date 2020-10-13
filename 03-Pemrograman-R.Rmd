@@ -47,7 +47,7 @@ Dalam beberapa kesempatan, kita perlu menulis fungsi kita sendiri karena kita ha
 
 Fungsi menerima nilai dan mengembalikan kuadrat dari nilai tersebut.
 
-```{r}
+```{r, eval=FALSE}
 function.name <- function(arguments) 
 {
     computations on the arguments	
@@ -90,7 +90,7 @@ average(x)                        # memanggil fungsi dan melihat nilainya
 
 Kita dapat menulis fungsi dengan lebih dari satu argumen. Pertimbangkan fungsi yang disebut "times". Ini adalah fungsi langsung yang mengalikan dua variabel.
 
-```{r}
+```{r, eval=FALSE}
 function.name <- function(argument1, argument2,...., argument_n) 
 {
     computations on the arguments	
@@ -248,7 +248,7 @@ Sebagian besar struktur kontrol tidak digunakan dalam sesi interaktif, melainkan
 
 Kombinasi `if-else` mungkin adalah struktur kontrol yang paling umum digunakan di R (bahkan untuk semua bahasa pemrograman lainnya). Struktur ini memungkinkan Anda untuk menguji suatu kondisi dan menindaklanjutinya bergantung pada benar atau salah. Anda dapat memiliki serangkaian pengujian dengan mengikuti inisial `if` dengan `else if` dan `else`. Fungsi umumnya adalah sebagai berikut:
 
-```{r}
+```{r, eval=FALSE}
 if (condition1) {
       do something } 
 else if (condition2) {
@@ -312,7 +312,7 @@ Tentu saja, ada banyak package yang dapat Anda gunakan untuk membagi data traini
 
 Dalam pengalaman saya dalam melakukan analisis data, saya menemukan sangat sedikit situasi di mana `for` loop yang sangat berharga saat kita perlu mengulangi daftar elemen atau rentang angka. Tapi saya beri tahu bahwa, loop dapat digunakan untuk melakukan iterasi pada vektor, matriks, daftar, dataframe, atau objek lainnya. Satu hal yang harus Anda ketahui, R akan mengulang semua variabel dalam vektor dan melakukan komputasi yang tertulis di dalam `Expression` di bawah ini.
 
-```{r}
+```{r, eval=FALSE}
 For(i in vector){
   Expression	
 }
@@ -405,7 +405,7 @@ Terkadang Anda bahkan tidak tahu berapa lama urutan masukan harus berjalan. Ini 
 
 While loop dimulai dengan menguji suatu kondisi. Jika benar, maka mereka mengeksekusi badan dari loop. Setelah badan dari loop dieksekusi, kondisinya diuji lagi, dan seterusnya, hingga kondisinya salah, setelah loop keluar. Sintaks untuk while loop adalah sebagai berikut:
 
-```{r}
+```{r, eval=FALSE}
 while (condition) {
      Expression
 }
