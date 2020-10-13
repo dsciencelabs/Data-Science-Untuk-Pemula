@@ -1,9 +1,9 @@
 # Manipulasi Data dengan R {#Manipulasi-Data-dengan-R}
 *** 
 
-Salah satu keterampilan paling mendasar yang harus dimiliki seorang Data Scientist adalah memanipulasi data. Untuk menjadi seseorang yang sangat efektif, Anda harus ahli dalam memanipulasi data penting. Hal ini perlu diperhatikan karena sebagian besar pekerjaan Anda akan melibatkan pengambilan dan pembersihan data.
+Salah satu keterampilan paling mendasar yang harus dimiliki seorang Data Scientist adalah memanipulasi data. Untuk menjadi seseorang yang sangat efektif, Anda harus ahli dalam memanipulasi data penting. Hal ini perlu diperhatikan karena sebagian besar pekerjaan Anda akan melibatkan [pengambilan dan pembersihan data](https://www.forbes.com/sites/gilpress/2016/03/23/data-preparation-most-time-consuming-least-enjoyable-data-science-task-survey-says/#4b432fa66f63).
 
-Pada bagian ini, Anda akan mempelajari bagaimana memanipulasi data dengan mudah menggunakan R. Kami akan membahas fungsi-fungsi manipulasi data mendasar yang sebagian besar akan Anda gunakan untuk memanipulasi data Anda.
+Pada bagian ini, Anda akan mempelajari bagaimana memanipulasi data dengan mudah menggunakan R. Kita akan membahas fungsi-fungsi manipulasi data mendasar yang sebagian besar akan Anda gunakan untuk memanipulasi data Anda.
 
 * `read_csv()` Mengimpor data (Anda bisa menggunakan fungsi lainnya)
 * `str()` Struktur Data
@@ -16,26 +16,27 @@ Pada bagian ini, Anda akan mempelajari bagaimana memanipulasi data dengan mudah 
 * `bind_rows()` Menggabungkan dua data frame menjadi satu, menggabungkan data dari kolom-kolom dengan nama yang sama.
 * `group_by()` Mengelompokkan data berdasarkan variabel kategorikal.
 * `summarize()` Meringkas, atau mengagregat (untuk setiap kelompok jika mengikuti `group_by`). Sering digunakan bersama fungsi sebagai berikut:
-  - `mean()` Menghitung rata-rata.
-  - `median()` Menghitung median.
-  - `max()` Mencari nilai maksimum.
-  - `min()` Mencari nilai minimum.
-  - `sum()` Menambahkan semua nilai secara bersamaan.
-  - `n()` Menghitung jumlah record.
-Saya sarankan Anda untuk menginstal package `tidyverse`. Karena inti dari tidyverse mencakup packages yang cendrung Anda gunakan dalam analisis data sehari-hari.
+  * `mean()` Menghitung rata-rata.
+  * `median()` Menghitung median.
+  * `max()` Mencari nilai maksimum.
+  * `min()` Mencari nilai minimum.
+  * `sum()` Menambahkan semua nilai secara bersamaan.
+  * `n()` Menghitung jumlah record.
+
+Saya menyarankan Anda untuk menginstal package [`tidyverse`](https://www.tidyverse.org/packages/). Karena inti dari `tidyverse` mencakup packages yang cendrung Anda gunakan dalam analisis data sehari-hari.
 
 ```{r, eval=FALSE}
 install.packages("tidyverse")
 ```
 
-Kita sebagian besar akan bekerja dengan dua package yang sangat berguna yang dikembangkan oleh Hardley Wickham, kepala scientist di RStudio:
+Kita sebagian besar akan bekerja dengan dua package yang sangat berguna yang dikembangkan oleh [Hardley Wickham](http://hadley.nz/), kepala scientist di RStudio:
 
-* `readr` Untuk membaca dan menulis CSV dan file teks lainnya.
-* `dplyr` Untuk memproses dan memanipulasi data.
+* [`readr`](https://readr.tidyverse.org/) Untuk membaca dan menulis CSV dan file teks lainnya.
+* [`dplyr`](https://dplyr.tidyverse.org/) Untuk memproses dan memanipulasi data.
 
 ## Impor Data
 
-Data yang akan kita gunakan pada bagian ini adalah `pfizer.csv` dan `fda.csv`, silakan unduh dan tempatkan di desktop Anda. Sebagai opsional, Anda dapat memuat data ke sesi R saat ini dengan memilih `Import Dataset>From Teks File...` di tab Environment. Tapi, dalam hal ini kita akan menggunakan fungsi `read_csv()` dari package `readr`. Salinlah kode berikut ke skrip Anda dan jalankan:
+[Data](https://bookdown.org/BaktiSiregar/data-science-for-beginners/datasets.html#pfizer-and-fda) yang akan kita gunakan pada bagian ini adalah `pfizer.csv` dan `fda.csv`, silakan unduh dan tempatkan di desktop Anda. Sebagai opsional, Anda dapat memuat data ke sesi R saat ini dengan memilih `Import Dataset>From Teks File...` di tab Environment. Tapi, dalam hal ini kita akan menggunakan fungsi `read_csv()` dari package `readr`. Salinlah kode berikut ke skrip Anda dan jalankan:
 
 ```{r, echo=T, results='hide', message=FALSE}
 suppressPackageStartupMessages(library(tidyverse))# memuat tidyverse
@@ -65,7 +66,7 @@ Sangat penting untuk dipahami karena ini adalah objek yang akan Anda manipulasi 
 * `as.Date()` mengubah ke tanggal.
 * `as.POSIXct()` mengubah ke tanggal dan waktu penuh.
 
-Misalnya, tambahkan kode berikut ke skrip Anda untuk mengubah total konversi dalam data pfizer ke variabel numerik (yang memungkinkannya menyimpan nilai desimal, jika ada).
+Misalnya, tambahkan kode berikut ke skrip Anda untuk mengubah total konversi dalam data `pfizer` ke variabel numerik (yang memungkinkannya menyimpan nilai desimal, jika ada).
 
 ```{r, echo=T, results='hide'}
 pfizer$total <- as.numeric(pfizer$total)          # konversi total ke variabel numerik
@@ -74,7 +75,7 @@ str(pfizer$total)                                 # mari periksa struktur datany
 
 ## Missing Value
 
-Tidak seperti pemrograman biasa, ketika bekerja dengan data sesungguhnya, Anda mungkin menemukan nilai yang hilang: pengukuran yang tidak terekam/tersimpan/dll. R memiliki mekanisme yang cukup canggih untuk menangani nilai-nilai yang hilang. Ini membedakan antara jenis berikut:
+Tidak seperti pemrograman biasa, ketika bekerja dengan data sesungguhnya, Anda mungkin menemukan **nilai yang hilang:** pengukuran yang tidak terekam/tersimpan/dll. R memiliki mekanisme yang cukup canggih untuk menangani nilai-nilai yang hilang. Ini membedakan antara jenis berikut:
 
 * `NA` : Not Available (Nilai NA juga memiliki kelas, ada bilangan bulat NA, karakter NA, dll).
 * `NaN` : Not a Number (Nilai NaN juga merupakan NA tetapi NA bukan merupakan NaN)
@@ -116,7 +117,7 @@ average_missing <- apply(titanic[,colnames(titanic) %in% list_na],
 average_missing
 ```
 
-**Catatan:** Terdapat 4 argumen di metode apply yang kita jalankan.
+**Penjelasan Kode:** Terdapat 4 argumen di metode apply yang kita jalankan.
 
 * `df` titanic[,colnames(titanic) %in% list_na]. Kode ini akan mengembalikan nama kolom dari objek list_na (mis. "age" dan "fare").
 * `2` Menghitung fungsi pada kolom.
@@ -137,12 +138,12 @@ Kolom usia asli memiliki 86 nilai yang hilang sementara variabel yang baru dibua
 
 ## Memilih Data
 
-Pada bagian ini, Anda akan mempelajari bagaimana cara memilih atau mengelompokkan kolom dataframe berdasarkan nama dan posisi menggunakan fungsi R yaitu `select()` dalam package `dplyr`. Anda akan belajar cara menggunakan fungsi berikut ini:
+Pada bagian ini, Anda akan mempelajari bagaimana cara memilih atau mengelompokkan kolom dataframe berdasarkan nama dan posisi menggunakan fungsi R yaitu `select()` dalam package [`dplyr`](https://dplyr.tidyverse.org/reference/summarise.html). Anda akan belajar cara menggunakan fungsi berikut ini:
 
 * `pull()` mengekstrak nilai kolom sebagai sebuah vektor. Kolom bunga dapat ditentukan berdasarkan nama atau indeks.
 * `select()` mengekstrak satu atau beberapa kolom sebagai tabel data. Fungsi ini juga dapat menghapus kolom dari data frame.
 * `select_if()` Memilih kolom berdasarkan kondisi tertentu. Seseorang dapat menggunakan fungsi ini, misalnya untuk memilih kolom jika numerik.
-* Fungsi Pembantu: `starts_with()`, `ends_with()`, `contains()`, `matches()`: Pilihlah kolom/variabel berdasarkan namanya.
+* **Fungsi Pembantu:** `starts_with()`, `ends_with()`, `contains()`, `matches()`: Pilihlah kolom/variabel berdasarkan namanya.
 
 ```{r, echo=T, results='hide'}
 library(tidyverse)                                # muat `tidyverse`, yang termasuk dalam `dplyr`
@@ -279,14 +280,14 @@ fda %>%
 
 ## Menggabungkan Data
 
-Ada juga beberapa fungsi gabungan di dplyr untuk menggabungkan data dari dua data frame. Berikut ini adalah fungsi yang paling berguna:
+Ada juga beberapa fungsi gabungan di `dplyr` untuk menggabungkan data dari dua data frame. Berikut ini adalah fungsi yang paling berguna:
 
 * `inner_join()` Mengembalikan nilai dari kedua tabel hanya jika ada kecocokan.
 * `left_join()` Mengembalikan semua nilai dari tabel yang pertama disebutkan, ditambah nilai dari tabel kedua yang cocok.
 * `semi_join()` Menyaring tabel yang pertama disebutkan untuk mendapatkan nilai yang memiliki kecocokan dengan tabel kedua.
 * `anti_join()` Menyaring tabel yang pertama disebutkan untuk mendapatkan nilai yang tidak memiliki kecocokan dengan table kedua.
 
-Sebagai ilustrasinya, gabungan ini akan menemukan dokter yang dibayar oleh Pfizer untuk menjalankan Expertp-Led Forums yang juga menerima surat peringatan dari `fda`:
+Sebagai ilustrasinya, gabungan ini akan menemukan dokter yang dibayar oleh `Pfizer` untuk menjalankan Expertp-Led Forums yang juga menerima surat peringatan dari `fda`:
 
 ```{r, echo=T, results='hide'}
 expert_warned_inner <- inner_join(pfizer, fda, 
@@ -300,9 +301,9 @@ expert_warned_semi <- semi_join(pfizer, fda,
                                 filter(category=="Expert-Led Forums")
 ```
 
-Kode dalam `by=c()` menentukan bagaimana gabungan harus dibuat. Jika instruksi tentang bagaimana cara menggabungkan tabel tidak disediakan, `dplyr` akan mencari kolom dengan nama yang cocok, dan melakukan penggabungan berdasarkan hal tersebut. Perbedaan antara dua gabungan di atas adalah yang pertama berisi semua kolom dari kedua data frame, sedangkan yang kedua hanya memberikan kolom dari data frame pfizer.
+Kode dalam `by=c()` menentukan bagaimana gabungan harus dibuat. Jika instruksi tentang bagaimana cara menggabungkan tabel tidak disediakan, `dplyr` akan mencari kolom dengan nama yang cocok, dan melakukan penggabungan berdasarkan hal tersebut. Perbedaan antara dua gabungan di atas adalah yang pertama berisi semua kolom dari kedua data frame, sedangkan yang kedua hanya memberikan kolom dari data frame `pfizer`.
 
-Dalam praktiknya, mungkin Anda ingin dan kemudian menggunakan fungsi select dari `dplyr` untuk memilih kolom yang ingin Anda pertahankan, misalnya:
+Dalam praktiknya, mungkin Anda ingin `inner_join`dan kemudian menggunakan fungsi select dari `dplyr` untuk memilih kolom yang ingin Anda pertahankan, misalnya:
 
 ```{r, echo=T, results='hide'}
 expert_warned <- inner_join(pfizer, fda, 
@@ -322,15 +323,17 @@ expert_warned <- inner_join(pfizer, fda,
                             select(2:5,10,12)
 ```
 
+[Klik di sini](https://www.guru99.com/r-dplyr-tutorial.html) untuk referensi yang lebih berguna untuk mengelola gabungan dengan dplyr.
+
 ## Kelompok dan Ringkasan
 
 Bagian ini memperkenalkan cara menghitung ringkasan statistik dengan mudah di R menggunakan package `dplyr`. Anda akan belajar, bagaimana:
 
 * Menghitung ringkasan statistik untuk data yang tidak dikelompokkan, serta untuk data yang dikelompokan menurut satu atau beberapa variabel. Fungsi R: `summarise()` dan `group_by()`.
 * Meringkas beberapa kolom variabel. Fungsi R:
- - `summarise_all()` Menerapkan fungsi ringkasan ke setiap kolom dalam data frame.
- - `summarise_at()` Menerapkan fungsi ringkasan ke kolom tertentu yang dipilih dengan vektor karakter.
- - `summarise_if()` Menerapkan fungsi ringkasan ke kolom yang dipilih dengan fungsi yang menampilkan TRUE
+  * `summarise_all()` Menerapkan fungsi ringkasan ke setiap kolom dalam data frame.
+  * `summarise_at()` Menerapkan fungsi ringkasan ke kolom tertentu yang dipilih dengan vektor karakter.
+  * `summarise_if()` Menerapkan fungsi ringkasan ke kolom yang dipilih dengan fungsi yang menampilkan TRUE
  
 **Contoh 7:** Hitunglah total pembayaran data `pfizer`, dengan urutan negara bagian secara menurun!
 
@@ -388,11 +391,11 @@ year_summary <- fda %>%
 year_summary
 ```
 
-**Catatan:** Menggunakan kembali variabel dapat menyebabkan hasil yang tidak dapat diharapkan, tetapi jangan khawatir. R akan memberikan peringatan seperti `summarise() ungrouping output (override with .groups argument)`.
+**Waspada:** Menggunakan kembali variabel dapat menyebabkan hasil yang tidak dapat diharapkan, tetapi jangan khawatir. R akan memberikan peringatan seperti `summarise() ungrouping output (override with .groups argument)`.
 
 ## Membagi Data
 
-Seperti yang sudah saya sampaikan pada bab Pemrograman R tentang menulis fungsi untuk membagi data latihan dan data percobaan. Di sini, kita akan mempelajari lebih lanjut tentang bagaimana menggunakan beberapa packages untuk membagi data. Karena bagian ini sangat penting sebagai seorang data scientist khususnya ketika Anda menerapkan tugas Machine Learning untuk menganalisis data. Pada bagian ini biasanya kita perlu membagi dataset antara set latihan dan set percobaan. Set latihan memungkinkan algoritme untuk belajar dari data. untuk menguji kinerja model kita, kita dapat menggunakan set percobaan untuk mengembalikan ukuran kinerja. Jadi, mari kita lihat beberapa packages yang dapat Anda gunakan untuk membagi data:
+Seperti yang sudah saya sampaikan pada bab Pemrograman R tentang menulis fungsi untuk membagi data latihan dan data percobaan. Di sini, kita akan mempelajari lebih lanjut tentang bagaimana menggunakan beberapa packages untuk membagi data. Karena bagian ini sangat penting sebagai seorang data scientist khususnya ketika Anda menerapkan tugas [Machine Learning](https://bookdown.org/BaktiSiregar/data-science-for-beginners/Manipulation.html) untuk menganalisis data. Pada bagian ini biasanya kita perlu membagi dataset antara set latihan dan set percobaan. Set latihan memungkinkan algoritme untuk belajar dari data. untuk menguji kinerja model kita, kita dapat menggunakan set percobaan untuk mengembalikan ukuran kinerja. Jadi, mari kita lihat beberapa packages yang dapat Anda gunakan untuk membagi data:
 
 ### dplyr
 
@@ -445,3 +448,4 @@ dim(train)                                        # mengecek dimensi set latihan
 dim(test)                                         # mengecek dimensi set percobaan
 ```
 
+[**Lebih lanjut**](https://www.datanovia.com/en/courses/data-manipulation-in-r/)
