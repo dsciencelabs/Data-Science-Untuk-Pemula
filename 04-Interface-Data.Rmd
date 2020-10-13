@@ -3,6 +3,9 @@
 
 Dengan R, kita dapat membaca data dari file yang tersimpan di luar Environment R. Kita juga dapat menulis data menjadi bentuk file yang akan disimpan dan diakses oleh sistem operasi. R dapat membaca dan menulis ke beberapa format file seperti `csv, excel, txt, rds, xml, json, dll`.
 
+<center>
+<img src="D:/Matana University/Data Scientist Handbook/Data-Science-Untuk-Pemula/interface (chapter 4).png" style = "width:100%;">
+</center>
 
 ## Direktori Kerja (Working Directory)
 
@@ -66,7 +69,7 @@ rds1 <- readRDS("Data/rds1.rds")                   # membaca/memuat format RDS b
 ascii1 <- readRDS("Data/ascii1.rds")               # membaca/memuat format ASCII biner
 ```
 
-Untuk menyimpan data sebagai file TXT kita dapat menggunakan fungsi `write.table()`, dan untuk file biner R (RDS) kita dapat menggunakan fungsi `saveRDS()`. Fungsi-fungsi tersebut banyak digunakan oleh R sendiri, sebagai contoh untuk menyimpan data meta untuk suatu package dan untuk menyimpan basis data help.search: ekstensi file `.rds` paling sering digunakan. Format ini dapat berupa biner atau ASCII. Biner lebih padat, sementara ASCII akan lebih efisien dengan sistem kontrol versi seperti Git.
+Untuk menyimpan data sebagai file TXT kita dapat menggunakan fungsi `write.table()`, dan untuk file biner R (RDS) kita dapat menggunakan fungsi `saveRDS()`. Fungsi-fungsi tersebut banyak digunakan oleh R sendiri, sebagai contoh untuk menyimpan data meta untuk suatu package dan untuk menyimpan basis data `help.search:` ekstensi file `.rds` paling sering digunakan. Format ini dapat berupa biner atau ASCII. Biner lebih padat, sementara ASCII akan lebih efisien dengan sistem kontrol versi seperti [Git](https://git-scm.com/).
 
 ```{r, echo=T}
 data <- read.csv("Data/csv1.csv",sep = ",")        # membaca/mengimpor data dari PC Anda
@@ -80,7 +83,7 @@ saveRDS(data, "ascii2.rds", ascii=TRUE)            # menyimpan suatu objek dalam
 
 ## Membaca/Menulis XML
 
-XML adalah suatu format file yang membagikan format file dan data dari World Wide Web (www), intranet, dan di tempat lain menggunakan teks ASCII standar. XML adalah singkatan dari Extensible Markup Language, lebih lanjut tentang XML. XML berisi tag markup, mirip dengan HTML. Tag markup di xml menggambarkan arti data yang terkandung dalam file tersebut,tetapi tidak seperti HTML di mana tag markup menggambarkan struktur halaman. Anda dapat membaca suatu file xml di R menggunakan package "XML". File xml dibaca oleh R menggunakan fungsi `xmlParse()`. File itu disimpan sebagai daftar (list) di R.
+XML adalah suatu format file yang membagikan format file dan data dari World Wide Web (www), intranet, dan di tempat lain menggunakan teks ASCII standar. XML adalah singkatan dari Extensible Markup Language, [lebih lanjut tentang XML](https://www.youtube.com/embed/KeLiQXqVgMI). XML berisi tag markup, mirip dengan [HTML](https://www.youtube.com/embed/rs5hz_oZywI). Tag markup di xml menggambarkan arti data yang terkandung dalam file tersebut, tetapi tidak seperti HTML di mana tag markup menggambarkan struktur halaman. Anda dapat membaca suatu file xml di R menggunakan package "XML". File XML dibaca oleh R menggunakan fungsi `xmlParse()`. File itu disimpan sebagai daftar (list) di R.
 
 ```{r, echo=T}
 library("XML")                                     # memuat package yang dibutuhkan untuk membaca file XML
@@ -89,19 +92,19 @@ result <- xmlParse(file = "Data/xml1.xml")         # memberikan nama file input 
 print(result)                                      # Mencetak hasilnya
 ```
 
-Untuk menangani data secara efektif dalam file besar, kita membaca data dalam file `xml` sebagai suatu data frame. Kemudian memproses data frame untuk analisis data.
+Untuk menangani data secara efektif dalam file besar, kita membaca data dalam file `XML` sebagai suatu data frame. Kemudian memproses data frame untuk analisis data.
 
 ```{r, echo=T}
 xmldataframe <- xmlToDataFrame(result)             # mengonversi file input `xml` ke bentuk data frame
 head(xmldataframe,3)                               # Mencetak hasilnya
 ```
 
-Buat file XML dengan menyalin data ini ke editor teks seperti notepad. Simpan file dengan ekstensi .xml dan pilih jenis file sebagai all files(.).
+Buat file XML dengan menyalin [data ini](https://github.com/Bakti-Siregar/dataset/blob/master/Bookdown-Data-Science-for-Beginners/xml1.xml) ke editor teks seperti notepad. Simpan file dengan ekstensi `.xml` dan pilih jenis file sebagai all files(.).
 
 
 ## Membaca/Menulis JSON
 
-File JSON menyimpan data sebagai teks dalam format yang dapat dibaca oleh manusia. Json adalah singkatan dari JavaScript Object Notation. R dapat membaca file JSON menggunakan package rjson. Lebih lanjut tentang JSON.
+File JSON menyimpan data sebagai teks dalam format yang dapat dibaca oleh manusia. JSON adalah singkatan dari JavaScript Object Notation. R dapat membaca file JSON menggunakan package rjson. [Lebih lanjut tentang JSON](https://www.youtube.com/embed/2q5bAvNlBsc)
 
 ```{r, echo=T}
 library("rjson")                                   # memuat package untuk membaca file JSON
@@ -109,7 +112,7 @@ json1 <- fromJSON(file= "Data/json1.json")         # memberikan nama file input 
 print(json1)                                       # Mencetak hasilnya
 ```
 
-Kita dapat mengonversi data yang diekstraks di atas ke bentuk data frame R untuk analisis lebih lanjut menggunakan fungsi as.data.frame().
+Kita dapat mengonversi data yang diekstraks di atas ke bentuk data frame R untuk analisis lebih lanjut menggunakan fungsi `as.data.frame()`
 
 ```{r, echo=T}
 json_data_frame <- as.data.frame(json1)            # mengonversi file JSON ke bentuk data frame
