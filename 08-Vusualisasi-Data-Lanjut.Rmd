@@ -7,7 +7,7 @@ Deret waktu adalah sekumpulan nilai kuantitatif yang diperoleh pada titik-titik 
 
 ### Grafik Garis
 
-Grafik bergantung dengan waktu yang paling umum adalah grafik garis deret waktu. Mari kita pertimbangkan deret waktu Ekonomi AS yang disertakan dengan package ggplot2. Ini berisi data ekonomi bulanan AS yang dikumpulkan dari Januari 1967 hingga Januari 2015. Mari kita plot tingkat menabung pribadi `psavert`. Kita dapat melakukan ini dengan plot garis sederhana.
+Grafik bergantung dengan waktu yang paling umum adalah grafik garis deret waktu. Mari kita pertimbangkan [deret waktu Ekonomi AS](https://bookdown.org/BaktiSiregar/data-science-for-beginners/Advanced-Visualizations.html) yang disertakan dengan package ggplot2. Ini berisi data ekonomi bulanan AS yang dikumpulkan dari Januari 1967 hingga Januari 2015. Mari kita plot tingkat menabung pribadi `psavert`. Kita dapat melakukan ini dengan plot garis sederhana.
 
 ```{r, echo=T, results='hide'}
 library(ggplot2)                                  # visualisasi data 
@@ -38,7 +38,7 @@ ggplot(economics, aes(x = date, y = psavert)) +   # menetapkan sumbu x dan y dar
        y = "Rate") 
 ```
 
-**Catatan:** Ketika memplot deret waktu, pastikan bahwa variabel datanya adalah kelas tanggal dan bukan kelas karakter. Lihat nilai tanggal untuk lebih jelasnya.
+**Catatan:** Ketika memplot deret waktu, pastikan bahwa variabel datanya adalah kelas tanggal dan bukan kelas karakter. Lihat [nilai tanggal](https://bookdown.org/BaktiSiregar/data-science-for-beginners/Advanced-Visualizations.html) untuk lebih jelasnya.
 
 Mari tutup bagian ini dengan deret waktu multivariat (lebih dari satu deret). Kita akan membandingkan harga penutupan untuk Appel dan Facebook dari 1 Jan 2019 hingga hari ini.
 
@@ -143,13 +143,13 @@ ggplot(uspopage, aes(x = Year,
   theme_minimal()
 ```
 
-**Tantangan Anda:** Lakukan hal yang sama untuk memvisualisasikan data populasi Indonesia menggunakan dataset `economics`
+**Tantangan Anda:** Lakukan hal yang sama untuk memvisualisasikan data populasi Indonesia menggunakan dataset [`economics`](https://bookdown.org/BaktiSiregar/data-science-for-beginners/datasets.html#economic-timeseries)
 
 ### Grafik Barbel
 
 Grafik khusus ini berguna untuk menampilkan perubahan antara dua titik waktu untuk beberapa grup atau pengamatan. Menggunakan fungsi `geom_dumbbell` dari package `ggalt`.
 
-Menggunakan dataset `gapminder` mari kita plot perubahan harapan hidup di Asia dari tahun 1952 sampai 2007. Dataset dalam format panjang. Kita perlu mengubahnya menjadi format lebar untuk membuat plot barbel. Dalam grafik ini, kita akan mengurutkan berdasarkan harapan hidup tahun 1952, dan memodifikasi ukuran garis dan titik, memberi warna titik, menambahkan judul dan label, dan menyederhanakan tema.
+Menggunakan dataset [`gapminder`](https://bookdown.org/BaktiSiregar/data-science-for-beginners/Advanced-Visualizations.html) mari kita plot perubahan harapan hidup di Asia dari tahun 1952 sampai 2007. Dataset dalam format panjang. Kita perlu mengubahnya menjadi format lebar untuk membuat plot barbel. Dalam grafik ini, kita akan mengurutkan berdasarkan harapan hidup tahun 1952, dan memodifikasi ukuran garis dan titik, memberi warna titik, menambahkan judul dan label, dan menyederhanakan tema.
 
 ```{r, echo=T, results='hide'}
 library(ggalt)                                    # mengandung tambahan geom, skala, dll
@@ -187,9 +187,9 @@ Lebih mudah untuk melihat pola di sini. Misalnya `Afganistan` memulai dengan har
 
 ### Grafik Kemiringan
 
-Jika ada beberapa kelompok dan beberapa titik waktu, grafik kemiringan dapat membantu. Mari kita plot harapan hidup dari tujuh negara Asia Tenggara pada tahun 1992, 1997, 2002, dan 2007. Sekali lagi, kita akan menggunakan data `gapminder`.
+Jika ada beberapa kelompok dan beberapa titik waktu, grafik kemiringan dapat membantu. Mari kita plot harapan hidup dari tujuh negara Asia Tenggara pada tahun 1992, 1997, 2002, dan 2007. Sekali lagi, kita akan menggunakan data [`gapminder`](https://bookdown.org/BaktiSiregar/data-science-for-beginners/Advanced-Visualizations.html).
 
-Untuk membuat grafik kemiringan, kita akan menggunakan fungsi `newggslopegraph` dari package `CGPfunctions`. Parameter fungsi `newggslopegraph` adalah (berurutan)
+Untuk membuat grafik kemiringan, kita akan menggunakan fungsi [`newggslopegraph`](https://www.rdocumentation.org/packages/CGPfunctions/versions/0.4/topics/newggslopegraph) dari package `CGPfunctions`. Parameter fungsi `newggslopegraph` adalah (berurutan)
 
 * Data frame,
 * Variabel waktu (yang harus sebagai faktor),
@@ -307,7 +307,7 @@ Dalam grafik ini, PC pertama menyumbang 60% dari variabilitas dalam data asli. P
 * Vektor (panah) mewakili variabel. Sudut antar vektor sebanding dengan korelasi antar variabel. Contoh, `gear` dan `am` berkorelasi positif, `gear` dan `qsec` tidak berkorelasi (sudut 90 derajat), dan `am` dengan `wt` berkorelasi negatif (sudut lebih besar dari 90 derajat).
 * Pengamatan yang terjauh sepanjang arah vektor variabel, memiliki nilai tertinggi pada variabel tersebut. Sebagai contoh, Toyota Corolla dan honda Civic memiliki nilai `mpg` yang lebih tinggi. Toyota Corona memiliki `qsec` yang lebih tinggi. Duster 360 memiliki lebih banyak `cyl`. Hati-hati dalam menafsirkan biplot. Mereka hanya akurat jika presentase varian yang diperhitungkan tinggi. Selalu periksa kesimpulan Anda dengan data asli.
 
-Lihat artikel oleh Forrest Young untuk mempelajari lebih lanjut tentang menafsirkan biplot dengan benar.
+Lihat artikel oleh [Forrest Young](http://forrest.psych.unc.edu/research/vista-frames/help/lecturenotes/lecture13/biplot.html) untuk mempelajari lebih lanjut tentang menafsirkan biplot dengan benar.
 
 ### Peta Panas (Heatmaps)
 
@@ -363,7 +363,7 @@ superheat(plotdata,
 
 ### Matriks Plot Korelasi
 
-Plot korelasi membantu Anda memvisualisasikan hubungan berpasangan antara kumpulan variabel kuantitatif dengan menampilkan korelasinya menggunakan warna atau bayangan. Untuk mengeksplorasi hubungan antara variabel kuantitatif, kita dapat menghitung koefisien korelasi Pearson Product-Moment.
+Plot korelasi membantu Anda memvisualisasikan hubungan berpasangan antara kumpulan variabel kuantitatif dengan menampilkan korelasinya menggunakan warna atau bayangan. Untuk mengeksplorasi hubungan antara variabel kuantitatif, kita dapat menghitung [koefisien korelasi](https://www.statisticshowto.com/probability-and-statistics/correlation-coefficient-formula/) Pearson Product-Moment.
 
 ```{r, echo=T, results='hide'}
 library(dplyr)                                    # manipulasi data
@@ -446,7 +446,7 @@ ggpairs(df,
   theme_bw()
 ```
 
-Kode yang Anda lihat di atas membuat Anda dapat menulis fungsi yang bersifat fleksibilitas. Selain itu, karena plot yang dihasilkan adalah grafik ggplot2, fungsi tambahan dapat ditambahkan untuk mengubah tema, judul, label, dll. Lihat bantuan untuk lebih jelasnya.
+Kode yang Anda lihat di atas membuat Anda dapat menulis fungsi yang bersifat fleksibilitas. Selain itu, karena plot yang dihasilkan adalah grafik ggplot2, fungsi tambahan dapat ditambahkan untuk mengubah tema, judul, label, dll. Lihat [bantuan](https://cran.r-project.org/web/packages/GGally/index.html) untuk lebih jelas.
 
 ### Grafik Radar
 
@@ -483,7 +483,7 @@ Kita dapat melihat dari grafik bahwa, secara relatif, sapi memiliki bobot otak d
 
 ### Awan Kata
 
-Awan kata (juga disebut awan penanda), pada dasarnya merupakan infografis yang menunjukkan frekuensi kata dalam kumpulan teks (mis., Tweet, dokumen teks, sekumpulan dokumen teks). Ada skrip yang sangat bagus yang dibuat oleh STHDA yang akan menghasilkan awan kata langsung dari file teks. Untuk mendemonstrasikan, kita akan memproses "I have a dream speech" dari "Martin Luther King".
+Awan kata (juga disebut awan penanda), pada dasarnya merupakan infografis yang menunjukkan frekuensi kata dalam kumpulan teks (mis., Tweet, dokumen teks, sekumpulan dokumen teks). Ada skrip yang sangat bagus yang dibuat oleh STHDA yang akan menghasilkan awan kata langsung dari file teks. Untuk mendemonstrasikan, kita akan memproses ["I have a dream speech"](http://www.sthda.com/sthda/RDoc/example-files/martin-luther-king-i-have-a-dream-speech.txt) dari "Martin Luther King".
 
 ```{r, echo=T, results='hide'}
 library("tm")                                      # untuk penggalian teks
@@ -520,7 +520,7 @@ wordcloud(words = d$word, freq = d$freq, min.freq = 1,
 
 ## Grafik Interaktif
 
-Pada bagian ini, kita akan menunjuk beberapa opsi terbaik untuk menghasilkan grafik interaktif yang dapat ditempatkan di halaman web. Sehingga Anda dapat mengeksplorasinya lebih jauh pada grafik atau gambar yang dapat ditempatkan pada makalah, poster, slide, dan artikel jurnal. Kita dapat menerapkan salah satu widget HTML yang paling sering digunakan untuk R dengan menggunakan library JavaScript.
+Pada bagian ini, kita akan menunjuk beberapa opsi terbaik untuk menghasilkan grafik interaktif yang dapat ditempatkan di halaman web. Sehingga Anda dapat mengeksplorasinya lebih jauh pada grafik atau gambar yang dapat ditempatkan pada makalah, poster, slide, dan artikel jurnal. Kita dapat menerapkan salah satu [`widget HTML`](http://gallery.htmlwidgets.org/) yang paling sering digunakan untuk R dengan menggunakan library `JavaScript`.
 
 **Catatan:** Jika Anda membaca ini di iPad, beberapa fitur tidak akan tersedia (seperti mengarahkan mouse)
 
@@ -537,13 +537,13 @@ leaflet() %>%
                     University of Auckland")
 ```
 
-Untuk opsi lebih lanjut tentang leaflet.
+Untuk opsi lebih lanjut tentang [leaflet](https://rstudio.github.io/leaflet/json.html).
 
 ### plotly
 
 `Plotly` adalah layanan komersial dan juga produk open source untuk membuat visualisasi interaktif kelas atas. Package ini memungkinkan Anda membuat grafik interaktif `plotly` dari dalam R. Selain itu, grafik ggplot2 apa pun dapat diubah menjadi grafik `plotly`.
 
-Dengan menggunakan data Fuel Economy, kita akan membuat grafik interaktif yang menampilkan jarak tempuh jalan raya vs. perpindahan mesin menurut kelas mobil. Mengarahkan mouse ke suatu titik akan menampilkan informasi tentang titik tersebut. mengklik pada titik legend akan menghapus kelas tersebut dari plot. Mengkliknya lagi akan mengembalikannya.
+Dengan menggunakan data [Fuel Economy](https://bookdown.org/BaktiSiregar/data-science-for-beginners/Advanced-Visualizations.html), kita akan membuat grafik interaktif yang menampilkan jarak tempuh jalan raya vs. perpindahan mesin menurut kelas mobil. Mengarahkan mouse ke suatu titik akan menampilkan informasi tentang titik tersebut. mengklik pada titik legend akan menghapus kelas tersebut dari plot. Mengkliknya lagi akan mengembalikannya.
 
 ```{r, echo=T, results='hide'}
 library(ggplot2)                                  # visualiSasi data
@@ -561,7 +561,7 @@ ggplotly(p)
 #htmlwidgets::saveWidget(ggplotly(p),"plotly.html") # menyimpan html 
 ```
 
-Ada beberapa sumber informasi yang bagus tentang plotly. Lihat halaman R plotly dan plotly online untuk R book. Selain itu, DataCamp menawarkan tutorial interaktif gratis.
+Ada beberapa sumber informasi yang bagus tentang plotly. Lihat [halaman R plotly](https://plot.ly/r/) dan [plotly untuk R book](https://plotly-book.cpsievert.me/) online. Selain itu, DataCamp menawarkan [tutorial interaktif](https://www.datacamp.com/community/blog/a-free-interactive-plotly-r-tutorial) gratis.
 
 ### rbokeh
 
@@ -580,7 +580,7 @@ b
 #htmlwidgets::saveWidget(bokeh, "b.html")        # menyimpan html 
 ```
 
-Lebih lanjut mengenai `rbokeh`.
+Lebih lanjut mengenai [`rbokeh`](https://hafen.github.io/rbokeh/articles/rbokeh.html).
 
 ### rCharts
 
@@ -617,7 +617,7 @@ m$save('HTML/Morris.html', standalone = TRUE)      # menyimpan hasilnya sebagai 
 shiny::includeHTML("HTML/Morris.html")             # membuka hasilnya
 ```
 
-Lebih lanjut tentang `rCharts`.
+Lebih lanjut tentang [`rCharts`](https://rpubs.com/dnchari/rcharts).
 
 ### googleVis
 
@@ -639,14 +639,14 @@ Hist <- gvisHistogram(datHist, options=list(
 plot(Hist)
 ```
 
-Lebih lanjut mengenai `googleVis`.
+Lebih lanjut mengenai [`googleVis`](https://cran.r-project.org/web/packages/googleVis/vignettes/googleVis_examples.html).
 
 ### Mengungkap Package
 
 Ada beberapa package untuk grafik interaktif (tidak tercakup dalam buku ini), silakan kunjungi situs berikut jika Anda tertarik:
 
-* `dygraphs`
-* `highcharter`
+* [`dygraphs`](https://rstudio.github.io/dygraphs/gallery-series-options.html)
+* [`highcharter`](http://jkunst.com/highcharter/showcase.html)
 
 ## Animasi Interaktif
 
@@ -695,7 +695,7 @@ fig <- fig %>%
 
 Hal terpenting tentang visualisasi adalah ketika visualisasi memaksa kita untuk menyadari sesuatu yang tidak kita ketahui. Grafik yang menarik secara visual dengan mudah menarik perhatian kita. Menganimasikan data seperti menghembuskan kehidupan ke debu, ini adalah tindakan penciptaan. Bagaimana Anda membuat animasi menarik yang berwawasan? Pada artikel ini, kita akan belajar cara membuat animasi yang indah menggunakan package R, `gganimate`.
 
-**Contoh:** Data Tingkat Bunuh Diri didapatkan dari Kaggle setelah dikumpulkan dari berbagai sumber (WHO, UNDP, World Bank). Data tersebut membandingkan info sosial ekonomi dengan tingkat bunuh diri per negara dari tahun 1985 hingga 2016. Inspirasinya adalah untuk menghasilkan strategi pencegahan bunuh diri di berbagai negara.
+**Contoh:** Data Tingkat Bunuh Diri didapatkan dari [Kaggle](https://www.kaggle.com/russellyates88/suicide-rates-overview-1985-to-2016) setelah dikumpulkan dari berbagai sumber (WHO, UNDP, World Bank). Data tersebut membandingkan info sosial ekonomi dengan tingkat bunuh diri per negara dari tahun 1985 hingga 2016. Inspirasinya adalah untuk menghasilkan strategi pencegahan bunuh diri di berbagai negara.
 
 #### Langkah Pertama {-}
 
@@ -851,7 +851,7 @@ anim_save("images/suicide_animate.gif",animation=final_animation)
   * Animation: ini adalah hasil akhir dari plot animasi kita.
   * Path: lokasi di mana kita ingin menyimpan animasi kita.
 
-Lebih lanjut mengenai `gganimate`.
+Lebih lanjut mengenai [`gganimate`](https://github.com/thomasp85/gganimate).
 
 ### animation
 
@@ -864,4 +864,4 @@ par(mar = c(3, 3, 1, 1.5), mgp = c(1.5, 0.5, 0))
 kmeans.ani()})
 ```
 
-**Penting:** Anda dapat klik di sini untuk mengetahui lebih lanjut mengenai package `animation`.
+**Penting:** Anda dapat klik [di sini](https://yihui.org/animation/) untuk mengetahui lebih lanjut mengenai package `animation`.
