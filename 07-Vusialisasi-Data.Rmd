@@ -15,7 +15,7 @@ Distribusi variabel kategorikal tunggal biasanya diplot dengan diagram batang, d
 
 #### Diagram Batang {-}
 
-Berikut ini adalah contoh yang menunjukkan frekuensi dari dataset `Marriage`, Saya mendapatkannya dari package `mosaicData`. Kita gunakan diagram batang untuk menampilkan distribusi peserta pernikahan berdasarkan `Zodiak`.
+Berikut ini adalah contoh yang menunjukkan frekuensi dari dataset [`Marriage`](https://raw.githubusercontent.com/Bakti-Siregar/dataset/master/Bookdown-Data-Science-for-Beginners/Marriage.csv), Saya mendapatkannya dari package [`mosaicData`](https://www.rdocumentation.org/packages/mosaic/versions/1.7.0). Kita gunakan diagram batang untuk menampilkan distribusi peserta pernikahan berdasarkan `Zodiak`.
 
 ```{r, echo=T, results='hide'}
 library(ggplot2)                                     # untuk visualisasi
@@ -45,7 +45,7 @@ ggplot(Marriage,
   scale_y_continuous(labels = scales::percent)       # menambahkan simbol % untuk label sumbu y  
 ```
 
-**Catatan:** Dalam R, warna dapat ditentukan dengan nama (misalnya `col= "red"`) atau dengan triplet RGB heksadesimal (seperti `col = "#FFCC00"`). Anda juga dapat menggunakan sistem warna lain seperti salah satunya diambil dari package `RColorBrewer`.
+**Catatan:** Dalam R, warna dapat ditentukan dengan nama (misalnya `col= "red"`) atau dengan triplet RGB heksadesimal (seperti `col = "#FFCC00"`). Anda juga dapat menggunakan sistem warna lain seperti salah satunya diambil dari package `RColorBrewer`.[Lebih lanjut](http://www.sthda.com/english/wiki/colors-in-r)
 
 Mengurutkan batang berdasarkan frekuensi sering kali membantu. Pada kode di bawah ini, frekuensi dihitung secara eksplisit. Kemudian fungsi `reorder` digunakan untuk mengurutkan kategori berdasarkan frekuensinya. Opsi `stat="identity"` memberitahu fungsi plot untuk tidak menghitung jumlah, karena mereka diberikan secara langsung.
 
@@ -232,7 +232,7 @@ ggplot(plotdata,
 
 ### Kontinu
 
-Distribusi variabel kuantitatif tunggal biasanya diplot dengan histogram, plot kepadatan kernel, atau plot titik.
+Distribusi variabel kuantitatif tunggal biasanya diplot dengan histogram, plot [densitas kernel](https://bookdown.org/BaktiSiregar/data-science-for-beginners/Visualization.html), atau plot titik.
 
 #### Histogram {-}
 
@@ -303,7 +303,7 @@ ggplot(Marriage, aes(x = age)) +
 
 Grafik menunjukkan distribusi dari nilai. Sebagai contoh, perbandingan kasus antara 20 dan 40 tahun akan diwakili oleh area di bawah kurva antara 20 dan 40 pada sumbu x. Seperti diagram sebelumnya, kita juga dapat menggunakan `fill` dan `color` untuk menentukan warna isian dan batasannya.
 
-#### Parameter Penghalusan {-}
+#### Parameter Penghalusan (Smoothing) {-}
 
 Tingkat kehalusan dikontrol oleh parameter bandwidth `bw`. Untuk menemukan nilai default untuk variabel tertentu, gunakan fungsi `bw.nrd0`. Nilai yang lebih besar akan menghasilkan penghalusan yang lebih banyak, sedangkan nilai yang lebih kecil akan menghasilkan penghalusan yang lebih sedikit.
 
@@ -337,7 +337,7 @@ ggplot(Marriage, aes(x = age)) +
        x = "Age")
 ```
 
-Ada lebih banyak pilihan yang tersedia. Klik di sini untuk detail dan contoh.
+Ada lebih banyak pilihan yang tersedia. [Klik di sini](http://ggplot2.tidyverse.org/reference/geom_dotplot.html) untuk detail dan contoh.
 
 ## Data Bivariat
 
@@ -347,7 +347,7 @@ Grafik bivariat menunjukkan hubungan antara dua variabel. Jenis grafik akan terg
 
 #### Diagram Batang Bertumpuk {-}
 
-Mari kita plot hubungan antara kelas mobil dan jenis penggerak (roda depan, roda belakang, atau penggerak 4 roda) untuk mobil dalam dataset bahan bakar ekonomi.
+Mari kita plot hubungan antara kelas mobil dan jenis penggerak (roda depan, roda belakang, atau penggerak 4 roda) untuk mobil dalam [dataset Fuel economy](https://bookdown.org/BaktiSiregar/data-science-for-beginners/datasets.html#fuel-economy-data).
 
 ```{r, echo=T, results='hide'}
 library(ggplot2)                                     # untuk visualisasi
@@ -424,9 +424,9 @@ Fungsi lainnya dibahas lebih lengkap pada Bab Visualisasi Data Lanjutan.
 
 Diagram mosaik dapat menampilkan hubungan antara variabel kategorikal menggunakan persegi panjang yang luasnya mewakili proporsi kejadian untuk kombinasi level tertentu. Warna ubin juga dapat menunjukkan tingkat hubungan antar variabel.
 
-Meskipun plot mosaik dapat dibuat dengan ggplot2 menggunakan package `ggmosaic`, saya merekomendasikan menggunakan package `vcd` sebagai gantinya. Meskipun tidak akan membuat grafik ggplot2, package tersebut memberikan pendekatan yang lebih komprehensif untuk memvisualisasikan data kategorikal. 
+Meskipun plot mosaik dapat dibuat dengan ggplot2 menggunakan package [`ggmosaic`](https://cran.r-project.org/web/packages/ggmosaic/vignettes/ggmosaic.html), saya merekomendasikan menggunakan package `vcd` sebagai gantinya. Meskipun tidak akan membuat grafik ggplot2, package tersebut memberikan pendekatan yang lebih komprehensif untuk memvisualisasikan data kategorikal. 
 
-Orang-orang terpesona dengan Titanic (atau terpesona dengan Leo?). Dalam bencana Titanic, peran apa yang dimainkan oleh sex dan class dalam survival? Kita dapat memvisualisasikan hubungan antara ketiga variabel kategorikal menggunakan kode berikut.
+Orang-orang terpesona dengan Titanic (atau terpesona dengan Leo?). Dalam bencana [Titanic](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Titanic.html), peran apa yang dimainkan oleh sex dan class dalam survival? Kita dapat memvisualisasikan hubungan antara ketiga variabel kategorikal menggunakan kode berikut.
 
 ```{r, echo=T, results='hide'}
 # membuat tabel
@@ -493,7 +493,7 @@ don %>%
     facet_wrap(~name, scale="free")
 ```
 
-Tampilan yang paling sederhana dari 2 variabel kuantitatif adalah plot sebaran, dengan setiap variabel diwakilkan oleh sumbu. Contohnya, menggunakan dataset `Salaries`, kita dapat memplot pengalaman (yrs.since.phd) vs. gaji akademik (salary) dari Profesor perguruan tinggi.
+Tampilan yang paling sederhana dari 2 variabel kuantitatif adalah plot sebaran, dengan setiap variabel diwakilkan oleh sumbu. Contohnya, menggunakan dataset `Salaries`, kita dapat memplot pengalaman (`yrs.since.phd`) vs. gaji akademik (`salary`) dari [Profesor perguruan tinggi](https://bookdown.org/BaktiSiregar/data-science-for-beginners/datasets.html#academic-salaries).
 
 ```{r, echo=T, results='hide'}
 library(ggplot2)                                     # untuk visualisasi
@@ -567,7 +567,7 @@ ggplot(Salaries,
        subtitle = "9-month salary for 2008-2009")
 ```
 
-Akhirnya, garis kesesuaian nonparametrik yang diperhalus sering kali dapat memberikan gambaran yang baik tentang hubungan tersebut. Default di ggplot2 adalah garis loess yang berarti penghalusan plot sebaran yang tertimbang secara lokal.
+Akhirnya, garis kesesuaian nonparametrik yang diperhalus sering kali dapat memberikan gambaran yang baik tentang hubungan tersebut. Default di ggplot2 adalah garis [loess](https://www.ime.unicamp.br/~dias/loess.pdf) yang berarti penghalusan plot sebaran yang tertimbang secara lokal.
 
 ```{r, echo=T, results='hide'}
 library(ggplot2)                                     # untuk visualisasi
@@ -636,7 +636,7 @@ ggplot(plotdata,
 
 #### Plot Densitas Kernel yang Dikelompokkan {-}
 
-Seseorang dapat membandingkan kelompok pada variabel numerik dengan melapiskan plot densitas kernel dalam satu grafik. Mari kita plot distribusi gaji berdasarkan jabatan menggunakan plot densitas kernel.
+Seseorang dapat membandingkan kelompok pada variabel numerik dengan melapiskan plot [densitas kernel](https://bookdown.org/BaktiSiregar/data-science-for-beginners/Visualization.html) dalam satu grafik. Mari kita plot distribusi gaji berdasarkan jabatan menggunakan plot densitas kernel.
 
 ```{r, echo=T, results='hide'}
 ggplot(Salaries, 
@@ -674,7 +674,7 @@ Dalam contoh di atas, ketiga kelompok itu tampak berbeda. Salah satu keuntungan 
 
 #### Plot Biola {-}
 
-Plot Biola mirip dengan plot densitas kernel tetapi dicerminkan dan diputar $90^0$. Mari kita plot distribusi gaji berdasarkan jabatan menggunakan plot biola.
+Plot Biola mirip dengan plot [densitas kernel](https://bookdown.org/BaktiSiregar/data-science-for-beginners/Visualization.html) tetapi dicerminkan dan diputar $90^0$. Mari kita plot distribusi gaji berdasarkan jabatan menggunakan plot biola.
 
 ```{r, echo=T, results='hide'}
 ggplot(Salaries, 
@@ -691,9 +691,9 @@ ggplot(Salaries,
 
 #### Plot Garis Punggung {-}
 
-Plot garis punggung (juga disebut plot kegembiraan) menampilkan distribusi variabel kuantitatif untuk beberapa kelompok. Mereka mirip dengan plot densitas kernel dari segi vertikal, tetapi memakan lebih sedikit ruang. Plot garis punggung dibuat dengan package `ggridges`.
+Plot garis punggung (juga disebut plot kegembiraan) menampilkan distribusi variabel kuantitatif untuk beberapa kelompok. Mereka mirip dengan plot [densitas kernel](https://bookdown.org/BaktiSiregar/data-science-for-beginners/Visualization.html) dari segi [(faceting)](https://bookdown.org/BaktiSiregar/data-science-for-beginners/Visualization.html) vertikal, tetapi memakan lebih sedikit ruang. Plot garis punggung dibuat dengan package `ggridges`.
 
-Menggunakan data set Fuel economy, mari kita plot mil perjalanan kota per galon menurut kelas mobil.
+Menggunakan data set [Fuel economy](https://bookdown.org/BaktiSiregar/data-science-for-beginners/datasets.html#fuel-economy-data), mari kita plot mil perjalanan kota per galon menurut kelas mobil.
 
 ```{r, echo=T, results='hide'}
 library(dplyr)                                       # untuk manipulasi data
@@ -712,7 +712,7 @@ ggplot(mpg,
 
 Saya telah menyembunyikan legend di sini karena itu berlebihan (distribusinya sudah diberi label pada sumbu y). Tidak mengherankan, truk pikap memiliki jarak tempuh yang paling rendah, sementara mobil subkompak dan kompak cenderung mencapai peringkat. Namun, ada rentang skor jarak tempuh yang sangat luas untuk mobil-mobil kecil ini.
 
-Perhatikan kemungkinan tumpang tindih distribusi adalah diputuskan lebih kepada grafik mobil kompak. Anda dapat menambahkan transparansi jika tumpang tindihnya parah, dengan menggunakan `geom_density_ridges(alpha = n)`, dimana n berkisar dari 0 (transparan) hingga 1 (buram). Lihat package sketsa untuk lebih jelasnya.
+Perhatikan kemungkinan tumpang tindih distribusi adalah diputuskan lebih kepada grafik mobil kompak. Anda dapat menambahkan transparansi jika tumpang tindihnya parah, dengan menggunakan `geom_density_ridges(alpha = n)`, dimana n berkisar dari 0 (transparan) hingga 1 (buram). Lihat [package vignette](https://cran.r-project.org/web/packages/ggridges/vignettes/introduction.html) untuk lebih jelasnya.
 
 #### Plot Garis {-}
 
@@ -830,7 +830,7 @@ ggplot(Salaries,
   coord_flip()
 ```
 
-Sebelum melanjutkan, ada baiknya untuk memerhatikan fungsi `geom_boxjitter` yang disediakan dalam package `ggpol`. Ini membuat plot kotak hibrida - setengah plot kotak, setengan plot sebaran.
+Sebelum melanjutkan, ada baiknya untuk memerhatikan fungsi [`geom_boxjitter`](https://www.rdocumentation.org/packages/ggpol/versions/0.0.1/topics/geom_boxjitter) yang disediakan dalam package [`ggpol`](https://erocoar.github.io/ggpol/). Ini membuat plot kotak hibrida - setengah plot kotak, setengan plot sebaran.
 
 ```{r, echo=T, results='hide'}
 library(ggplot2)                                     # untuk visulisasi
@@ -857,7 +857,7 @@ ggplot(Salaries,
 
 #### Plot Kawanan Lebah {-}
 
-Plot kawanan lebah (juga disebut plot sebaran biola) mirip dengan plot sebaran jitter, di mana plot tersebut menampilkan distribusi dari variabel kuantitatif dengan memplot titik-titik dengan cara mengurangi tumpang tindih. Selain itu, mereka juga membantu menampilkan densitas dari data di setiap titik (dengan cara yang mirip dengan plot biola). Melanjutkan contoh sebelumnya.
+Plot kawanan lebah (juga disebut plot sebaran biola) mirip dengan plot sebaran jitter, di mana plot tersebut menampilkan distribusi dari variabel kuantitatif dengan memplot titik-titik dengan cara mengurangi tumpang tindih. Selain itu, mereka juga membantu menampilkan densitas dari data di setiap titik (dengan cara yang mirip dengan [plot biola](https://bookdown.org/BaktiSiregar/data-science-for-beginners/Visualization.html)). Melanjutkan contoh sebelumnya.
 
 ```{r, echo=T, results='hide'}
 library(ggplot2)                                     # untuk visualisasi
@@ -881,11 +881,11 @@ ggplot(Salaries,
   theme(legend.position = "none")
 ```
 
-Plot dibuat menggunakan fungsi `geom_quasirandom`. Plot ini dapat lebih mudah dibaca daripada plot strip jitter sederhana. Untuk mempelajari lebih lanjut mengenai plot ini, lihat Plot bergaya kawanan lebah dengan ggplot2.
+Plot dibuat menggunakan fungsi `geom_quasirandom`. Plot ini dapat lebih mudah dibaca daripada plot strip jitter sederhana. Untuk mempelajari lebih lanjut mengenai plot ini, lihat [Plot bergaya kawanan lebah](https://github.com/eclarke/ggbeeswarm) dengan ggplot2.
 
 #### Diagram Titik Cleveland {-}
 
-Plot Cleveland berguna ketika Anda ingin membandingkan statistik numerik untuk sejumlah besar kelompok. Misalnya, Anda ingin membandingkan harapan hidup tahun 2007 untuk negara Asia menggunakan data set `gapminder`.
+Plot Cleveland berguna ketika Anda ingin membandingkan statistik numerik untuk sejumlah besar kelompok. Misalnya, Anda ingin membandingkan harapan hidup tahun 2007 untuk negara Asia menggunakan data set [`gapminder`](https://bookdown.org/BaktiSiregar/data-science-for-beginners/Visualization.html).
 
 ```{r, echo=T, results='hide'}
 library(dplyr)                                       # untuk manipulasi data
@@ -927,7 +927,7 @@ Grafik Multivariat menampilkan hubungan antara tiga variabel atau lebih. Ada dua
 
 ### Pengelompokan
 
-Dalam pengelompokan, nilai dari dua variabel pertama dipetakan ke sumbu x dan y. Kemudian variabel tambahan dipetakan ke karakteristik visual lainnya seperti warna, bentuk, ukuran, jenis garis, dan transparansi. Pengelompokan memungkinkan Anda untuk memplot data untuk beberapa grup dalam satu grafik. Dengan menggunakan data set Salaries, mari kita tampilkan hubungan antara `yrs.since.phd` dan `salary`.
+Dalam pengelompokan, nilai dari dua variabel pertama dipetakan ke sumbu x dan y. Kemudian variabel tambahan dipetakan ke karakteristik visual lainnya seperti warna, bentuk, ukuran, jenis garis, dan transparansi. Pengelompokan memungkinkan Anda untuk memplot data untuk beberapa grup dalam satu grafik. Dengan menggunakan data set [Salaries](https://bookdown.org/BaktiSiregar/data-science-for-beginners/Visualization.html), mari kita tampilkan hubungan antara `yrs.since.phd` dan `salary`.
 
 ```{r, echo=T, results='hide'}
 library(carData)                                     # untuk dataset
@@ -975,9 +975,9 @@ ggplot(Salaries,
   labs(title = "Academic salary by rank, years of service, and years since degree")
 ```
 
-Jelas sekali ada hubungan positif yang kuat antara tahun-tahun sejak Ph.D. dan tahun layanan. Asisten Profesor ada dalam jangkauan 0-11 tahun sejak Ph.D. dan 0-10 tahun layanan. Orang-orang profesional yang jelas sangat berpengalaman tidak hanya berada di tingkat Asisten Profesor (mereka mungkin dipromosikan atau keluar dari Universitas). Kita tidak menemukan batasan waktu yang sama antara Associate dan Full Professors. Plot-plot gelembung dijelaskan lebih mendalam di bab selanjutnya.
+Jelas sekali ada hubungan positif yang kuat antara tahun-tahun sejak Ph.D. dan tahun layanan. Asisten Profesor ada dalam jangkauan 0-11 tahun sejak Ph.D. dan 0-10 tahun layanan. Orang-orang profesional yang jelas sangat berpengalaman tidak hanya berada di tingkat Asisten Profesor (mereka mungkin dipromosikan atau keluar dari Universitas). Kita tidak menemukan batasan waktu yang sama antara Associate dan Full Professors. [Plot gelembung](https://bookdown.org/BaktiSiregar/data-science-for-beginners/Visualization.html) dijelaskan lebih mendalam di bab selanjutnya.
 
-Sebagai contoh terakhir, mari kita lihat `yrs.since.phd` vs. `salary` dan tambahkan jenis kelamin menggunakan warna dan garis kuadrat yang paling cocok.
+Sebagai contoh terakhir, mari kita lihat `yrs.since.phd` vs. `salary` dan tambahkan jenis kelamin menggunakan warna dan [garis kuadrat yang paling cocok](https://bookdown.org/BaktiSiregar/data-science-for-beginners/Visualization.html).
 
 ```{r, echo=T, results='hide'}
 library(carData)                                     # untuk dataset
@@ -1076,7 +1076,7 @@ Pernyataan `facet_grid(.~rank+dicipline)` tidak menentukan variabel baris (.) da
 
 Fungsi `theme()` membuat tema hitam dan putih dan menghilangkan garis grid vertikal dan garis grid horizontal minor. Fungsi `scale_color_brewer()` mengubah skema warna untuk titik dan batang-batang kesalahan.
 
-pada pandangan pertama, tampaknya mungkin ada perbedaan gender dalam gaji untuk Associate dan Full Professors di bidang teoritis. Saya mengatakan "mungkin" karena kita belum melakukan pengujian hipotesis formal apapun (dalam kasus ini adalah ANCOVA). Lihat bagian Penyesuaian untuk mempelajari lebih lanjut mengenai penyesuaian tampilan grafik.
+Pada pandangan pertama, tampaknya mungkin ada perbedaan gender dalam gaji untuk Associate dan Full Professors di bidang teoritis. Saya mengatakan "mungkin" karena kita belum melakukan pengujian hipotesis formal apapun (dalam kasus ini adalah ANCOVA). Lihat bagian [Penyesuaian](https://bookdown.org/BaktiSiregar/data-science-for-beginners/Visualization.html) untuk mempelajari lebih lanjut mengenai penyesuaian tampilan grafik.
 
 Sebagai contoh terakhir, kita akan beralih ke dataset baru dan memplot perubahan dalam harapan hidup dari waktu ke waktu untuk negara-negara di "Asia". Data tersebut berasal dari dataset `gapminder` dalam package `gapminder`. Setiap negara muncul dalam fasetnya sendiri. Fungsi tema digunakan untuk menyederhanakan warna latar belakang, memutar teks sumbu x, dan memperkecil ukuran tulisan.
 
