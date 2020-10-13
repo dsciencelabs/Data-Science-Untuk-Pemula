@@ -1,3 +1,674 @@
 # Pemrograman R {#Pemrograman-R}
+***
 
-We describe our methods in this chapter.
+## Apa itu Pemrograman?
+
+Ada banyak sekali definisi tentang apa itu pemrograman, di sini saya mengumpulkan empat frasa kunci diantaranya:
+
+* Pemrograman adalah proses pengambilan algoritma dan pengkodeannya menjadi suatu notasi, sehingga bahasa pemrograman dapat dieksekusi oleh komputer. Meskipun banyak bahasa pemrograman dan berbagai jenis komputer, langkah pertama yang penting adalah kebutuhan untuk memiliki solusi. Tanpa algoritma, tidak akan ada program.
+* Ilmu komputer bukanlah studi tentang pemrograman. Pemgrograman, bagaimanapun, adalah bagian penting dari apa yang dilakukan ilmuwan komputer. Pemrograman sering kali merupakan cara kita membuat representasi dari solusi kita. Oleh karena itu, representasi bahasa dan proses pembuatannyamenjadi bagian fundamental dari disiplin ilmu.
+* Algoritma menggambarkan solusi untuk suatu masalah dalam hal data yang dibutuhkan untuk mewakili contoh masalah dan serangkaian langkah yang diperlukan untuk menghasilkan hasil yang diinginkan. Bahasa pemrograman harus menyediakan cara notasional untuk merepresentasikan proses dan data. Untuk tujuan ini, bahasa menyediakan konstruksi kontrol dan jenis data.
+* Konstruksi kontrol memungkinkan langkah-langkah algoritmik dipresentasikan dengan cara yang nyaman namun tidak ambigu. Minimal, algoritma memerlukan konstruksi yang melakukan pemrosesan sekuensial, pemilihan untuk pengambilan keputusan, dan iterasi untuk kontrol berulang. Selama bahasa memberikan pernyataan dasar ini, itu dapat digunakan untuk representasi algoritma.
+
+**Dalam Kata Sederhana:** Pemrograman adalah bagaimana Anda mendapatkan komputer untuk memecahkan masalah.
+
+## Algoritma Kehidupan Nyata
+
+Mari kita ambil situasi kehidupan nyata untuk membuat kita lebih memahami tentang algoritma ini, apa itu petunjuk langkah demi langkah yang tepat mengenai bagaimana Anda menelepon teman di telepon?
+
+**Langkah-langkah:**
+
+* Angkat telepon dan dengarkan nada panggil
+* Tekan setiap digit nomor telepon di telepon
+* Jika sibuk, tutup telepun, tunggu 5 menit, ulangi langkah kedua
+* Jika tidak ada jawaban, tinggalkan pesan dan tutup
+* Jika tidak ada mesin penjawab, tutup telepon dan tunggu 2 jam, kemudian ulangi langkah kedua
+* Berbicara dengan teman
+* Tutup telepon
+
+**Asumsi:**
+
+* Langkah pertama mengasumsikan bahwa Anda tinggal sendiri dan tidak ada orang lain yang dapat menjawab telepon.
+* Algoritma ini mengasumsikan keberadaan telepon yang berfungsi dan layanan aktif.
+* Algoritma ini mengasumsikan Anda tidak tuli atau bisu.
+* Algoritma ini mengasumsikan telepon yang dijalin dengan tali normal.
+
+## Mengapa Mempelajari Algoritma?
+
+Secara singkat, karena waktu adalah uang. Energi adalah uang. Dan komputer dirancang untuk mengoptimalkan keduanya. Sayangnya, komputer hanya melakukan apa yang Anda perintahkan untuk komputer lakukan serta apa yang komputer pilih untuk diingat. Tugas kita adalah mencari tahu apa yang harus diberitahukan kepada komputer dan bagaimana caranya.
+
+Salah satu cara terbaik untuk meningkatkan jangkauan Anda sebagai seorang data scientist adalah dengan menulis fungsi. Fungsi memungkinkan Anda mengotomatiskan tugas-tugas umum dengan cara yang lebih kuat dan umum daripada salin dan tempel. Fungsi sering kali digunakan untuk merangkum barisan ekspresi yang perlu dilakukan berulangkali, mungkin dalam kondisi yang berbeda. FUngsi juga sering ditulis ketika ingin membagikan kode dengan orang lain atau publik.
+
+## Bagaimana Menulis Fungsi di R
+
+Dalam beberapa kesempatan, kita perlu menulis fungsi kita sendiri karena kita harus menyelesaikan tugas terntentu dan tidak ada fungsi yang siap dipakai. Fungsi yang ditentukan pengguna melibatkan nama, argumen, dan isi.
+
+### Fungsi Satu Argumen
+
+Fungsi menerima nilai dan mengembalikan kuadrat dari nilai tersebut.
+
+```{r}
+function.name <- function(arguments) 
+{
+    computations on the arguments	
+    some other code
+}
+```
+
+#### Contoh (kuadrat) {-}
+
+```{r}
+square_function<- function(x) 
+{
+  x^2                                 # menghitung kuadrat dari `x`
+}  
+square_function(4)                    # memanggil fungsi dan melihat nilainya
+```
+
+#### Contoh (akar_kuadrat) {-}
+
+```{r}
+square_root<- function(x) 
+{
+  sqrt(x)                         # menghitung akar kuadrat dari `x`
+}  
+square_root(4)                    # memanggil fungsi dan melihat nilainya
+```
+
+#### Contoh (rata-rata) {-}
+
+```{r}
+average<- function(x) 
+{
+  sum(x)/length(x)                # menghitung rata-rata dari `x`
+}  
+x<-c(1,2,3,4,5,6)
+average(x)                        # memanggil fungsi dan melihat nilainya
+```
+
+### Fungsi Multi Argumen 
+
+Kita dapat menulis fungsi dengan lebih dari satu argumen. Pertimbangkan fungsi yang disebut "times". Ini adalah fungsi langsung yang mengalikan dua variabel.
+
+```{r}
+function.name <- function(argument1, argument2,...., argument_n) 
+{
+    computations on the arguments	
+    some other code
+}	
+```
+
+#### Contoh (perkalian) {-}
+
+```{r}
+times <- function(x,y) 
+{
+  x*y                                # menghitung (perkalian x dan y) 
+}
+times(2,4)                           # memanggil fungsi dan melihat nilainya
+```
+
+#### Contoh (volume) {-}
+
+```{r}
+volume<- function(p,l,t) 
+{
+  p*l*t
+}
+volume(5,4,3)
+```
+
+#### Contoh (frek_rata-rata) {-}
+
+```{r}
+avarage_freq <- function(x,freq) 
+{
+sum(x*freq)/length(x)
+}
+x<-c(1,2,3,4,5)
+freq<-c(4,5,6,6,6)
+avarage_freq(x,freq)
+```
+
+#### Contoh (frek_rata-rata_komentar) {-}
+
+```{r}
+avarage_freq_comment <- function(x,freq) 
+{
+ avarage <-sum(x*freq)/length(x)
+ result <- paste("Avarage Frequency is", sep = " ", avarage)
+ return(result)
+}
+avarage_freq_comment(x,freq)
+```
+
+## Contoh Kasus Sederhana
+
+Untuk membuat fungsi di R, Anda akan membuat dan mengubah skrip R. Kita tahu bahwa cara terbaik untuk belajar berenang adalah dengan melompat ke tempat yang dalam, jadi mari kita tulis fungsi untuk menunjukkan kepada Anda betapa mudahnya hal ini di R.
+
+### Normalisasi
+
+Seperti yang telah saya sebutkan sebelumnya, data scientist perlu melakukan banyak tugas berulang kali. Sering kali, kita menyalin dan menempelkan potongan kode berulang kali. Contoh lain, normalisasi variabel sangat disarankan sebelum kita menjalankan algoritma machine learning. Rumus untuk menormalkan variabel adalah:
+
+$$normalisasi = \frac{x-x_{min}}{x_{max}-x_{min}}$$
+
+Sekarang, mari buat kerangka data seperti yang telah kita pelajari di dasar-dasar R bagian terakhir.
+
+```{r}
+set.seed(123)                                      # untuk memastikan kita mendapatkan data yang sama
+
+df<- data.frame(                                   # membuat dataframe
+  a = rnorm(10, 5, 1),                             # vektor `a` dengan bilangan acak normal
+  b = rnorm(10, 5, 1),                             # vektor `b` dengan bilangan acak normal
+  c = rnorm(10, 5, 1)                              # vektor `c` dengan bilangan acak normal
+)
+df                                                 # cetak hasil dataframe 
+```
+
+Kita sudah mengetahui cara menggunakan fungsi `min()` dan `max()` di R. Oleh karena itu kita dapat menggunakan rumus normalisasi yang kita miliki di atas untuk mendapatkan nilai normalisasi `df` sebagai berikut:
+
+```{r}
+df.norm <- data.frame(  
+  a = (df$a -min(df$a))/(max(df$a)-min(df$a)), 
+  b = (df$b -min(df$b))/(max(df$b)-min(df$b)),    
+  c = (df$c -min(df$c))/(max(df$c)-min(df$c))    
+)
+df.norm                                            # cetak hasil dataframe
+```
+
+Namun, metode ini rawan akan kesalahan. Kita bisa menyalin dan lupa mengganti nama kolom setelah menempel. Oleh karena itu, praktik yang baik adalah menulis fungsi setiap kali anda perlu menempelkan kode yang sama lebih dari dua kali. Kita dapat mengatur ulang kode menjadi rumus dan memanggilnya kapan pun diperlukan. Mari pertimbangkan dengan cermat fungsi ini:
+
+```{r}
+normalize <- function(x){
+  norm <- (x-min(x))/(max(x)-min(x))
+  return(norm)
+}
+df$a<-normalize(df$a)
+df$b<-normalize(df$b)
+df$c<-normalize(df$c)
+df
+```
+
+Meskipun contohnya sederhana, kita dapat menyimpulkan kekuatan rumus. Kode di atas lebih mudah dibaca dan terutama menghindari kesalahan saat menempelkan kode. Kita juga akan meningkatkan fungsi ini lebih efektif di bagian selanjutnya setelah Anda mempelajari cara menggunakan `for()` dan `apply()`.
+
+### Persen
+
+Misalkan Anda ingin menyajikan bilangan pecahan sebagai persentase, yang dibulatkan dengan baik menjadi satu digit desimal. Berikut cara mencapainya:
+
+* Kalikan angka pecahan dengan 100.
+* Bulatkan hasil ke satu  desimal: Anda dapat menggunakan fungsi `round()` untuk melakukan ini.
+* Tempelkan tanda persentase setelah angka yang dibulatkan: Fungsi `paste()` siap melayani Anda untuk memenuhi tugas ini.
+* Cetak hasilnya: Fungsi `print()` akan melakukan ini.
+
+Anda dapat dengan mudah menerjemahkan langkah-langkah ini ke dalam skrip kecil untuk R. Jadi, buka file skrip baru di editor Anda dan ketikkan kode berikut:
+
+```{r}
+x <- c(0.8765, 0.4321, 0.1234, 0.05678)
+percent <- round(x * 100, digits = 1)
+result <- paste(percent, sep = " in ", "%")
+print(result)
+```
+
+Untuk membuat skrip ini menjadi sebuah fungsi, Anda perlu melakukan beberapa hal. Lihatlah skrip sebagai pabrik kecil yang mengambil bahan angka mentah dan memolesnya hingga mengkilap yang diinginkan setiap ahli matematika.
+
+Pertama, Anda harus membangun gedung pabrik, sebaiknya yang memiliki alamat sehingga orang tahu ke mana harus mengirim nomor mereka. Kemudian Anda harus memasang gerbang depan sehingga Anda dapat memasukkan nomor mentahnya. Selanjutnya, Anda membuat jalur produksi untuk mengubah nomor tersebut. Terakhir, Anda harus memasang gerbang belakang sehingga Anda dapat mengirimkan persentase berkilau Anda dalam dunia.
+
+Untuk membangun pabrik Anda, ubah skrip ke kode berikut:
+
+```{r}
+addPercent <- function(x){
+ percent <- round(x * 100, digits = 1)
+ result <- paste(percent, sep = "", "%")
+ return(result)
+}
+```
+
+Jika Anda menyimpan skrip ini sebagai file .R: misalnya, addPercent.R ke komputer / PC Anda di dalam folder. Kemudian Anda sekarang dapat memanggil skrip ini di konsol dengan perintah berikut:
+
+```{r}
+source('Functions/addPercent.R')                   # pastikan working directory Anda benar
+x<-normalize(df$a)                                 # menggunakan data yang dinormalisasi seperti yang kita miliki di atas
+addPercent(x)                                      # menetapkan x sebagai persen dengan menggunakan fungsi 
+```
+
+## Struktur Kontrol
+
+Pada dasarnya, struktur kontrol memungkinkan Anda untuk memasukkan beberapa "logika" ke dalam kode R Anda, daripada hanya mengeksekusi kode R yang sama setiap saat. Struktur kontrol memungkinkan Anda untuk merespons input atau fitur data dan mengeksekusi ekspresi R yang berbeda. Struktur kontrol yang umum digunakan adalah
+
+* `if` dan `else` menguji suatu kondisi dan menindaklanjutinya
+* `for` mengeksekusi loop beberapa kali
+* `while` menjalankan loop saat kondisi benar
+* `repeat` menjalankan loop tak terbatas (harus keluar dari itu untuk berhenti)
+* `break`  mengeksekusi fraagmen loop yang rusak
+* `next` melewati interasi dari sebuah loop
+
+Sebagian besar struktur kontrol tidak digunakan dalam sesi interaktif, melainkan saat menulis fungsi atau ekspresi yang lebih panjang. Namun, konstruksi ini tidak harus digunakan dalam fungsi dan ada baiknya Anda memahaminya sebelumnya.
+
+### `if-else`
+
+Kombinasi `if-else` mungkin adalah struktur kontrol yang paling umum digunakan di R (bahkan untuk semua bahasa pemrograman lainnya). Struktur ini memungkinkan Anda untuk menguji suatu kondisi dan menindaklanjutinya bergantung pada benar atau salah. Anda dapat memiliki serangkaian pengujian dengan mengikuti inisial `if` dengan `else if` dan `else`. Fungsi umumnya adalah sebagai berikut:
+
+```{r}
+if (condition1) {
+      do something } 
+else if (condition2) {
+      do something different compare to condition1} 
+else (optional){
+      do something different compare to others}
+```
+
+<center>
+<img src="D:/Matana University/Data Scientist Handbook/Data-Science-Untuk-Pemula/if-else (chapter 3.6.1).png" style = "width:100%;">
+</center>
+
+```{r}
+x <- runif(1, 0, 100)                              # mengambil satu bilangan acak dari 0 sampai 100
+ifelse <- function(x){
+            if (x>80){                             # kondisi 1
+              print('A')}                          # hasil dari kondisi 1
+            else if (x<80 & x >70){                # kondisi 2 
+              print('B')}                          # hasil dari kondisi 2
+            else{                                  # kondisi 3
+              print('Fail')}                       # hasil dari kondisi 3
+}
+ifelse(x)
+```
+
+Dalam tugas Machine Learning, biasanya kita perlu membagi set data antara set rangkaian dan set pengujian. Set kereta memungkinkan algoritma untuk belajar dari data. Untuk menguji kinerja model kita, kita dapat menggunakan set pengujian untuk mengembalikan ukuran kinerja. Basis R tidak memiliki fungsi untuk membuat dua dataset. Kita bisa menulis fungsi kita sendiri untuk melakukan itu. Fungsi kita mengambil dua argumen dan disebut `split_data()`. Ide di baliknya sederhana, yaitu kita mengalikan panjang dataset (yaitu jumlah observasi) dengan 0,8. Misalnya jika kita ingin membagi dataset 80/20, dan dataset kita berisi 100 baris, maka fungsi kita akan mengalikan 0,8 * 100 = 80. Kemudian kita memiliki 80 baris yang akan dipilih untuk menjadi data pelatihan kita.
+
+Kita akan menggunakan dataset air quality untuk menguji fungsi yang ditentukan. Dataset `airquality` memiliki 153 baris. Kita bisa melihatnya dengan kode di bawah ini:
+
+```{r}
+nrow (airquality)
+```
+
+Ini dia, kita bisa menulis fungsinya. Kita hanya perlu mengubah `airquality` ke `df` karena kita ingin mencoba fungsi kita ke dataframe apa pun, tidak hanya `airquality`:
+
+```{r}
+split_data <- function(df, train = TRUE){
+  length<- nrow(df)
+  total_row <- length *0.75
+  split <- 1:total_row
+  if (train ==TRUE){ 
+    train_df <- df[split, ] 
+      return(train_df)		
+  } else {
+    test_df <- df[-split, ] 
+      return(test_df)		
+  }
+}
+train <- split_data(airquality, train = TRUE)      # membagi untuk training data
+test  <- split_data(airquality, train = FALSE)     # membagi untuk testing data
+dim(train)                                         # mencetak dimensi dari training data 
+```
+
+```{r}
+dim(test)                                          # mencetak dimensi dari testing data
+```
+
+Tentu saja, ada banyak package yang dapat Anda gunakan untuk membagi data training dan data testing. Tapi di sini, kita hanya membahas tentang cara membuat sebuah fungsi. Kita akan belajar membagi data training dan mencoba di bab [Manipulasi Data](https://bookdown.org/BaktiSiregar/data-science-for-beginners/Manipulation.html#split-data).
+
+### `for` Loops (Pengulangan)
+
+Dalam pengalaman saya dalam melakukan analisis data, saya menemukan sangat sedikit situasi di mana `for` loop yang sangat berharga saat kita perlu mengulangi daftar elemen atau rentang angka. Tapi saya beri tahu bahwa, loop dapat digunakan untuk melakukan iterasi pada vektor, matriks, daftar, dataframe, atau objek lainnya. Satu hal yang harus Anda ketahui, R akan mengulang semua variabel dalam vektor dan melakukan komputasi yang tertulis di dalam `Expression` di bawah ini.
+
+```{r}
+For(i in vector){
+  Expression	
+}
+```
+
+<center>
+<img src="D:/Matana University/Data Scientist Handbook/Data-Science-Untuk-Pemula/for-loop (chapter 3.6.2).png" style = "width:100%;">
+</center>
+
+**Contoh 1:** Mari mengulang semua elemen vektor dan mencetak nilai saat ini.
+
+```{r}
+fruit <- c('Apple', 'Orange', 'Papaya', 'Banana')  # membuat vektor buah
+for ( i in fruit){                                 # membuat pernyataan `for`
+ print(i)                                          # hasil
+}
+```
+
+**Contoh 2:** Membuat fungsi non-linier dengan menggunakan polinomial x antara 1 dan 3 dan kita menyimpannya dalam daftar.
+
+```{r}
+list <- c()                                        # membuat daftar kosong
+for (i in seq(1, 3, by=1)) {                       # membuat pernyataan `for`  list[[i]] <- i*i                                 # untuk mengisi daftar
+}
+print(list)                                        # hasil
+```
+
+**Contoh 3:** Bayangkan kita memiliki `df`, kita ingin menghitung rata-rata setiap kolom. Anda dapat melakukannya dengan salin dan tempel:
+
+```{r}
+set.seed(123)                                      # untuk memastikan kita mendapatkan data yang sama
+df<- data.frame(                                   # membuat dataframe
+  a = rnorm(10, 5, 1),                             # vektor `a` dengan bilangan acak normal
+  b = rnorm(10, 5, 1),                             # vektor `b` dengan bilangan acak normal
+  c = rnorm(10, 5, 1)                              # vektor `c` dengan bilangan acak normal
+)
+mean(df$a)                                         # menghitung rata-rata dari `a`
+mean(df$b)                                         # menghitung rata-rata dari `b`
+mean(df$c)                                         # menghitung rata-rata dari `c`
+```
+
+Tapi itu melanggar aturan praktis kita: jangan pernah menyalin dan menempel lebih dari dua kali. Sebagai gantinya, kita bisa menggunakan for loop:
+
+```{r}
+output <- vector("double", ncol(df))              # membuat daftar kosong
+for (i in seq_along(df)) {                        # barisan
+  output[[i]] <- mean(df[[i]])                    # tubuh
+}
+output                                            # hasil
+```
+
+**Contoh 4:** Sebuah matriks memiliki 2 dimensi, baris dan kolom. Oleh karena itu, untuk melakukan iterasi pada matriks, kita harus mendefinisikan dua for loop, yaitu satu untuk baris dan satu lagi untuk kolom.
+
+```{r}
+mat<- matrix(data=seq(11,20,by=1), nrow=5,ncol=2) # membuat matriks
+for(r in 1:nrow(mat))                             # loop dengan r dan c untuk melakukan iterasi pada matriks
+    for (c in 1:ncol(mat))  
+         print(paste("Row", r, "and column",c, "have values of", mat[r,c])) 
+```
+
+```{r}
+mat
+```
+
+**Tantangan Anda:** lakukan hal yang sama untuk `df` seperti yang kami gunakan di atas.
+
+**Contoh 5:** Terkadang Anda ingin menggunakan loop untuk memodifikasi objek yang sudah ada. Misalnya, ingat tantangan kami dari fungsi [(Normalisasi)](https://bookdown.org/BaktiSiregar/data-science-for-beginners/Rprogramming.html#write-function-in-r). Kami ingin mengubah skala/menormalkan setiap kolom dalam dataframe:
+
+```{r}
+set.seed(123)                                      # untuk memastikan kita mendapatkan data yang sama
+library(tidyverse)                                 # memuat library tidyverse untuk `tibble` 
+df <- tibble(                                      # dataframe menggunakan `tibble`
+  a = rnorm(10, 5, 1),                             # vektor `a` dengan bilangan acak normal
+  b = rnorm(10, 5, 1),                             # vektor `b` dengan bilangan acak normal
+  c = rnorm(10, 5, 1)                              # vektor `c` dengan bilangan acak normal
+)
+rescale <- function(x) {                           # fungsi ini sama dengan `normalize`
+  rng <- range(x, na.rm = TRUE)
+  (x - rng[1]) / (rng[2] - rng[1])
+}
+for (i in seq_along(df)) {
+  df[[i]] <- rescale(df[[i]])
+}
+df
+```
+
+### `while` Loops
+
+Terkadang Anda bahkan tidak tahu berapa lama urutan masukan harus berjalan. Ini biasa terjadi saat melakukan simulasi. Misalnya, Anda mungkin ingin mengulang hingga mendapatkan tiga head berturut-turut. Anda tidak dapat melakukan iterasi semacam itu dengan `for` loop. Sebagai gantinya, Anda dapat menggunakan while loop . While loop lebih sederhana daripada for loop karena hanya memiliki dua komponen, kondisi dan isi.
+
+While loop dimulai dengan menguji suatu kondisi. Jika benar, maka mereka mengeksekusi badan dari loop. Setelah badan dari loop dieksekusi, kondisinya diuji lagi, dan seterusnya, hingga kondisinya salah, setelah loop keluar. Sintaks untuk while loop adalah sebagai berikut:
+
+```{r}
+while (condition) {
+     Expression
+}
+```
+
+<center>
+<img src="D:/Matana University/Data Scientist Handbook/Data-Science-Untuk-Pemula/while-loop (chapter 3.6.3).png" style = "width:100%;">
+</center>
+
+**Contoh 6:** Mari kita lihat contoh yang sangat sederhana untuk memahami konsep `while` loop. Anda akan membuat sebuah loop dan setelah setiap proses menambahkan 2 ke variabel yang disimpan. Anda perlu menutup loop, oleh karena itu kami secara eksplisit memberi tahu R untuk menghentikan perulangan ketika variabel mencapai 11.
+
+```{r}
+begin <- 0                                        # membuat variabel dengan 3 nilai
+while (begin <= 11){                              # mebuat loop
+cat('This is loop number', begin)                 # untuk melihat yang mana
+begin <- begin+2                                  # tambahkan 1 ke variabel dimulai setelah setiap loop
+print(begin)
+}
+```
+
+**Tantangan Anda:** lakukan hal yang sama, tetapi dalam kasus ini Anda untuk membuat urutan sepuluh nilai bilangan prima.
+
+**Contoh 7:** While loops dapat berpotensi menghasilkan pengulangan tanpa batas jika tidak ditulis dengan benar. Terkadang akan ada lebih dari satu kondisi dalam pengujian:
+
+```{r}
+z <- c(4,5,11)
+while(z >= 3 && z <= 10) {
+      coin <- rbinom(1, 1, 0.5)
+   if(coin == 1) {                                
+      z <- z + 1
+      } 
+   else {z <- z - 1
+      } 
+}
+print(z)
+```
+
+Kondisi selalu dievaluasi dari kiri ke kanan. Misalnya, dalam kode di atas, jika z kurang dari 3, pengujian kedua tidak akan dievaluasi.
+
+### `break` Loops
+
+Pernyataan `break` yang digunakan untuk melewati/menghentikan iterasi dan mengalirkan kontrol ke luar loop (for, while, repeat). Meskipun, ini tidak umum digunakan dalam aplikasi statistik atau analisis data tetapi ada kegunaannya.
+
+<center>
+<img src="D:/Matana University/Data Scientist Handbook/Data-Science-Untuk-Pemula/break-loop (chapter 3.6.4).png" style = "width:100%;">
+</center>
+
+**Contoh 8:** Mari lakukan iterasi terhadap vektor x,yang memiliki angka berurutan dari 1 sampai 5. Di dalam loop `for` kita telah menggunakan kondisi `if` untuk `break` jika nilai saat ini sama dengan 3. Seperti yang dapat kita lihat dari output, loop berakhir ketika bertemu dengan pernyataan `break`.
+
+```{r}
+x <- 1:5
+for (val in x) {
+if (val == 3){
+break
+}
+print(val)
+}
+```
+
+### `next` Loops
+
+Pernyataan `next` berguna ketika kita ingin melewatkan iterasi loop saat segera tanpa menghentikan, terlepas dari iterasi apa yang mungkin dilakukan loop.
+
+<center>
+<img src="D:/Matana University/Data Scientist Handbook/Data-Science-Untuk-Pemula/next-loop (chapter3.6.5).png" style = "width:100%;">
+</center>
+
+**Contoh 9:** Gunakan pernyataan berikutnya di dalam kondisi untuk memeriksa apakah nilainya sama dengan 3. Jika nilainya sama dengan 3, evaluasi saat ini berhenti (nilai tidak dicetak) tetapi pengulangan berlanjut dengan iterasi berikutnya.
+
+```{r}
+x <- 1:5
+for (val in x) {
+if (val == 3){
+next
+}
+print(val)
+}
+```
+
+### `repeat` Loops
+
+`repeat` loop digunakan untuk mengulang satu blok kode beberapa kali. Tidak ada pemeriksaan kondisi di loop untuk keluar. Kita sendiri harus menempatkan kondisi secara eksplisit di dalam tubuh loop.
+
+<center>
+<img src="D:/Matana University/Data Scientist Handbook/Data-Science-Untuk-Pemula/repeat-loop (chapter 3.6.6).png" style = "width:100%;">
+</center>
+
+**Contoh 10:** Mari gunakan kondisi untuk memeriksa dan keluar dari loop saat $x$ mengambil nilai 6. Oleh karena itu, kita akan melihat dalam output kita bahwa hanya nilai dari 1 hingga 5 yang dicetak.
+
+```{r}
+x <- 1
+repeat {
+    print(x)
+    x = x+1
+  if (x == 6){
+  break
+  }
+}
+```
+
+## Fungsi Loop
+
+Menulis loop `for, while, dll` berguna saat memprogram tetapi tidak terlalu sesuai saat bekerja secara interaktif pada baris perintah. Ekspresi multi-garis dengan tanda kurung kurawal tidak begitu nyaman untuk disortir saat mengerjakan. R memiliki beberapa fungsi yang mengimplementasikan perulangan dalam bentuk yang ringkas untuk mempermudah pekerjaan anda sebagai data scientist.
+
+* `tapply()` Fungsi berguna di atas subset vektor
+* `lapply()` Ulangi daftar dan evaluasi fungsi pada setiap elemen
+* `sapply()` Sama seperti lapply tetapi coba menyederhanakan hasilnya
+* `apply()` Fungsi yang berguna di atas margin array
+* `mapply()` Versi multivariasi dari lapply
+**Catatan:** Perulangan (looping) sebenarnya dilakukan secara internal dalam kode C untuk alasan efisiensi.
+
+### `tapply()`
+`tapply()` digunakan untuk menerapkan fungsi di atas subset vektor. Ini dapat dianggap sebagai kombinasi `split()` dan `sapply()` untuk vektor saja. Saya telah diberi tahu bahwa "t" di `tapply()` mengacu pada "tabel", tapi itu belum dikonfirmasi.
+
+```{r}
+str (tapply)
+```
+
+Argumen untuk `tapply()` adalah sebagai berikut: 
+* `X` adalah vektor 
+* `INDEX` adalah faktor atau daftar faktor (atau mereka dipaksa menjadi faktor) 
+* `FUN` adalah fungsi yang akan diterapkan 
+* `...` berisi argumen lain untuk dilewatkan `FUN` 
+* `simplify` haruskah kita menyederhanakan hasilnya?
+
+**Contoh 11:** Untuk memahami cara kerjanya, mari gunakan dataset `iris`. Dataset ini sangat terkenal di dunia pembelajaran mesin. Tujuan dari dataset ini adalah untuk memprediksi kelas dari masing-masing dari tiga spesies bunga: Sepal, Versicolor, Virginica. Dataset mengumpulkan informasi untuk setiap spesies tentang panjang dan lebarnya.
+
+```{r}
+data(iris)                                        # memuat dataset `iris`
+tapply(iris$Sepal.Width, iris$Species, mean)      # rata-rata lebar tiap spesies
+```
+
+Kita juga dapat mengambil rata-rata grup tanpa menyederhanakan hasilnya, yang akan memberi kita daftar (list). Untuk fungsi yang mengembalikan nilai tunggal, biasanya ini bukan yang kita inginkan, tapi bisa dilakukan.
+
+```{r}
+tapply (iris$Sepal.Width, iris$Species, mean, simplify = F)
+```
+
+### `lapply()`
+
+Fungsi ini berguna untuk melakukan operasi pada objek daftar dan mengembalikan objek daftar dengan panjang yang sama dari set aslinya. Ini akan mengembalikan daftar dengan panjang yang sama sebagai objek daftar masukan, yang masing-masing elemennya merupakan hasil dari penerapan `FUN` ke elemen daftar (list) yang sesuai.
+
+**Contoh 12:** Gunakan fungsi `mean()` untuk semua elemen daftar. Jika daftar asli memiliki nama, nama-nama tersebut akan dipertahankan di dalam output.
+
+```{r}
+lapply(df, mean)                                  # ambil mean dari setiap kolom `df`
+```
+
+**Contoh 13:** Ubah nilai string matriks menjadi huruf kecil dengan fungsi tolower. Kita membuat matriks dengan nama film terkenal. Nama dalam format huruf besar.
+
+```{r}
+movies <- c("FOUNDATION",
+            "AVENGERS",
+            "HAMILTON",
+            "CHINATOWN")                          # membuat vektor film terkenal
+movies_lower <-lapply(movies, tolower)            # huruf kecil dengan fungsi `tolower`
+str(movies_lower)                                 # mari lihat hasilnya
+```
+
+```{r}
+movies_lower <-unlist(lapply(movies,tolower))     # `unlist()` untuk mengonversi daftar menjadi vektor
+str(movies_lower)
+```
+
+### `sapply()`
+
+Fungsi `sapply()` berperilaku mirip dengan `lapply()`; satu-satunya perbedaan nyata adalah pada nilai pengembaliannya. `sapply()` akan mencoba menyederhanakan hasil dari `lapply()` jika memungkinkan. Pada dasarnya, `sapply()` memanggil `lapply()` pada inputnya dan kemudian menerapkan algoritma berikut:
+
+* Jika hasilnya adalah daftar (list) di mana setiap elemen memiliki panjang 1, maka vektor dikembalikan
+* Jika hasilnya adalah daftar (list) di mana setiap elemen adalah vektor dengan panjang yang sama (>1) , matriks dikembalikan.
+* Jika tidak bisa memahaminya, daftar (list) dikembalikan 
+
+```{r}
+sapply(df, mean)                                  # ambil rata-rata (mean) dari setiap kolom `df`
+```
+
+### `apply()`
+
+Fungsi `apply()` mengambil dataframe atau matriks sebagai masukan dan memberikan keluaran dalam vektor, daftar atau larik (array). Ini juga terutama digunakan untuk menghindari penggunaan eksplisit dari konstruksi perulangan. Selain itu, fungsi ini adalah yang paling dasar dari semua fungsi loop yang dapat digunakan melalui matriks.
+
+Fungsi ini membutuhkan 3 argumen:
+
+```{r}
+str (apply)
+```
+
+Argumen untuk `apply()` adalah
+
+* `X` adalah sebuah array (bisa berupa data frame, list, vector, dll)
+* `MARGIN` adalah vektor integer yang menunjukkan margin mana yang harus "dipertahankan".
+* `FUN` adalah fungsi yang akan diterapkan
+* `...` adalah untuk argumen lain yang akan diteruskan ke `FUN`
+
+**Contoh 11:** Mari buat matriks 20 kali 10 dari bilangan acak Normal. Kemudian hitung rata-rata setiap baris. Anda juga dapat menghitung jumlah setiap kolom.
+
+```{r}
+x <- matrix(rnorm(200), 20, 10)                   # membuat matriks dari bilangan acak normal 
+apply(x, 1, mean)                                 # ambil rata-rata setiap baris
+```
+
+```{r}
+apply(x, 2, sum)                                  # ambil rata-rata dari setiap kolom
+```
+
+Anda mungkin telah memperhatikan bahwa argumen kedua `MARGIN` adalah 1 atau 2, bergantung pada apakah kita menginginkan statistik baris atau statistik kolom. Sebenarnya, ada beberapa kasus khusus dari jumlah `kolom/baris` dan rata-rata matriks `kolom/baris`, kita memiliki beberapa cara pintas yang berguna.
+
+* rowSums  = apply(x, 1, sum)
+* rowMeans = apply(x, 1, mean)
+* colSums  = apply(x, 2, sum)
+* colMeans = apply(x, 2, mean)
+
+**Contoh 12:** Melihat kembali masalah [normalisasi](https://bookdown.org/BaktiSiregar/data-science-for-beginners/Rprogramming.html#normalize), kita bisa menyelesaikannya dengan cara yang lebih sederhana menggunakan `apply()`:
+
+```{r}
+normalize <- function(x){
+  norm <- (x-min(x))/(max(x)-min(x))
+  return(norm)
+}
+apply(df, 2, normalize)   
+```
+
+### `mapply()`
+
+Fungsi `mapply()` adalah penerapan multivariasi jenis yang menerapkan fungsi secara paralel pada sekumpulan argumen. Ingat bahwa `lapply()` dan teman-teman hanya melakukan iterasi pada satu objek R. Bagaimana jika Anda ingin mengulang beberapa objek R secara paralel? Inilah gunanya `mapply()`.
+
+```{r}
+str(mapply)
+```
+
+Argumen untuk `mapply()` adalah:
+
+* `FUN` adalah fungsi untuk diterapkan
+* `...` berisi objek R untuk diterapkan
+* `MoreArgs` adalah daftar argumen lain untuk `FUN`
+* `SIMPLIFY` menunjukkan apakah hasil harus disederhanakan
+
+Fungsi `mapply()` memiliki urutan argumen yang berbeda dari `lapply()` karena fungsi yang akan diterapkan lebih dulu daripada objek yang akan diiterasi. Objek R di mana kita menerapkan fungsi yang diberikan dalam argumen `...` karena kita dapat menerapkan sejumlah objek R.
+
+**Contoh 13:** Buat daftar yang berulang `list(rep(1,4), rep(2,3), rep(3,2), rep(4,1))`
+
+```{r}
+mapply(rep, 1:4, 4:1)
+```
+
+**Contoh 14:** Membuat simulasi variabel Normal acak.
+
+```{r}
+noise <- function(n, mean, sd) {
+            rnorm(n, mean, sd)
+}
+noise(5, 1, 2)                                    # Simulasikan 5 bilangan acak
+```
+
+```{r}
+apply(x, 2, sum)                                  # Ambil mean dari setiap kolom
+```
+
+```{r}
+noise(1:5, 1:5, 2)                                # Ini hanya mensimulasikan 1 set angka, bukan 5
+```
+
+```{r}
+# dapatkan 5 set bilangan acak,
+# masing-masing dengan panjang dan rata-rata yang berbeda
+mapply(noise, 1:5, 1:5, 2)       
+```
