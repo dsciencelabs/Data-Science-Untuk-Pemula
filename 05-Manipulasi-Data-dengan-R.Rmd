@@ -126,7 +126,8 @@ average_missing
 
 Selanjutnya, kita dapat mengganti nilai-nilai `NA`. Fungsi mutate dari library `dplyr` berguna untuk membuat variabel baru. Kita tidak perlu mengubah kolom asli, jadi kita dapat membuat sebuah variabel baru tanpa `NA`. Fungsi mutate mudah digunakan, kita hanya perlu memilih nama variabel dan menentukan bagaimana cara membuat variabel tersebut. Berikut ini kode lengkapnya:
 
-```{r, echo=T, results='hide'}
+```{r, eval=FALSE}
+library(dplyr)
 titanic_replace <- titanic %>%
 mutate(age  = ifelse(is.na(Age), average_missing[1], Age),
 fare = ifelse(is.na(Fare), average_missing[2], Fare))
