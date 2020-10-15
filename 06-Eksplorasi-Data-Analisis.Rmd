@@ -1,9 +1,9 @@
 # Eksplorasi Data Analisis {#Eksplorasi-Data-Analisis}
 ***
 
-**Analisis Data Eksplorasi (ADE)** adalah pendekatan analisis data untuk meringkas dan memvisualisasikan karakteristik penting dari data. ADE dapat dianggap sebagai asumsi bebas, biasanya dilakukan dalam perilaku analisis data. ADE juga dikenal sebagai analitik visual atau statistik deskriptif. ADE juga merupakan praktik pengamatan, dan mengeksplorasi data, sebelum Anda menekankan beberapa hipotesis, menyesuaikan prediktor, dan tujuan lainnya pada statistik inferensial. ADE biasanya mencakup penghitungan ringkasan statistika sederhana yang menangkap beberapa properti yang diminati dalam data dan visualisasi.
+**Eksplorasi Data Analisis (EDA)** adalah pendekatan analisis data untuk meringkas dan memvisualisasikan karakteristik penting dari data. EDA dapat dianggap sebagai asumsi bebas, biasanya dilakukan dalam perilaku analisis data. EDA juga dikenal sebagai analitik visual atau statistik deskriptif. EDA juga merupakan praktik pengamatan, dan mengeksplorasi data, sebelum Anda menekankan beberapa hipotesis, menyesuaikan prediktor, dan tujuan lainnya pada statistik inferensial. EDA biasanya mencakup penghitungan ringkasan statistika sederhana yang menangkap beberapa properti yang diminati dalam data dan visualisasi.
 
-Seseorang yang bekerja dengan data, salah satu aktivitasnya yang paling menarik adalah mengeksplorasi dataset yang baru. Anda harus memehami variabel apa saja yang Anda miliki, berapa banyak records yang ada di dalam dataset, berapa banyak data yang hilang, apa struktur variabelnya, apa hubungan variabelnya, dan masih banyak lagi. Oleh karena itu, pada bagian ini akan kita akan menampilkan beberapa poin penting dalam ADE dasar sebagai berikut:
+Seseorang yang bekerja dengan data, salah satu aktivitasnya yang paling menarik adalah mengeksplorasi dataset yang baru. Anda harus memahami variabel apa saja yang Anda miliki, berapa banyak records yang ada di dalam dataset, berapa banyak data yang hilang, apa struktur variabelnya, apa hubungan variabelnya, dan masih banyak lagi. Oleh karena itu, pada bagian ini akan kita akan menampilkan beberapa poin penting dalam EDA dasar sebagai berikut:
 
 * Bagaimana mengeksplorasi: dengan statistik ringkasan, atau secara visual?
 * Berapa banyak variabel yang dianalisis secara bersamaan: univariat, bivariat, atau multivariat?
@@ -142,7 +142,7 @@ IQR(Quan$Grade)                                    # Antar Rentang Kuantile dari
 
 #### Kecondongan (Skewness) {-}
 
-Kecondongan atau Asimetri mengacu pada distorsi atau asimetri dalam kurva lonceng simetris, atau [distribusi normal](https://www.investopedia.com/terms/n/normaldistribution.asp), dalam dataset. Jika kurva bergeser ke kiri atau ke kanan, maka dikatakan condong. Kecondongan dapat dikuantifikasi sebagai representasi dari sejauh mana suatu distribusi bervariasi dari distribusi normal. Distribusi normal memiliki kemiringan nol, sedangkan [distribusi normal log](https://www.investopedia.com/articles/investing/102014/lognormal-and-normal-distribution.asp), sebagai contoh, akan menunjukkan beberapa derajat kemiringan ke kanan.
+Kecondongan (Skewness) mengacu pada distorsi atau asimetri dalam kurva lonceng simetris, atau [distribusi normal](https://www.investopedia.com/terms/n/normaldistribution.asp), dalam dataset. Jika kurva bergeser ke kiri atau ke kanan, maka dikatakan condong. Kecondongan dapat dikuantifikasi sebagai representasi dari sejauh mana suatu distribusi bervariasi dari distribusi normal. Distribusi normal memiliki kemiringan nol, sedangkan [distribusi normal log](https://www.investopedia.com/articles/investing/102014/lognormal-and-normal-distribution.asp), sebagai contoh, akan menunjukkan beberapa derajat kemiringan ke kanan.
 
 ```{r, echo=T, results='hide'}
 library(e1071)                                      # memuat e1071
@@ -224,9 +224,10 @@ cov(Quan)                                           # menerapkan fungsi `cov()`
 cor(Quan)                                           # menerapkan fungsi `corr()`
 ```
 
-## ADE dengan cara Lazy-way
+## EDA dengan cara Lazy-way
 
 Jalankan semua fungsi di posting ini satu kali dengan fungsi berikut:
+
 ```{r, eval=FALSE, message=FALSE}
 library(funModeling) 
 library(tidyverse) 
@@ -264,7 +265,7 @@ Gunakan kode berikut untuk mengetahui lebih lanjut tentang fungsi:
 ?describe
 ```
 
-## Laporan ADE
+## Laporan EDA
 
 Dan akhirnya pièce de résistance, daya tarik utama dan alasan saya menulis blog ini; fungsi `create_report` dalam package `DataExplorer`. Fungsi satu baris yang menarik mengagumkan ini akan menarik profil data lengkap dari data frame Anda. Ini akan menghasilkan file HTML dengan statistik dasar, struktur, data yang hilang, visualisasi distribusi, matriks korelasi, dan analisis komponen utama dari data frame Anda! Saya baru-baru ini mengetahui tentang fungsi ini dalam sebuah [workshop yang diberikan oleh Stephe Locke](https://www.eventbrite.com/e/modern-r-for-data-science-workshop-w-steph-locke-tickets-50536282381#) yang dipandu oleh [R Ladies Austin](https://www.meetup.com/rladies-austin/). Fungsi ini berdampak besar!
 
