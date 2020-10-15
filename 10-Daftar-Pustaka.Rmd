@@ -1,0 +1,17 @@
+`r if (knitr:::is_html_output()) '
+# Daftar-Pustaka {-}
+'`
+***
+
+* [https://www.anotherbookondatascience.com/chapter1.html](https://www.anotherbookondatascience.com/chapter1.html)
+* [https://nwfsc-timeseries.github.io/atsa-labs/sec-boxjenkins-aug-dickey-fuller.html](https://nwfsc-timeseries.github.io/atsa-labs/sec-boxjenkins-aug-dickey-fuller.html)
+* [https://uvastatlab.github.io/phdplus/index.html](https://uvastatlab.github.io/phdplus/index.html)
+* [https://github.com/tirthajyoti/Data-science-best-resources](https://github.com/tirthajyoti/Data-science-best-resources)
+* [https://bookdown.org/rdpeng/rprogdatascience/](https://bookdown.org/rdpeng/rprogdatascience/)
+* [https://bookdown.org/ronsarafian/IntrotoDS/intro.html](https://bookdown.org/ronsarafian/IntrotoDS/intro.html)
+* [https://rkabacoff.github.io/datavis/Bivariate.html](https://rkabacoff.github.io/datavis/Bivariate.html)
+* [https://adeelk93.github.io/collapsibleTree/](https://adeelk93.github.io/collapsibleTree/)
+* [https://www.brucemeng.ca/post/animations-in-r/](https://www.brucemeng.ca/post/animations-in-r/)
+* [https://daviddalpiaz.github.io/appliedstats/simple-linear-regression.html](https://daviddalpiaz.github.io/appliedstats/simple-linear-regression.html)
+* [http://www.r-tutor.com/elementary-statistics/simple-linear-regression](http://www.r-tutor.com/elementary-statistics/simple-linear-regression)
+* [https://bookdown.org/gabriel_butler/ECON41Labs/lab-2-probability.html](https://bookdown.org/gabriel_butler/ECON41Labs/lab-2-probability.html)

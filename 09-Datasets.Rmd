@@ -1,0 +1,89 @@
+`r if (knitr:::is_html_output()) '
+# Datasets {-}
+'`
+***
+
+## Gaji Akademik {-}
+
+Dataset `Salaries` berasal dari package `carData`. Dataset ini menggambarkan 9 bulan gaji akademik dari 397 profesor perguruan tinggi di satu institusi pada 2008-2009. Data dikumpulkan sebagai bagian dari pemantauan administrasi tentang perbedaan gender dalam gaji. Dataset dapat diakses menggunakan kode berikut:
+
+```{r}
+data(Salaries, package="carData")
+```
+
+Data ini juga disediakan dalam format lain, sehingga Anda dapat berlatihn [Data Inferface R](https://bookdown.org/BaktiSiregar/data-science-for-beginners/Data-Visualization.html).
+
+* `Teks yang dipisahkan oleh koma` [Salaries.csv](https://raw.githubusercontent.com/Bakti-Siregar/dataset/master/Bookdown-Data-Science-for-Beginners/Salaries.csv)
+* `Teks yang dipisahkan oleh tab` [Salaries.txt](https://raw.githubusercontent.com/Bakti-Siregar/dataset/master/Bookdown-Data-Science-for-Beginners/Salaries.txt)
+* `Lembar kerja Excel` [Salaries.xlsx](https://github.com/Bakti-Siregar/dataset/blob/master/Bookdown-Data-Science-for-Beginners/Salaries.xlsx?raw=true)
+
+## pfizer dan fda {-}
+
+Dataset ini berisi file-file berikut, yang digunakan untuk melaporkan cerita ini, yang mengungkapkan bahwa beberapa dokter yang dibayar sebagai "ahli" oleh perusahaan obat `Pfizer` memiliki catatan disipliner yang bermasalah:
+
+[pfizer.csv](https://github.com/Bakti-Siregar/dataset/raw/master/Bookdown-Data-Science-for-Beginners/pfizer.csv) Pembayaran yang dilakukan oleh `Pfizer` kepada dokter di seluruh Amerika Serikat pada paruh kedua tahun 2009. Berisi variabel berikut:
+
+* `org_indiv` Nama lengkap dokter, atau organisasinya.
+* `first_plus` Nama awal atau nama tengah dokter.
+* `first_name last name` Nama awal dan nama akhir.
+* `city` kota negara bagian dan negara bagian.
+* `category of payment` Jenis pembayaran, yang mencakup Forum Expert-led, di mana dokter memberi memberikan kuliah kepada rekan mereka tentang penggunaan obat Pfizer, dan Professional Advising.
+* `cash` Nilai pembayaran yang dilakukan secara tunai.
+* `other` Nilai pembayaran yang dilakukan dalam bentuk natura (barang sebenarnya), misalnya pembelian makanan.
+* `total` Nilai pembayaran, baik secara tunai maupun natura (barang sebenarnya).
+
+[fda.csv](https://raw.githubusercontent.com/Bakti-Siregar/dataset/master/Bookdown-Data-Science-for-Beginners/fda.csv) Data tentang surat peringatan dikirim ke dokter oleh U.S. Food and Drug Administration (FDA), karena masalah dalam cara mereka menjalankan uji klinis yang menguji perawatan eksperimental. Berisi variabel-variabel berikut:
+
+* `name_last name_first name_middle` Nama akhir, nama awal, dan nama tengah dokter.
+* `issued` Tanggal pengiriman surat.
+* `office` Kantor di dalam FDA yang mengirim surat itu.
+
+## Penghematan Bahan Bakar {-}
+
+Dataset `mpg` dari package `ggplot2`, berisi data penghematan bahan bakar untuk 38 model mobil populer pada 1999 dan 2008. Dataset dapat diakses menggunakan
+
+```{r}
+data(mpg, package="ggplot2")
+```
+
+## Deret Waktu Ekonomi {-}
+
+Dataset `economics` dari package `ggplot2`, berisi data bulanan ekonomi yang dikumpulkan dari Januari 1967 hingga Januari 2015.
+
+Dataset dapat diakses menggunakan
+
+```{r}
+data(economics, package="ggplot2")
+```
+
+## Populasi AS {-}
+
+Dataset `uspopage` menggambarkan distribusi dari usia populasi di AS dari 1900 hingga 2002. Dataset dapat diakses menggunakan
+
+```{r}
+data(uspopage, package="gcookbook")
+```
+
+## Rumah Saratoga {-}
+
+Dataset `SaratogaHouses` berisi informasi dari 1,728 rumah di Saratoga Country, NY, USA pada 2006. Variabelnya adalah harga (dalam ribuan dolar AS) dan 15 karakteristik properti (ukuran lot, tempat tinggal, usia, jumlah kamar mandi, dll.). Data set dapat diakses menggunakan
+
+```{r}
+data(SaratogaHouses, package="mosaicData")
+```
+
+## CPS85 {-}
+
+Dataset `CPS85` berasal dari package `mosaicData`, yang berisi data pada tahun 1985 tentang upah dan karakteristik pekerja lainnya. Dataset dapat diakses menggunakan
+
+```{r}
+data(CPS85, package="mosaicData")
+```
+
+## Kanker Paru NCCTG {-}
+
+Dataset `lung` menggambarkan waktu kelangsungan hidup 228 pasien dengan kanker paru stadium lanjut dari North Central Cancer Treatment Group. Dataset dapat diakses menggunakan
+
+```{r}
+data(lung, package="survival")
+```
