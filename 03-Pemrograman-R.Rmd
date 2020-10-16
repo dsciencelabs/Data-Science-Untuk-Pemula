@@ -3,7 +3,7 @@
 
 ## Apa itu Pemrograman?
 
-Pemrograman yaitu aktivitas membuat program, yaitu menyusun sejumlah perintah yang dikenal computer. Terstruktur dapat berarti terpola, bentuk yang mengikuti aturan tertentu, juga berarti sesuatu yang sistematis. Berikut ini adalah suatu ilustrasi yang terjadi dalam algortima.
+Pemrograman yaitu aktivitas membuat program, yaitu menyusun sejumlah perintah yang dikenal computer. Terstruktur dapat berarti terpola, bentuk yang mengikuti aturan tertentu dan sistematis. Berikut ini adalah suatu ilustrasi yang terjadi dalam algortima.
 
 ```{r pemrograman, echo=FALSE,fig.align='center',fig.cap="Proses Algoritma", out.width = '80%'}
 knitr::include_graphics("images/functionmachine.gif")
