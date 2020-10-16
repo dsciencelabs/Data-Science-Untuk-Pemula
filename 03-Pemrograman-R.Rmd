@@ -3,6 +3,12 @@
 
 ## Apa itu Pemrograman?
 
+Pemrograman yaitu aktivitas membuat program, yaitu menyusun sejumlah perintah yang dikenal computer. Terstruktur dapat berarti terpola, bentuk yang mengikuti aturan tertentu, juga berarti sesuatu yang sistematis. Berikut ini adalah suatu ilustrasi yang terjadi dalam algortima.
+
+```{r pemrograman, echo=FALSE,fig.align='center',fig.cap="Proses Algoritma", out.width = '80%'}
+knitr::include_graphics("images/functionmachine.gif")
+```
+
 Ada banyak sekali definisi tentang apa itu pemrograman, di sini saya mengumpulkan empat frasa kunci diantaranya:
 
 * Pemrograman adalah proses pengambilan algoritma dan pengkodeannya menjadi suatu notasi, sehingga bahasa pemrograman dapat dieksekusi oleh komputer. Meskipun banyak bahasa pemrograman dan berbagai jenis komputer, langkah pertama yang penting adalah kebutuhan untuk memiliki solusi. Tanpa algoritma, tidak akan ada program.
@@ -10,7 +16,7 @@ Ada banyak sekali definisi tentang apa itu pemrograman, di sini saya mengumpulka
 * Algoritma menggambarkan solusi untuk suatu masalah dalam hal data yang dibutuhkan untuk mewakili contoh masalah dan serangkaian langkah yang diperlukan untuk menghasilkan hasil yang diinginkan. Bahasa pemrograman harus menyediakan cara notasional untuk merepresentasikan proses dan data. Untuk tujuan ini, bahasa menyediakan konstruksi kontrol dan jenis data.
 * Konstruksi kontrol memungkinkan langkah-langkah algoritmik dipresentasikan dengan cara yang nyaman namun tidak ambigu. Minimal, algoritma memerlukan konstruksi yang melakukan pemrosesan sekuensial, pemilihan untuk pengambilan keputusan, dan iterasi untuk kontrol berulang. Selama bahasa memberikan pernyataan dasar ini, itu dapat digunakan untuk representasi algoritma.
 
-**Dalam Kata Sederhana:** Pemrograman adalah bagaimana Anda mendapatkan komputer untuk memecahkan masalah.
+**Dalam Kata Sederhana:** Pemrograman adalah bagaimana Anda mendapatkan komputer untuk memecahkan masalah. 
 
 ## Algoritma Kehidupan Nyata
 
@@ -257,9 +263,11 @@ else (optional){
       do something different compare to others}
 ```
 
-<center>
-<img src="D:/Matana University/Data Scientist Handbook/Data-Science-Untuk-Pemula/if-else (chapter 3.6.1).png" style = "width:100%;">
-</center>
+Diagram berikut adalah representasi grafis dari langkah-langkah yang dilakukan dalam urutan penyajian aliran algoritma, alur kerja atau proses untuk menguntrol suatu fungsi yang menggunakan kondisi `if-else`. 
+
+```{r if-else, echo=FALSE,fig.align='center',fig.cap="Diagaram alur if-else", out.width = '55%'}
+knitr::include_graphics("images/if-else.png")
+```
 
 ```{r}
 x <- runif(1, 0, 100)                              # mengambil satu bilangan acak dari 0 sampai 100
@@ -318,9 +326,11 @@ For(i in vector){
 }
 ```
 
-<center>
-<img src="D:/Matana University/Data Scientist Handbook/Data-Science-Untuk-Pemula/for-loop (chapter 3.6.2).png" style = "width:100%;">
-</center>
+Diagram berikut adalah representasi grafis dari langkah-langkah yang dilakukan dalam urutan penyajian aliran algoritma, alur kerja atau proses untuk menguntrol suatu fungsi yang menggunakan kondisi `for`. 
+
+```{r for-loop, echo=FALSE,fig.align='center',fig.cap="Diagaram alur for", out.width = '40%'}
+knitr::include_graphics("images/for-loop.jpg")
+```
 
 **Contoh 1:** Mari mengulang semua elemen vektor dan mencetak nilai saat ini.
 
@@ -411,9 +421,11 @@ while (condition) {
 }
 ```
 
-<center>
-<img src="D:/Matana University/Data Scientist Handbook/Data-Science-Untuk-Pemula/while-loop (chapter 3.6.3).png" style = "width:100%;">
-</center>
+Diagram berikut adalah representasi grafis dari langkah-langkah yang dilakukan dalam urutan penyajian aliran algoritma, alur kerja atau proses untuk menguntrol suatu fungsi yang menggunakan kondisi `while`. 
+
+```{r while-loop, echo=FALSE,fig.align='center',fig.cap="Diagaram alur while", out.width = '40%'}
+knitr::include_graphics("images/whileloop.png")
+```
 
 **Contoh 6:** Mari kita lihat contoh yang sangat sederhana untuk memahami konsep `while` loop. Anda akan membuat sebuah loop dan setelah setiap proses menambahkan 2 ke variabel yang disimpan. Anda perlu menutup loop, oleh karena itu kami secara eksplisit memberi tahu R untuk menghentikan perulangan ketika variabel mencapai 11.
 
@@ -449,9 +461,11 @@ Kondisi selalu dievaluasi dari kiri ke kanan. Misalnya, dalam kode di atas, jika
 
 Pernyataan `break` yang digunakan untuk melewati/menghentikan iterasi dan mengalirkan kontrol ke luar loop (for, while, repeat). Meskipun, ini tidak umum digunakan dalam aplikasi statistik atau analisis data tetapi ada kegunaannya.
 
-<center>
-<img src="D:/Matana University/Data Scientist Handbook/Data-Science-Untuk-Pemula/break-loop (chapter 3.6.4).png" style = "width:100%;">
-</center>
+Diagram berikut adalah representasi grafis dari langkah-langkah yang dilakukan dalam urutan penyajian aliran algoritma, alur kerja atau proses untuk menguntrol suatu fungsi yang menggunakan kondisi `break`. 
+
+```{r break-loop, echo=FALSE,fig.align='center',fig.cap="Diagaram alur break", out.width = '40%'}
+knitr::include_graphics("images/break.jpg")
+```
 
 **Contoh 8:** Mari lakukan iterasi terhadap vektor x,yang memiliki angka berurutan dari 1 sampai 5. Di dalam loop `for` kita telah menggunakan kondisi `if` untuk `break` jika nilai saat ini sama dengan 3. Seperti yang dapat kita lihat dari output, loop berakhir ketika bertemu dengan pernyataan `break`.
 
@@ -469,9 +483,9 @@ print(val)
 
 Pernyataan `next` berguna ketika kita ingin melewatkan iterasi loop saat segera tanpa menghentikan, terlepas dari iterasi apa yang mungkin dilakukan loop.
 
-<center>
-<img src="D:/Matana University/Data Scientist Handbook/Data-Science-Untuk-Pemula/next-loop (chapter3.6.5).png" style = "width:100%;">
-</center>
+```{r next-loop, echo=FALSE,fig.align='center',fig.cap="Diagaram alur next", out.width = '40%'}
+knitr::include_graphics("images/next.png")
+```
 
 **Contoh 9:** Gunakan pernyataan berikutnya di dalam kondisi untuk memeriksa apakah nilainya sama dengan 3. Jika nilainya sama dengan 3, evaluasi saat ini berhenti (nilai tidak dicetak) tetapi pengulangan berlanjut dengan iterasi berikutnya.
 
@@ -489,9 +503,11 @@ print(val)
 
 `repeat` loop digunakan untuk mengulang satu blok kode beberapa kali. Tidak ada pemeriksaan kondisi di loop untuk keluar. Kita sendiri harus menempatkan kondisi secara eksplisit di dalam tubuh loop.
 
-<center>
-<img src="D:/Matana University/Data Scientist Handbook/Data-Science-Untuk-Pemula/repeat-loop (chapter 3.6.6).png" style = "width:100%;">
-</center>
+Diagram berikut adalah representasi grafis dari langkah-langkah yang dilakukan dalam urutan penyajian aliran algoritma, alur kerja atau proses untuk menguntrol suatu fungsi yang menggunakan kondisi `repeat`. 
+
+```{r repeat-loop, echo=FALSE,fig.align='center',fig.cap="Diagaram alur repeat", out.width = '40%'}
+knitr::include_graphics("images/repeat.jpg")
+```
 
 **Contoh 10:** Mari gunakan kondisi untuk memeriksa dan keluar dari loop saat $x$ mengambil nilai 6. Oleh karena itu, kita akan melihat dalam output kita bahwa hanya nilai dari 1 hingga 5 yang dicetak.
 
