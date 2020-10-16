@@ -797,7 +797,7 @@ static_plot
 
 Ini merupakan langkah terakhir untuk membuat plot animasi kita menggunakan `gganimate`, perhatikan kode berikut ini:
 
-```{r, echo=T, results='hide'}
+```{r}
 # membuat animasi terakhir
 plt<-static_plot + 
   transition_states(states = year, transition_length = 4, state_length = 1) + 
@@ -814,6 +814,7 @@ final_animation<-animate(plt,100,
                          width = 950, 
                          height = 750, 
                          renderer = gifski_renderer())
+
 # mengubah animasi menjadi bentuk mp4
 # animate(plt,100,
 #         fps = 20,
@@ -821,9 +822,14 @@ final_animation<-animate(plt,100,
 #         width = 950, 
 #         height = 750, 
 #         renderer = ffmpeg_renderer())
-# menyimpan animasi
+#saving the animation
 anim_save("images/suicide_animate.gif",animation=final_animation)
 ```
+
+```{r gganimate4, echo=FALSE,fig.align='center',fig.cap="Grafik Animasi", out.width = '100%'}
+knitr::include_graphics("images/suicide_animate.gif")
+```
+
 
 #### Fitur Utama dari `gganimate` {-}
 
