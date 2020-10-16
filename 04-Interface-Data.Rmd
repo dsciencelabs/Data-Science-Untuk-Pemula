@@ -4,7 +4,7 @@
 Dengan R, kita dapat membaca data dari file yang tersimpan di luar Environment R. Kita juga dapat menulis data menjadi bentuk file yang akan disimpan dan diakses oleh sistem operasi. R dapat membaca dan menulis ke beberapa format file seperti `csv, excel, txt, rds, xml, json, dll`.
 
 <center>
-<img src="D:/Matana University/Data Scientist Handbook/Data-Science-Untuk-Pemula/interface (chapter 4).png" style = "width:100%;">
+<img src="images/interface1.png" style = "width:100%;">
 </center>
 
 ## Direktori Kerja (Working Directory)

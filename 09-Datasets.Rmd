@@ -3,7 +3,7 @@
 '`
 ***
 
-## Gaji Akademik {-}
+## Salaries {-}
 
 Dataset `Salaries` berasal dari package `carData`. Dataset ini menggambarkan 9 bulan gaji akademik dari 397 profesor perguruan tinggi di satu institusi pada 2008-2009. Data dikumpulkan sebagai bagian dari pemantauan administrasi tentang perbedaan gender dalam gaji. Dataset dapat diakses menggunakan kode berikut:
 
@@ -38,7 +38,7 @@ Dataset ini berisi file-file berikut, yang digunakan untuk melaporkan cerita ini
 * `issued` Tanggal pengiriman surat.
 * `office` Kantor di dalam FDA yang mengirim surat itu.
 
-## Penghematan Bahan Bakar {-}
+## mpg {-}
 
 Dataset `mpg` dari package `ggplot2`, berisi data penghematan bahan bakar untuk 38 model mobil populer pada 1999 dan 2008. Dataset dapat diakses menggunakan
 
@@ -46,7 +46,7 @@ Dataset `mpg` dari package `ggplot2`, berisi data penghematan bahan bakar untuk 
 data(mpg, package="ggplot2")
 ```
 
-## Deret Waktu Ekonomi {-}
+## economics {-}
 
 Dataset `economics` dari package `ggplot2`, berisi data bulanan ekonomi yang dikumpulkan dari Januari 1967 hingga Januari 2015.
 
@@ -56,7 +56,7 @@ Dataset dapat diakses menggunakan
 data(economics, package="ggplot2")
 ```
 
-## Populasi AS {-}
+## uspopage {-}
 
 Dataset `uspopage` menggambarkan distribusi dari usia populasi di AS dari 1900 hingga 2002. Dataset dapat diakses menggunakan
 
@@ -64,7 +64,7 @@ Dataset `uspopage` menggambarkan distribusi dari usia populasi di AS dari 1900 h
 data(uspopage, package="gcookbook")
 ```
 
-## Rumah Saratoga {-}
+## SaratogaHouses {-}
 
 Dataset `SaratogaHouses` berisi informasi dari 1,728 rumah di Saratoga Country, NY, USA pada 2006. Variabelnya adalah harga (dalam ribuan dolar AS) dan 15 karakteristik properti (ukuran lot, tempat tinggal, usia, jumlah kamar mandi, dll.). Data set dapat diakses menggunakan
 
@@ -80,7 +80,7 @@ Dataset `CPS85` berasal dari package `mosaicData`, yang berisi data pada tahun 1
 data(CPS85, package="mosaicData")
 ```
 
-## Kanker Paru NCCTG {-}
+## lung {-}
 
 Dataset `lung` menggambarkan waktu kelangsungan hidup 228 pasien dengan kanker paru stadium lanjut dari North Central Cancer Treatment Group. Dataset dapat diakses menggunakan
 
