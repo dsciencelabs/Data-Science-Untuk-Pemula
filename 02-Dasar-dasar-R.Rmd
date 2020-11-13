@@ -26,7 +26,7 @@ Beberapa operator umum:
 *	`>= <=` lebih besar dari atau sama dengan, kurang dari atau sama dengan;
 *	`!=` tidak sama dengan.
 *	Tanda sama dengan bisa sedikit membingungkan, tetapi lihat bagaimana mereka digunakan dalam kode yang kita gunakan hari ini:
-* `==` menguji apakah suatu objek sama dengan nilai. Tanda Ini sering digunakan saat memfilter data;
+* `==` menguji apakah suatu objek sama dengan nilai. Tanda ini sering digunakan saat memfilter data;
 *	`=` membuat objek sama dengan nilai; bekerja seperti `<-`, tetapi digunakan di dalam tanda kurung dari sebuah fungsi.
 *	`$` untuk menentukan kolom individual dengan memisahkan nama frame data dan nama kolom.
 **Catatan** Objek dan nama variabel dalam R tidak boleh berisi spasi.
@@ -80,7 +80,7 @@ average <-(x+x+y)/3 # menetapkan rata-rata beberapa variabel
 
 ### Probabilitas
 
-R dapat digunakan sebagai kalkulator probabilitas. Anda mungkin berharap mengetahui ini ketika melakukan kelas Intro To Probability anda.
+R dapat digunakan sebagai kalkulator probabilitas. Anda mungkin berharap mengetahui ini ketika Anda melakukan kelas Intro To Probability.
 
 ```{r, echo=T, results='hide'}
 dbinom (x = 3, size = 10, prob = 0.5)	     # Fungsi Kepadatan (DF) P (X = 3) 
@@ -94,7 +94,7 @@ rbinom (n = 10, size = 10, prob = 0.5)	 	 # menghasilkan variabel acak
 R memiliki banyak distribusi bawaan. Nama mereka mungkin berubah, tetapi awalannya tetap tidak berubah, contoh:
 
 *	`d` awalan untuk fungsi kerapatan (density function).
-*	`p` awalan untuk fungsi distribusi kumulatif (Cummulative distribution function/CDF).
+*	`p` awalan untuk fungsi distribusi kumulatif (Cummulative Distribution Function/CDF).
 *	`q` awalan untuk fungsi kuantil (mis., CDF terbalik atau inverse CDF).
 *	`r` awalan untuk menghasilkan sampel acak.
 
@@ -107,14 +107,14 @@ Gunakanlah ide-ide dibawah ini dengan menggunakan beberapa distribusi CDF :
 
 ## Bantuan
 
-Salah satu bagian terpenting dari bekerja dengan bahasa adalah mengetahui di mana mencari bantuan. Selain berbagai sumber daya bantuan dalam ekosistem R, selain itu R juga memiliki beberapa fasilitas in-line. Dapatkanlah bantuan untuk fungsi tertentu.
+Salah satu bagian terpenting ketika melakukan bahasa pemrograman adalah mengetahui di mana mencari bantuan. Selain berbagai sumber daya bantuan dalam ekosistem R, R juga memiliki beberapa fasilitas in-line. Dapatkanlah bantuan untuk fungsi tertentu.
 
 ```{r, eval=FALSE}
 ?dbinom
 help(dbinom)
 ```
 
-Jika Anda tidak tahu nama fungsi yang anda cari, carilah file bantuan lokal untuk string tertentu:
+Jika Anda tidak tahu nama fungsi yang Anda cari, carilah file bantuan lokal untuk string tertentu:
 
 ```{r, eval=FALSE}
 ??binom
@@ -199,7 +199,7 @@ car_data <- mtcars %>%
 
 ## Membuat Vektor
 
-Elemen paling dasar dalam R adalah vektor. Kita sekarang akan melihat cara membuat vector  dan mengakses elemen-elemen (yaitu, subset). Berikut adalah tiga cara untuk membuat vektor yang sama:
+Elemen paling dasar dalam R adalah vektor. Kita sekarang akan melihat cara membuat vektor dan mengakses elemen-elemen (yaitu, subset). Berikut adalah tiga cara untuk membuat vektor yang sama:
 
 ```{r , echo=T, results='hide'}
 c(10,11,12,13,14,15,16,17,18,19,20,21) 		  # Membuat vektor secara manual
@@ -226,7 +226,7 @@ typeof(y)                              			# Untuk memeriksa jenis `y`
 class(y)                               			# Untuk memeriksa jenis `y`
 ```
 
-**Catatan:** Menurut [dokumentasi R](https://stat.ethz.ch/R-manual/R-devel/doc/manual/R-lang.html#Objects) untuk `typeof()` dan `class()`, pernyataan tentang "perbedaan utama/main difference" adalah tidak benar. Kelas adalah atribut dari objek yang dapat ditetapkan terlepas dari mode penyimpanan internalnya, sedangkan `typeof()` menentukan tipe (R internal) atau mode penyimpanan dari objek apa pun. Satu menggambarkan karakteristik logis sedangkan yang lain adalah karakteristik fisik dari suatu objek.
+**Catatan:** Menurut [dokumentasi R](https://stat.ethz.ch/R-manual/R-devel/doc/manual/R-lang.html#Objects) untuk `typeof()` dan `class()`, pernyataan tentang "perbedaan utama/main difference" adalah tidak benar. Kelas adalah atribut dari objek yang dapat ditetapkan terlepas dari mode penyimpanan internalnya, sedangkan `typeof()` menentukan tipe (R internal) atau mode penyimpanan dari objek apa pun. Salah satu menggambarkan karakteristik logis sedangkan yang lain adalah karakteristik fisik dari suatu objek.
 
 ```{r , echo=T, results='hide'}
 x <- 0:10                              	   # Mari tetapkan ke objek bernama `x`
@@ -382,7 +382,7 @@ Data frame biasanya dibuat dengan membaca dalam dataset menggunakan `read.table(
 
 ## Menghasilkan Data Frame
 
-Sebagai seorang Data Scientist, ketika mencoba mennyimulasikan proses analisis data, pemodelan, dan bahkan prediksi, Anda harus mampu secara intuitif membangun dataframe untuk memperkirakan kumpulan data sampel. Terutama, ketika Anda tidak memiliki kumpulan data sampel sama sekali. Oleh karena itu, pada bagian ini, kita akan belajar sedikit mengenai cara menghasilkan dataframe. Harap pertimbangkan baik-baik contoh berikut:
+Sebagai seorang Data Scientist, ketika mencoba menyimulasikan proses analisis data, pemodelan, bahkan prediksi. Anda harus mampu secara intuitif membangun dataframe untuk memperkirakan kumpulan data sampel. Terutama, ketika Anda tidak memiliki kumpulan data sampel sama sekali. Oleh karena itu, pada bagian ini, kita akan belajar sedikit mengenai cara menghasilkan dataframe. Harap perhatikan baik-baik contoh berikut:
 
 ```{r , echo=T, results='show'}
 # Misalkan Anda ingin membangun kumpulan data karyawan di sebuah perusahaan
@@ -416,7 +416,7 @@ Employees
 
 ## Ekstraksi
 
-R menyediakan banyak cara untuk mengelompokkan dan mengekstrak elemen dari vektor dan objek lainnya. Dasar-dasarnya cukup sederhana, tetapi dengan tidak memperhatikan "kepribadian" dari setiap mekanisme ekstraksi dapat menyebabkan Anda sakit kepala. Sebagai permulaan, ekstraksi dilakukan dengan operator `[]`. Operator dapat mengambil vektor dari banyak jenis.
+R menyediakan banyak cara untuk mengelompokkan dan mengekstrak elemen dari vektor dan objek lainnya. Dasar-dasarnya cukup sederhana, tetapi dengan tidak memperhatikan "karakteristik" dari setiap mekanisme ekstraksi dapat menyebabkan Anda sakit kepala. Sebagai permulaan, ekstraksi dilakukan dengan operator `[]`. Operator dapat mengambil vektor dari banyak jenis.
 
 ```{r , echo=T, results='hide'}
 #View(Employees)                                 # Lihat dataset `Employees` (environment R)
