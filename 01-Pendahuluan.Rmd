@@ -1,5 +1,53 @@
 # Pendahuluan {#Pendahuluan}
 ***
 
+## Apa itu Data Science?
 
-Disini di tuliskan materi
+[`Menurut Wikipedia:`](https://en.wikipedia.org/wiki/Data_science) Data Science adalah disiplin ilmu yang menggunakan metode, proses, algoritma, dan sistem untuk mengekstrak pengetahuan dan wawasan dari data dalam berbagai bentuk, baik secara terstruktur maupun tidak terstruktur, mirip dengan Data Mining.
+
+Data Science adalah "konsep untuk menyatukan statistik, analisis data, Machine Learning, dan metode terkait" untuk "memahami dan menganalisis kejadian aktual" dengan data. Data Science menggunakan teknik dan teori yang diambil dari berbagai bidang dalam konteks matematika, statistika, ilmu informasi, dan ilmu komputer.
+
+<center>
+<img src="D:/Matana University/Data Scientist Handbook/Data-Science-Untuk-Pemula/datascience (chapter 1.1).png" style = "width:100%;">
+</center>
+
+```{r}
+# MIND MAP
+```
+
+**`Secara sederhana:`** Data Science adalah perpaduan dari beberapa alat, algoritma, dan prinsip Machine Learning dengan tujuan untuk menemukan pola tersebunya dari data mentah.
+
+Untuk lebih jelasnya lagi, silakan lihat video berikut ini:
+
+<center>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/X3paOmcrTjQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</center>
+
+## Mengapa Belajar Data Science?
+
+Data Sciense telah dinobatkan sebagai "pekerjaan terseksi abad ke-21" oleh Harvard Business Review. Tetapi apa yang membuat Data Science begitu penting? Mengapa Data Scientist termasuk di antara profesional yang bergaji tinggi? Dan yang terpenting, mengapa belajar Data Science? Dalam buku ini, kita akan membahas beberapa alasan utama mengapa Data Science menjadi pekerjaan yang paling dicari di pasar. Kita akan memahami persyaratan perusahaan dan mengapa mereka membutuhkan Data Scientist untuk meningkatkan performa mereka. Berikut ini alasan yang pasti akan menyakinkan Anda untuk berkarier di Data Science:
+
+<center>
+<img src="D:/Matana University/Data Scientist Handbook/Data-Science-Untuk-Pemula/datascience3 (chapter 1.2).png" style = "width:100%;">
+</center>
+
+### Data Science Mengubah Dunia
+
+Big Data dan Data Science lebih dari sekadar alat Business Intelligence. Berbagai organisasi filantropi dan organisasi sosial menggunakan data untuk membuat produk untuk kebaikan sosial. Selain itu, berbagai organisasi perawatan kesehatan juga menggunakan data untuk menolong dokter untuk memiliki wawasan yang lebih luas mengenai kesehatan pasien mereka. Berikut ini adalah daftar 6 kasus teratas dari penggunaan data science yang harus Anda ketahui:
+
+* Facebook - Menggunakan Data untuk Merevolusi Jaringan Sosial dan Pengiklanan
+* Amazon - Mengubah E-commerce dengan Data Science
+* Uber - Menggunakan Data untuk Membuat Perjalanan yang Lebih Baik
+* Bank of America - Menggunakan Data untuk Memanfaatkan Pengalaman Pelanggan
+* Airbnb - Menggunakan Data untuk Membuat Masa Menginap yang Lebih Nyaman
+* Spotify - Merevolusi Streaming Musik
+
+Data Science adalah bidang yang paling populer di dunia saat ini, karena menjadi bidang karier yang berasal dari berbagai disiplin ilmu. Data adalah kebutuhan industri dan oleh karena itu, Data Science memiliki banyak pengaplikasian. Dalam artikel ini, kita akan mendiskusikan beberapa aplikasi penting Data Science dan melihat bagaimana hal itu membentuk industri di dunia hari ini.
+
+<center>
+<img src="D:/Matana University/Data Scientist Handbook/Data-Science-Untuk-Pemula/datascience4 (chapter 1.2.1).png" style = "width:100%;">
+</center>
+
+### Masalah Permintaan dan Penawaran
+
+Seperti yang telah dibahas di atas, ada banyak sekali data. Namun, tidak ada sumber daya yang cukup untuk mengubah data ini menjadi produk yang berguna. Artinya, kurangnya sumber daya manusia yang memiliki keterampilan yang diperlukan untuk membantu perusahaan memanfaatkan potensi yang dimiliki data. Alasan inilah yang membuat kelangkaan dalam pasokan Data Science.

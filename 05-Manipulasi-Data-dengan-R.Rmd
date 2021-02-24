@@ -3,6 +3,12 @@
 
 Salah satu keterampilan paling mendasar yang harus dimiliki seorang Data Scientist adalah memanipulasi data. Untuk menjadi seseorang yang sangat efektif, Anda harus ahli dalam memanipulasi data penting. Hal ini perlu diperhatikan karena sebagian besar pekerjaan Anda akan melibatkan [pengambilan dan pembersihan data](https://www.forbes.com/sites/gilpress/2016/03/23/data-preparation-most-time-consuming-least-enjoyable-data-science-task-survey-says/#4b432fa66f63).
 
+<center>
+<img src="D:/Matana University/Data Scientist Handbook/Data-Science-Untuk-Pemula/images/datapreparation.jpg" style = "width:80%;">
+</center>
+
+Data Scientist menghabiskan 60% waktunya untuk membersihkan dan mengatur data. Di urutan kedua, 19% waktunya untuk mengumpulkan dataset, yang berarti Data Scientist menghabiskan sekitar 80% waktunya untuk menyiapkan dan mengelola data untuk analisis.
+
 Pada bagian ini, Anda akan mempelajari bagaimana memanipulasi data dengan mudah menggunakan R. Kita akan membahas fungsi-fungsi manipulasi data mendasar yang sebagian besar akan Anda gunakan untuk memanipulasi data Anda.
 
 * `read_csv()` Mengimpor data (Anda bisa menggunakan fungsi lainnya)
